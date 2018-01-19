@@ -1,0 +1,54 @@
+@import "shared";
+
+#search {
+  .input:first-child {
+    padding-left: 0;
+  }
+
+  .input:last-child {
+    padding-right: 0;
+  }
+
+  input, select {
+    border: none;
+    outline: none;
+  }
+
+  .search-container {
+    @include box-shadow;
+    background: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-left: 5px;
+      flex-grow: 1;
+      width: 100px;
+    }
+  }
+
+  .select-container {
+    @include box-shadow;
+    display: flex;
+    align-items: center;
+    background: white;
+    position: relative;
+
+    select {
+      z-index: 10;
+      background: none;
+      flex-grow: 1;
+      border-radius: 0;
+      font-size: inherit;
+      padding: 15px;
+      -webkit-appearance: button;
+    }
+
+    .arrow-container {
+      position: absolute;
+      right: 20px;
+      z-index: 0;
+    }
+  }
+}
