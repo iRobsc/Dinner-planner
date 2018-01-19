@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 html, body {
   height: 100%;
@@ -9,28 +10,32 @@ html, body {
   color: #464646;
   background-color: #FBFBFB;
   font-family: "Open Sans", sans-serif;
-  font-weight: 300; }
+  font-weight: 300;
+}
 
 header {
   font-family: "Playfair Display SC", serif;
   font-size: 72px;
   font-weight: bold;
   text-align: center;
-  padding: 10px 0; }
+  padding: 10px 0;
+}
 
 #welcome-box {
   max-width: 900px;
   margin: 80px auto 0 auto;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 15px 40px;
-  padding: 100px; }
+  box-shadow: rgba(0,0,0,0.1) 0px 15px 40px;
+  padding: 100px;
+}
 
 #welcome-btn-container {
   margin-top: 35px;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+}
 
 #welcome-btn {
   display: inline-block;
@@ -40,4 +45,5 @@ header {
   border-radius: 50px;
   font-size: 18px;
   color: white;
-  text-decoration: none; }
+  text-decoration: none;
+}
