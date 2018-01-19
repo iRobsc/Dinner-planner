@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #464646;
+  background-color: #FBFBFB;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+header {
+  font-family: "Playfair Display SC", serif;
+  font-size: 72px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+}
+
+#welcome-box {
+  max-width: 900px;
+  margin: 80px auto 0 auto;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.1) 0px 15px 40px;
+  padding: 100px;
+}
+
+#welcome-btn-container {
+  margin-top: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#welcome-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #FF82AC, #F7538A);
+  box-shadow: rgba(239, 61, 121, 0.25) 0 10px 20px;
+  padding: 20px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
