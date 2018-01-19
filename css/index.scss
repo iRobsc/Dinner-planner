@@ -1,4 +1,6 @@
+@import "shared";
 @import "sidebar";
+@import "buttons";
 
 * {
   box-sizing: border-box;
@@ -37,26 +39,4 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.dinner-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #FF82AC, #F7538A);
-  box-shadow: rgba(239, 61, 121, 0.25) 0 10px 20px;
-  padding: 20px 30px;
-  border-radius: 50px;
-  font-size: 18px;
-  color: white;
-  text-decoration: none;
-  transition: 300ms all;
-
-  &:hover {
-    color: white;
-    text-decoration: none;
-    transform: translateY(-3px);
-  }
-
-  &:active {
-    background: linear-gradient(90deg, #FF82AC, #F7538A);
-  }
 }

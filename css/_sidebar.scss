@@ -1,4 +1,18 @@
+@import "shared";
+
 #sidebar {
+  @include box-shadow;
   background: white;
   text-align: center;
+  padding: 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  #sidebar-list {
+    margin: 20px 0;
+    color: #B3B3B3;
+  }
 }

@@ -1,0 +1,36 @@
+@mixin dinner-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  transition: 300ms transform;
+  outline: none;
+  border: none;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.dinner-btn {
+  @include dinner-btn;
+  cursor: pointer;
+  background: linear-gradient(90deg, #FF82AC, #F7538A);
+  box-shadow: rgba(239, 61, 121, 0.25) 0 10px 20px;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    background: linear-gradient(90deg, #FF82AC, #F7538A);
+  }
+}
+
+.dinner-btn-disabled {
+  @include dinner-btn;
+  background-color: #EBEBEB;
+}
