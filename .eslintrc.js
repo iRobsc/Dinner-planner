@@ -13,5 +13,7 @@ module.exports = {
         "no-underscore-dangle": 0,
         "no-use-before-define": 0,
         "no-plusplus": 0,
+        "quote-props": 0,
+        "no-restricted-syntax": 0,
     },
 };
