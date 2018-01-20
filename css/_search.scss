@@ -1,13 +1,10 @@
 @import "shared";
 
 #search {
-  .input:first-child {
-    padding-left: 0;
-  }
-
-  .input:last-child {
-    padding-right: 0;
-  }
+  display: grid;
+  grid-template-columns: auto 200px 150px;
+  grid-template-areas: "search select btn";
+  grid-gap: 15px;
 
   input, select {
     border: none;
@@ -16,6 +13,7 @@
 
   .search-container {
     @include box-shadow;
+    grid-area: search;
     background: white;
     padding: 15px;
     display: flex;
@@ -30,6 +28,7 @@
 
   .select-container {
     @include box-shadow;
+    grid-area: select;
     display: flex;
     align-items: center;
     background: white;
@@ -50,5 +49,9 @@
       right: 20px;
       z-index: 0;
     }
+  }
+
+  .dinner-btn {
+    grid-area: btn;
   }
 }

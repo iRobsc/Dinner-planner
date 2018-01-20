@@ -13,4 +13,17 @@
   header {
     font-size: 24px;
   }
+
+  #search {
+    grid-template-columns: auto 150px;
+    grid-template-areas:
+      "search search"
+      "select btn";
+  }
+}
+
+@media (max-width: 320px) {
+  #search {
+    grid-template-columns: auto 120px;
+  }
 }
