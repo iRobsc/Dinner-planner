@@ -5,7 +5,8 @@
   font-size: 16px;
   color: white;
   text-decoration: none;
-  transition: 300ms transform;
+  transition: 300ms all;
+  transition-property: transform, box-shadow;
   outline: none;
   border: none;
 
@@ -23,10 +24,11 @@
 
   &:hover {
     transform: translateY(-3px);
+    box-shadow: rgba(239, 61, 121, 0.25) 0 15px 20px;
   }
 
   &:active {
-    background: linear-gradient(90deg, #FF82AC, #F7538A);
+    background: linear-gradient(90deg, darken(#FF82AC, 10%), darken(#F7538A, 15%));
   }
 }
 
