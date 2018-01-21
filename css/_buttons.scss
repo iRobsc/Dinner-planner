@@ -19,8 +19,8 @@
 .dinner-btn {
   @include dinner-btn;
   cursor: pointer;
-  background: linear-gradient(90deg, #FF82AC, #F7538A);
-  box-shadow: rgba(239, 61, 121, 0.25) 0 10px 20px;
+  background: linear-gradient(90deg, #FF79AD, #FF418A);
+  box-shadow: rgba(#FF1D78, 0.4) 0 10px 20px;
 
   &:hover {
     transform: translateY(-3px);
