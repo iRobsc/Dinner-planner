@@ -2,7 +2,7 @@
 
 #search {
   display: grid;
-  grid-template-columns: auto 200px 150px;
+  grid-template-columns: 1fr 200px 150px;
   grid-template-areas: "search select btn";
   grid-gap: 15px;
 

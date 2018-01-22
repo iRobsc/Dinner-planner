@@ -18,50 +18,44 @@
 </head>
 <body>
   <header>Dinner Planner</header>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <div id="sidebar">
-          <h2>My Dinner</h2>
-          Number of people: 3
-          <br>
+  <div id="container">
+    <div id="sidebar">
+      <h2>My Dinner</h2>
+      Number of people: 3
+      <br>
 
-          <div id="sidebar-list">
-            Your list is empty!
-          </div>
-
-          Total cost: 0kr
-          <br>
-          <button class="dinner-btn-disabled">
-            Confirm Dinner <i class="fa fa-check-circle"></i>
-          </button>
-        </div>
+      <div id="sidebar-list">
+        Your list is empty!
       </div>
-      <div class="col-md-9">
-        <div id="main-content">
-          <h2>Find a dish</h2>
-          <form id="search">
-            <div class="search-container">
-              <i class="fa fa-search"></i>
-              <input type="text" placeholder="Enter keywords">
-            </div>
 
-            <div class="select-container">
-              <select>
-                <option>Main Course</option>
-                <option>Side Dish</option>
-                <option>Dessert</option>
-                <option>Appetizer</option>
-              </select>
-              <span class="arrow-container">
-                <i class="fa fa-angle-down"></i>
-              </span>
-            </div>
-
-            <button type="submit" class="dinner-btn">Search</button>
-          </form>
+      Total cost: 0kr
+      <br>
+      <button class="dinner-btn-disabled">
+        Confirm Dinner <i class="fa fa-check-circle"></i>
+      </button>
+    </div>
+    <div id="main-content">
+      <h2>Find a dish</h2>
+      <form id="search">
+        <div class="search-container">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="Enter keywords">
         </div>
-      </div>
+
+        <div class="select-container">
+          <select>
+            <option>Main Course</option>
+            <option>Side Dish</option>
+            <option>Dessert</option>
+            <option>Appetizer</option>
+          </select>
+          <span class="arrow-container">
+            <i class="fa fa-angle-down"></i>
+          </span>
+        </div>
+
+        <button type="submit" class="dinner-btn">Search</button>
+      </form>
     </div>
   </div>
 </body>
