@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "node-sass-chokidar css/ -o css/",
     "watch-css": "npm run build-css && node-sass-chokidar css/ -o css/ --watch --recursive",
-    "start": "npm run watch-css",
+    "browser-sync": "browser-sync --server --files '**/*.html, **/*.css, **/*.js'",
+    "start": "npm-run-all -p watch-css browser-sync",
     "build": "npm run build-css"
   },
   "repository": {
@@ -17,9 +18,12 @@
   "author": "Willy Liu, Robert Kindwall",
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.23.5",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "node-sass-chokidar": "0.0.3"
+    "node-sass-chokidar": "0.0.3",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
