@@ -7,6 +7,9 @@
   }
 }
 
+/**
+ * One column mobile layout
+ */
 @media (max-width: 767px) {
   header {
     font-size: 48px;
@@ -19,6 +22,26 @@
 
   #container {
     grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+
+  #sidebar-accordion {
+    display: grid;
+    grid-template-columns: 2fr 1fr 50px;
+  }
+
+  #sidebar-content {
+    h2 {
+      display: none;
+    }
+  }
+
+  .sidebar-show {
+    display: block;
+  }
+
+  .sidebar-hide {
+    display: none;
   }
 }
 

@@ -1,6 +1,43 @@
 @import "shared";
 
+#sidebar-accordion {
+  display: none;
+
+  * {
+    display: flex;
+    align-items: center;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .price {
+    justify-content: flex-end;
+  }
+
+  #sidebar-toggle {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: inherit;
+    justify-content: center;
+  }
+}
+
 #sidebar {
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  #sidebar-inner-container {
+    padding-top: 20px;
+  }
+
   @include box-shadow;
   background: white;
   text-align: center;

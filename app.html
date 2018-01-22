@@ -20,19 +20,32 @@
   <header>Dinner Planner</header>
   <div id="container">
     <div id="sidebar">
-      <h2>My Dinner</h2>
-      Number of people: 3
-      <br>
-
-      <div id="sidebar-list">
-        Your list is empty!
+      <div id="sidebar-accordion">
+        <h2>My Dinner</h2>
+        <div class="price">70kr</div>
+        <button id="sidebar-toggle">
+          <i class="fa fa-bars"></i>
+        </button>
       </div>
+      <div id="sidebar-content" class="sidebar-hide">
+        <h2>My Dinner</h2>
 
-      Total cost: 0kr
-      <br>
-      <button class="dinner-btn-disabled">
-        Confirm Dinner <i class="fa fa-check-circle"></i>
-      </button>
+        <div id="sidebar-inner-container">
+          Number of people: 3
+          <br>
+
+          <div id="sidebar-list">
+            Your list is empty!
+          </div>
+
+          Total cost: 0kr
+          <br>
+          <button class="dinner-btn-disabled">
+            Confirm Dinner
+            <i class="fa fa-check-circle"></i>
+          </button>
+        </div>
+      </div>
     </div>
     <div id="main-content">
       <h2>Find a dish</h2>
@@ -58,5 +71,14 @@
       </form>
     </div>
   </div>
+
+  <script>
+    const sidebarBtn = document.getElementById("sidebar-accordion");
+    const sidebarContent = document.getElementById("sidebar-content");
+    sidebarBtn.addEventListener("click", () => {
+      sidebarContent.classList.toggle("sidebar-hide");
+      sidebarContent.classList.toggle("sidebar-show");
+    });
+  </script>
 </body>
 </html>
