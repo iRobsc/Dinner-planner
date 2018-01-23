@@ -16,7 +16,7 @@ import Sidebar from "./view/sidebar";
   */
 }());
 
-// reload instead of hot module replacement with parcel
+// reload instead of hot module replacement with parcel-bundler
 if (module.hot) {
   module.hot.accept(() => {
     window.location.reload();
