@@ -1,7 +1,25 @@
-# How to build
-(Node must be installed)
+# How to
+Pre-requisites:
 
-`npm run build`, then open `index.html` in your browser.
+* NodeJS installed
+
+Install all dependencies:
+
+```
+$ npm install
+```
+
+Run locally:
+
+```
+$ npm start
+```
+
+Build project (into `dist` folder):
+
+```
+$ npm run build
+```
 
 Interaction Programing - Lab assignment - HTML
 =================================================
