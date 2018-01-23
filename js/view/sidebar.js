@@ -5,6 +5,7 @@ class Sidebar {
 
     this.menuBtn();
     this.numberOfGuests();
+    this.menuList();
   }
 
   menuBtn() {
@@ -21,6 +22,17 @@ class Sidebar {
     const numberOfGuests = this.model.getNumberOfGuests();
     const guestElem = this.container.querySelector("#number-of-guests");
     guestElem.textContent = numberOfGuests;
+  }
+
+  menuList() {
+    const listContainer = this.container.querySelector("#sidebar-list");
+    const menu = this.model.getFullMenu();
+
+    if (menu.length === 0) {
+      listContainer.textContent = "Your list is empty!";
+    } else {
+      // TODO
+    }
   }
 }
 
