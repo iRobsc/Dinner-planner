@@ -6,7 +6,11 @@
 # testing
 /coverage
 
+# parcel cache
+/.cache
+
 # production
+/dist
 /build
 *.css
 

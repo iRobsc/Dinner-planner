@@ -1,15 +1,16 @@
 {
   "name": "iprog-1",
   "version": "0.0.1",
-  "description": "Interaction Programing - Lab assignment - HTML =================================================",
+  "description": "Interaction Programing - Lab assignment 1",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "node-sass-chokidar css/ -o css/",
     "watch-css": "npm run build-css && node-sass-chokidar css/ -o css/ --watch --recursive",
-    "browser-sync": "browser-sync --server --files '**/*.html, **/*.css, **/*.js'",
-    "start": "npm-run-all -p watch-css browser-sync",
-    "build": "npm run build-css"
+    "build-js": "parcel build index.html --public-url ./",
+    "watch-js": "parcel index.html -p 3000",
+    "start": "npm-run-all -p watch-css watch-js",
+    "build": "npm run build-css && npm run build-js"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,11 @@
   "author": "Willy Liu, Robert Kindwall",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.23.5",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "node-sass-chokidar": "0.0.3",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "npm-run-all": "^4.1.2",
+    "parcel-bundler": "^1.5.0"
   }
 }
