@@ -1,9 +1,12 @@
+import DinnerModel from "./model/dinnerModel";
+import Sidebar from "./view/sidebar";
+
 (function main() {
   // We instantiate our model
   const model = new DinnerModel();
 
   // And create the instance of ExampleView
-  const exampleView = new ExampleView($("#exampleView"));
+  new Sidebar(document.getElementById("sidebar"), model);
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to
@@ -12,3 +15,10 @@
   * of the specific view you're working with (see exampleView.js).
   */
 }());
+
+// reload instead of hot module replacement with parcel
+if (module.hot) {
+  module.hot.accept(() => {
+    window.location.reload();
+  });
+}
