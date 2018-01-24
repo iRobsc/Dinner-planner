@@ -12,6 +12,7 @@
   background: white;
   border-radius: 10px;
   overflow: hidden;
+  transition: all 300ms;
 
   img {
     width: 100%;
@@ -21,5 +22,16 @@
   .name {
     padding: 20px;
     font-weight: bold;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.025);
+    box-shadow: rgba(black, 0.1) 0 15px 40px;
+  }
+
+  &:active {
+    transform: scale(0.995);
+    box-shadow: rgba(black, 0.15) 0 10px 20px;
   }
 }
