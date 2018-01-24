@@ -1,5 +1,6 @@
 import DinnerModel from "./model/dinnerModel";
 import Sidebar from "./view/sidebar";
+import FoodGrid from "./view/foodGrid";
 
 (function main() {
   // We instantiate our model
@@ -7,6 +8,8 @@ import Sidebar from "./view/sidebar";
 
   // And create the instance of ExampleView
   new Sidebar(document.getElementById("sidebar"), model);
+
+  new FoodGrid(document.getElementById("food-grid"), model);
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to
