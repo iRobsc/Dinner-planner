@@ -6,6 +6,7 @@ class Sidebar {
     this.menuBtn();
     this.numberOfGuests();
     this.menuList();
+    this.fetchPrice();
   }
 
   menuBtn() {
@@ -32,6 +33,14 @@ class Sidebar {
       listContainer.textContent = "Your list is empty!";
     } else {
       // TODO
+    }
+  }
+
+  fetchPrice() {
+    const priceElems = this.container.querySelectorAll(".price");
+    const price = this.model.getTotalMenuPrice();
+    for (const elem of priceElems) {
+      elem.textContent = `${price} kr`;
     }
   }
 }
