@@ -10,7 +10,7 @@ class DishView {
   }
 
   ingredientList() {
-    const titleDiv = this.container.querySelector("#dish-title");
+    const titleDiv = this.container.querySelector("#ingredients-title");
     titleDiv.textContent = `Ingredients for ${this.model.getNumberOfGuests()} people`;
 
     const table = this.container.querySelector("#dish-ingredient-table");

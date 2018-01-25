@@ -5,7 +5,7 @@ class DinnerModel {
   constructor() {
     // TODO Lab 1 implement the data structure that will hold number of guest
     // and selected dishes for the dinner menu
-    this.numberOfGuests = 0;
+    this.numberOfGuests = 10;
     this.menu = [];
   }
 

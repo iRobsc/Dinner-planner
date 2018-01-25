@@ -14,7 +14,9 @@ class IngredientList {
       return;
     }
 
-    const { ingredients } = dish;
+    let totalPrice = 0;
+
+    const { ingredients } = dish; // == const ingredients = dish.ingredients
     const ingredientTableRows = ingredients.map((ingredient) => {
       const noOfGuests = this.model.getNumberOfGuests();
       const row = document.createElement("tr");
@@ -31,16 +33,37 @@ class IngredientList {
       sek.textContent = "SEK";
       row.appendChild(sek);
 
-      const price = document.createElement("td");
-      price.textContent = ingredient.price * noOfGuests;
-      row.appendChild(price);
+      const priceElem = document.createElement("td");
+      const price = ingredient.price * noOfGuests;
+      priceElem.textContent = price;
+      totalPrice += price;
+      row.appendChild(priceElem);
 
       return row;
     });
 
+    const lastRow = document.createElement("tr");
+    lastRow.classList.add("last-row");
+
+    const total = document.createElement("td");
+    total.textContent = "Total price";
+    lastRow.appendChild(total);
+
+    const empty = document.createElement("td");
+    lastRow.appendChild(empty);
+
+    const sek = document.createElement("td");
+    sek.textContent = "SEK";
+    lastRow.appendChild(sek);
+
+    const price = document.createElement("td");
+    price.textContent = totalPrice;
+    lastRow.appendChild(price);
+
     for (const row of ingredientTableRows) {
       this.container.appendChild(row);
     }
+    this.container.appendChild(lastRow);
   }
 }
 
