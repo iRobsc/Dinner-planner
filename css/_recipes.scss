@@ -1,0 +1,10 @@
+#myDinner-recipes {
+  padding: 40px 0;
+}
+
+.recipe {
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  grid-gap: 40px;
+}
