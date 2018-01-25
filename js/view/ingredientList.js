@@ -16,10 +16,11 @@ class IngredientList {
 
     const { ingredients } = dish;
     const ingredientTableRows = ingredients.map((ingredient) => {
+      const noOfGuests = this.model.getNumberOfGuests();
       const row = document.createElement("tr");
 
       const quantity = document.createElement("td");
-      quantity.textContent = `${ingredient.quantity} ${ingredient.unit}`;
+      quantity.textContent = `${ingredient.quantity * noOfGuests} ${ingredient.unit}`;
       row.appendChild(quantity);
 
       const name = document.createElement("td");
@@ -31,15 +32,14 @@ class IngredientList {
       row.appendChild(sek);
 
       const price = document.createElement("td");
-      price.textContent = ingredient.price;
+      price.textContent = ingredient.price * noOfGuests;
       row.appendChild(price);
 
       return row;
     });
 
-    const table = this.container.querySelector("#dish-ingredient-table");
     for (const row of ingredientTableRows) {
-      table.appendChild(row);
+      this.container.appendChild(row);
     }
   }
 }

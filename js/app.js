@@ -1,7 +1,7 @@
 import DinnerModel from "./model/dinnerModel";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
-import IngredientList from "./view/ingredientList";
+import DishView from "./view/dishView";
 
 (function main() {
   // We instantiate our model
@@ -10,14 +10,14 @@ import IngredientList from "./view/ingredientList";
 
   const sidebarContainer = document.getElementById("sidebar");
   const foodGridContainer = document.getElementById("food-grid");
-  const dishIngredientContainer = document.getElementById("dish-ingredients");
+  const dishContainer = document.getElementById("dish-content");
 
   // And create the instance of ExampleView
   new Sidebar(sidebarContainer, model);
 
   if (foodGridContainer) new FoodGrid(foodGridContainer, model);
 
-  if (dishIngredientContainer) new IngredientList(dishIngredientContainer, model, 1);
+  if (dishContainer) new DishView(dishContainer, model, 1);
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to
