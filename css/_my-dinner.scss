@@ -8,3 +8,27 @@
   h2 { grid-area: title; }
   a { grid-area: btn; }
 }
+
+#myDinner-dishes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-gap: 20px;
+  justify-content: center;
+  padding: 40px 0;
+
+  .price {
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .total-price {
+    display: flex;
+    align-items: center;
+    padding-bottom: 60px;
+  }
+}
+
+#myDinner-footer {
+  display: flex;
+  justify-content: center;
+}

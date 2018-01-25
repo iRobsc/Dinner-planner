@@ -6,7 +6,7 @@ class DinnerModel {
     // TODO Lab 1 implement the data structure that will hold number of guest
     // and selected dishes for the dinner menu
     this.numberOfGuests = 10;
-    this.menu = [];
+    this.menu = [1, 100, 2];
   }
 
   setNumberOfGuests(num) {
@@ -36,8 +36,14 @@ class DinnerModel {
   // Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
     let res = [];
+    /*
     for (let i = 0; i < this.menu.length; i++) {
       res = res.concat(this.menu[i].ingredients);
+    }
+    */
+    for (const id of this.menu) {
+      const dish = this.getDish(id);
+      res = res.concat(dish.ingredients);
     }
     return res;
   }
@@ -46,10 +52,15 @@ class DinnerModel {
   getTotalMenuPrice() {
     let price = 0;
     const allIngredients = this.getAllIngredients();
+    for (const current of allIngredients) {
+      price += current.price;
+    }
+    /*
     for (let i = 0; i < allIngredients.length; i++) {
       const current = allIngredients[i];
       price += current.price;
     }
+    */
     return price * this.numberOfGuests;
   }
 
