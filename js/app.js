@@ -1,15 +1,23 @@
 import DinnerModel from "./model/dinnerModel";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
+import IngredientList from "./view/ingredientList";
 
 (function main() {
   // We instantiate our model
   const model = new DinnerModel();
 
-  // And create the instance of ExampleView
-  new Sidebar(document.getElementById("sidebar"), model);
 
-  new FoodGrid(document.getElementById("food-grid"), model);
+  const sidebarContainer = document.getElementById("sidebar");
+  const foodGridContainer = document.getElementById("food-grid");
+  const dishIngredientContainer = document.getElementById("dish-ingredients");
+
+  // And create the instance of ExampleView
+  new Sidebar(sidebarContainer, model);
+
+  if (foodGridContainer) new FoodGrid(foodGridContainer, model);
+
+  if (dishIngredientContainer) new IngredientList(dishIngredientContainer, model, 1);
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to
