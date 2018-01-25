@@ -1,3 +1,5 @@
+import SidebarItem from "./sidebarItem";
+
 class Sidebar {
   constructor(container, model) {
     this.container = container;
@@ -32,8 +34,23 @@ class Sidebar {
     if (menu.length === 0) {
       listContainer.textContent = "Your list is empty!";
     } else {
-      // TODO
+      for (const id of menu) {
+        const dish = this.model.getDish(id);
+        const noOfGuests = this.model.getNumberOfGuests();
+        const price = this.getPrice(dish) * noOfGuests;
+        listContainer.appendChild(new SidebarItem(dish.name, price).generate());
+      }
     }
+  }
+
+  getPrice(dish) {
+    const { ingredients } = dish;
+    let price = 0;
+    for (const ingredient of ingredients) {
+      price += ingredient.price;
+    }
+
+    return price;
   }
 
   fetchPrice() {

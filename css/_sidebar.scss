@@ -47,4 +47,17 @@
     margin: 20px 0;
     color: #B3B3B3;
   }
+
+  .sidebar-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    background: linear-gradient(90deg, #FF79AD, #FF418A);
+    margin-bottom: 20px;
+    color: white;
+    padding: 15px;
+    box-shadow: rgba(#FF1D78, 0.4) 0 10px 20px;
+
+    div:first-child { text-align: left; }
+    div:last-child { text-align: right; }
+  }
 }
