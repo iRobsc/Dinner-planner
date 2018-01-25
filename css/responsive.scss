@@ -56,6 +56,16 @@
       "search search"
       "select btn";
   }
+
+  #title-bar {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "title"
+      "btn";
+    * {
+      text-align: center;
+    }
+  }
 }
 
 @media (max-width: 320px) {

@@ -4,6 +4,7 @@
 @import "search";
 @import "food-grid";
 @import "dish-content";
+@import "my-dinner";
 
 * {
   box-sizing: border-box;
@@ -58,6 +59,12 @@ h2 {
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-gap: 40px;
+  padding: 0px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.container-nogrid {
   padding: 0px 20px;
   max-width: 1280px;
   margin: 0 auto;
