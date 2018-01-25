@@ -17,7 +17,7 @@ import DishView from "./view/dishView";
 
   if (foodGridContainer) new FoodGrid(foodGridContainer, model);
 
-  if (dishContainer) new DishView(dishContainer, model, 1);
+  if (dishContainer) new DishView(dishContainer, model, 100);
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to
