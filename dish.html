@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dinner Planner</title>
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700|Playfair+Display+SC" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>Dinner Planner</header>
+  <div id="container">
+    <div id="sidebar-container">
+      <div id="sidebar">
+        <div id="sidebar-accordion">
+          <h2>My Dinner</h2>
+          <div class="price">0kr</div>
+          <button id="sidebar-toggle">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+        <div id="sidebar-content" class="sidebar-hide">
+          <h2>My Dinner</h2>
+
+          <div id="sidebar-inner-container">
+            Number of people:
+            <span id="number-of-guests"></span>
+            <br>
+
+            <div id="sidebar-list">
+              Your list is empty!
+            </div>
+
+            Total cost:
+            <span class="price">0kr</span>
+            <br>
+            <button class="dinner-btn-disabled">
+              Confirm Dinner
+              <i class="fa fa-check-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dish-content">
+      <div id="dish-object">
+        <div class="dish-title">Dish title</div>
+        <img src="images/toast.jpg">
+        <div id="dish-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum est sed lacinia finibus. Etiam efficitur dignissim
+        sem, nec porttitor enim faucibus laoreet. Etiam a ante at urna dignissim pretium aliquet ut dolor. Aliquam ac orci lobortis,
+        consectetur nisl rutrum, maximus nunc. Nulla facilisi. Phasellus nec rhoncus mauris, a porta massa. Nunc non sem gravida,
+        rhoncus risus in, finibus leo. Cras a turpis quis sem accumsan tincidunt. Nunc in dictum massa. Nam metus purus, aliquet
+        sit amet rutrum in, facilisis sed augue.
+        </div>
+        <button class="dinner-btn" id="dish-button-back">Back to search</button>
+      </div>
+
+      <div id="dish-ingredients">
+        <div id="dish-ingredient-box">
+        <div class="dish-title">Ingredient title</div>
+        <div id="dish-ingredient-content">
+          <table id="dish-ingredient-table">
+            <tr>
+              <td>1 msk</td>
+              <td>olive oil</td>
+              <td>SEK</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>1 msk</td>
+              <td>olive oil</td>
+              <td>SEK</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>1 msk</td>
+              <td>olive oil</td>
+              <td>SEK</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>1 msk</td>
+              <td>olive oil</td>
+              <td>SEK</td>
+              <td>15</td>
+            </tr>
+          </table>
+        </div>
+        <div id="dish-ingredient-add">
+          <button class="dinner-btn" id="dish-ingredient-btn">Add to menu</button>
+          <div id="dish-ingredient-price"></div>
+        </div>
+        </div>
+      </div>
+
+      <div id="dish-preperation"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
