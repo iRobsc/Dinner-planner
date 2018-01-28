@@ -15,11 +15,17 @@ Run locally:
 $ npm start
 ```
 
+Then open `localhost:3000`
+
 Build project (into `dist` folder):
 
 ```
 $ npm run build
 ```
+
+## Navigation
+
+In the search page, the dish views aren't interactive, there's a link in the bottom left corner to the dish details page. This is just temporary for lab 1
 
 Interaction Programing - Lab assignment - HTML
 =================================================
