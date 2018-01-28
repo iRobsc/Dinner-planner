@@ -19,13 +19,11 @@ class DinnerModel {
 
   // Returns the dish that is on the menu for selected type
   getSelectedDish(type) {
-    const res = [];
-    for (let i = 0; i < this.menu.length; i++) {
-      if (this.menu[i].type === type) {
-        res.push(this.menu[i]);
-      }
+    for (const id of this.menu) {
+      const dish = this.getDish(id);
+      if (dish.type === type) return dish;
     }
-    return res;
+    return -1;
   }
 
   // Returns all the dishes on the menu.
@@ -36,11 +34,6 @@ class DinnerModel {
   // Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
     let res = [];
-    /*
-    for (let i = 0; i < this.menu.length; i++) {
-      res = res.concat(this.menu[i].ingredients);
-    }
-    */
     for (const id of this.menu) {
       const dish = this.getDish(id);
       res = res.concat(dish.ingredients);
@@ -55,12 +48,6 @@ class DinnerModel {
     for (const current of allIngredients) {
       price += current.price;
     }
-    /*
-    for (let i = 0; i < allIngredients.length; i++) {
-      const current = allIngredients[i];
-      price += current.price;
-    }
-    */
     return price * this.numberOfGuests;
   }
 
@@ -68,7 +55,7 @@ class DinnerModel {
   // it is removed from the menu and the new one added.
   addDishToMenu(id) {
     this.removeDishFromMenu(id);
-    this.menu.push(this.getDish(id));
+    this.menu.push(id);
   }
 
   // Removes dish from menu
