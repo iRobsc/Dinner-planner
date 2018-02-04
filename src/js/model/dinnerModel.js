@@ -43,13 +43,9 @@ class DinnerModel {
 
   // Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
-    let price = 0;
-    const allIngredients = this.getAllIngredients();
-    for (const current of allIngredients) {
-      price += current.price;
+    return this.getAllIngredients()
+      .reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
     }
-    return price * this.numberOfGuests;
-  }
 
   // Adds the passed dish to the menu. If the dish of that type already exists on the menu
   // it is removed from the menu and the new one added.
