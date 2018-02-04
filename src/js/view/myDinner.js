@@ -16,22 +16,14 @@ class MyDinner {
     for (const dish of dishes) {
       const div = document.createElement("div");
       div.appendChild(new FoodItem(dish.name, dish.image).generate());
-      const price = document.createElement("p");
-      price.classList.add("price");
-      price.textContent = `${this.getPrice(dish) * noOfGuests} SEK`;
-      div.appendChild(price);
+
+      const priceElem = document.createElement("p");
+      priceElem.classList.add("price");
+      priceElem.textContent = `${this.model.getDishPrice(dish) * noOfGuests} SEK`;
+      div.appendChild(priceElem);
+
       this.container.appendChild(div);
     }
-  }
-
-  getPrice(dish) {
-    const { ingredients } = dish;
-    let price = 0;
-    for (const ingredient of ingredients) {
-      price += ingredient.price;
-    }
-
-    return price;
   }
 
   addPrice() {

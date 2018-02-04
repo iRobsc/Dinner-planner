@@ -45,7 +45,7 @@ class DinnerModel {
   getTotalMenuPrice() {
     return this.getAllIngredients()
       .reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
-    }
+  }
 
   // Adds the passed dish to the menu. If the dish of that type already exists on the menu
   // it is removed from the menu and the new one added.
@@ -93,6 +93,11 @@ class DinnerModel {
       }
     }
     return -1;
+  }
+
+  getDishPrice(dish) {
+    const { ingredients } = dish;
+    return ingredients.reduce((total, ingr) => total + ingr.price, 0);
   }
 }
 

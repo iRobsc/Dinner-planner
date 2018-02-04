@@ -37,20 +37,11 @@ class Sidebar {
       for (const id of menu) {
         const dish = this.model.getDish(id);
         const noOfGuests = this.model.getNumberOfGuests();
-        const price = this.getPrice(dish) * noOfGuests;
+        const price = this.model.getDishPrice(dish) * noOfGuests;
+
         listContainer.appendChild(new SidebarItem(dish.name, price).generate());
       }
     }
-  }
-
-  getPrice(dish) {
-    const { ingredients } = dish;
-    let price = 0;
-    for (const ingredient of ingredients) {
-      price += ingredient.price;
-    }
-
-    return price;
   }
 
   fetchPrice() {
