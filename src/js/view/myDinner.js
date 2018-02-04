@@ -12,8 +12,7 @@ class MyDinner {
   fillGrid() {
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
-    const dishes = menu.map(id => this.model.getDish(id));
-    for (const dish of dishes) {
+    for (const dish of menu) {
       const div = document.createElement("div");
       div.appendChild(new FoodItem(dish.name, dish.image).generate());
 

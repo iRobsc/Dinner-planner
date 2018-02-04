@@ -1,6 +1,12 @@
 import SidebarItem from "./sidebarItem";
 
 class Sidebar {
+  /**
+   * Creates an instance of Sidebar.
+   * @param {Element} container
+   * @param {DinnerModel} model
+   * @memberof Sidebar
+   */
   constructor(container, model) {
     this.container = container;
     this.model = model;
@@ -34,8 +40,7 @@ class Sidebar {
     if (menu.length === 0) {
       listContainer.textContent = "Your list is empty!";
     } else {
-      for (const id of menu) {
-        const dish = this.model.getDish(id);
+      for (const dish of menu) {
         const noOfGuests = this.model.getNumberOfGuests();
         const price = this.model.getDishPrice(dish) * noOfGuests;
 

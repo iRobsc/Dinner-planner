@@ -9,9 +9,7 @@ class RecipeList {
   }
 
   createList() {
-    const dishIds = this.model.getFullMenu();
-    const dishes = dishIds.map(id => this.model.getDish(id));
-
+    const dishes = this.model.getFullMenu();
     for (const dish of dishes) {
       const recipe = new Recipe(dish).generate();
       this.container.appendChild(recipe);
