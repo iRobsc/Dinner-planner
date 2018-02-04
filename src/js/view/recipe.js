@@ -1,6 +1,10 @@
 import Images from "../../images/*"; // eslint-disable-line
 
 class Recipes {
+  /**
+   * Creates an instance of Recipes.
+   * @param {Dish} dish
+   */
   constructor(dish) {
     this.dish = dish;
   }

@@ -1,6 +1,11 @@
 import FoodItem from "./foodItem";
 
 class MyDinner {
+  /**
+   * Creates an instance of MyDinner.
+   * @param {Element} container
+   * @param {dinnerModel} model
+   */
   constructor(container, model) {
     this.container = container;
     this.model = model;

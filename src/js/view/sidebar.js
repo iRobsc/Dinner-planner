@@ -39,13 +39,14 @@ class Sidebar {
 
     if (menu.length === 0) {
       listContainer.textContent = "Your list is empty!";
-    } else {
-      for (const dish of menu) {
-        const noOfGuests = this.model.getNumberOfGuests();
-        const price = this.model.getDishPrice(dish) * noOfGuests;
+      return;
+    }
 
-        listContainer.appendChild(new SidebarItem(dish.name, price).generate());
-      }
+    for (const dish of menu) {
+      const noOfGuests = this.model.getNumberOfGuests();
+      const price = this.model.getDishPrice(dish) * noOfGuests;
+
+      listContainer.appendChild(new SidebarItem(dish.name, price).generate());
     }
   }
 

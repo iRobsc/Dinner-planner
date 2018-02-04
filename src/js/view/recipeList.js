@@ -1,6 +1,11 @@
 import Recipe from "./recipe";
 
 class RecipeList {
+  /**
+   * Creates an instance of RecipeList.
+   * @param {Element} container
+   * @param {dinnerModel} model
+   */
   constructor(container, model) {
     this.container = container;
     this.model = model;
