@@ -83,8 +83,8 @@ class DinnerModel {
    * @returns {Number}
    */
   getTotalMenuPrice() {
-    return this.getAllIngredients()
-      .reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
+    const ingredients = this.getAllIngredients();
+    return ingredients.reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
   }
 
   /**
