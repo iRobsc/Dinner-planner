@@ -19,6 +19,7 @@ class Sidebar {
     this.fetchPrice();
 
     this.model.guestChange.addObserver(this.update.bind(this));
+    this.model.menuChange.addObserver(this.update.bind(this));
   }
 
   update(model) {
