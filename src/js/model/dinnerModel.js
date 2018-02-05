@@ -1,4 +1,5 @@
 import dishes from "./dishes";
+import Observable from "./observable";
 
 /**
  * @typedef {Object} Dish
@@ -23,6 +24,9 @@ class DinnerModel {
   constructor() {
     this.numberOfGuests = 3;
     this.menu = [1, 2, 100];
+
+    this.guestChange = new Observable(this);
+    this.menuChange = new Observable(this);
   }
 
   /**
@@ -32,6 +36,7 @@ class DinnerModel {
    */
   setNumberOfGuests(num) {
     this.numberOfGuests = num;
+    this.guestChange.notifyAll(num);
   }
 
   /**
@@ -103,6 +108,7 @@ class DinnerModel {
       this.removeDishFromMenu(storedDish.id);
     }
     this.menu.push(id);
+    this.menuChange.notifyAll(this.menu);
   }
 
   /**
@@ -117,6 +123,7 @@ class DinnerModel {
         return;
       }
     }
+    this.menuChange.notifyAll(this.menu);
   }
 
   /**
