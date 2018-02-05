@@ -10,10 +10,21 @@ class IngredientList {
     this.model = model;
     this.dishId = dishId;
 
+    this.addBtn = this.container.querySelector("#dish-add-btn");
+  }
+
+  show() {
+    this.setInfo();
     this.getIngredients();
   }
 
+  setInfo() {
+    const titleDiv = this.container.querySelector("#ingredients-title");
+    titleDiv.textContent = `Ingredients for ${this.model.getNumberOfGuests()} people`;
+  }
+
   getIngredients() {
+    const tableContainer = this.container.querySelector("#dish-ingredient-table");
     const dish = this.model.getDish(this.dishId);
     if (dish === -1) {
       console.log("Couldn't find dish");
@@ -67,9 +78,9 @@ class IngredientList {
     lastRow.appendChild(price);
 
     for (const row of ingredientTableRows) {
-      this.container.appendChild(row);
+      tableContainer.appendChild(row);
     }
-    this.container.appendChild(lastRow);
+    tableContainer.appendChild(lastRow);
   }
 }
 

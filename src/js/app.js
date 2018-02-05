@@ -2,9 +2,11 @@ import DinnerModel from "./model/dinnerModel";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
+import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
 import SidebarController from "./controller/sidebarController";
+import IngrListController from "./controller/ingrListController";
 
 (function main() {
   // We instantiate our model
@@ -13,6 +15,7 @@ import SidebarController from "./controller/sidebarController";
   const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
+  const ingrContainer = document.getElementById("dish-ingredients");
   const myDinnerContainer = document.getElementById("myDinner-dishes");
   const recipeContainer = document.getElementById("myDinner-recipes");
 
@@ -24,7 +27,14 @@ import SidebarController from "./controller/sidebarController";
 
   if (foodGridContainer) new FoodGrid(foodGridContainer, model);
 
-  if (dishContainer) new DishView(dishContainer, model, 1);
+  if (dishContainer) new DishView(dishContainer, model, 103);
+
+  if (ingrContainer) {
+    const ingrListView = new IngredientList(ingrContainer, model, 103);
+    ingrListView.show();
+    const ingrListController = new IngrListController(ingrListView, model);
+    ingrListController.init();
+  }
 
   if (myDinnerContainer) new MyDinner(myDinnerContainer, model);
 

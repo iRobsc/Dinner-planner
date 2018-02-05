@@ -1,4 +1,3 @@
-import IngredientList from "./ingredientList";
 import Images from "../../images/*"; // eslint-disable-line
 
 class DishView {
@@ -15,7 +14,6 @@ class DishView {
     this.dish = this.model.getDish(this.dishId);
 
     this.dishInfo();
-    this.ingredientList();
   }
 
   dishInfo() {
@@ -27,14 +25,6 @@ class DishView {
 
     const prepText = this.container.querySelector("#dish-prep-text");
     prepText.textContent = this.dish.description;
-  }
-
-  ingredientList() {
-    const titleDiv = this.container.querySelector("#ingredients-title");
-    titleDiv.textContent = `Ingredients for ${this.model.getNumberOfGuests()} people`;
-
-    const table = this.container.querySelector("#dish-ingredient-table");
-    new IngredientList(table, this.model, this.dishId);
   }
 }
 
