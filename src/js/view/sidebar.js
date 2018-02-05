@@ -11,8 +11,18 @@ class Sidebar {
     this.container = container;
     this.model = model;
 
+    this.guestElem = null;
+
     this.menuBtn();
     this.numberOfGuests();
+    this.menuList();
+    this.fetchPrice();
+
+    this.model.guestChange.addObserver(this.update.bind(this));
+  }
+
+  update(model) {
+    this.model = model;
     this.menuList();
     this.fetchPrice();
   }
@@ -29,12 +39,14 @@ class Sidebar {
 
   numberOfGuests() {
     const numberOfGuests = this.model.getNumberOfGuests();
-    const guestElem = this.container.querySelector("#number-of-guests");
-    guestElem.textContent = numberOfGuests;
+    this.guestElem = this.container.querySelector("#number-of-guests");
+    this.guestElem.value = numberOfGuests;
   }
 
   menuList() {
     const listContainer = this.container.querySelector("#sidebar-list");
+    listContainer.innerHTML = "";
+
     const menu = this.model.getFullMenu();
 
     if (menu.length === 0) {
