@@ -1,4 +1,10 @@
 class IngredientList {
+  /**
+   * Creates an instance of IngredientList.
+   * @param {Element} container
+   * @param {dinnerModel} model
+   * @param {Number} dishId
+   */
   constructor(container, model, dishId) {
     this.container = container;
     this.model = model;

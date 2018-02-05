@@ -1,6 +1,11 @@
 import FoodItem from "./foodItem";
 
 class MyDinner {
+  /**
+   * Creates an instance of MyDinner.
+   * @param {Element} container
+   * @param {dinnerModel} model
+   */
   constructor(container, model) {
     this.container = container;
     this.model = model;
@@ -12,26 +17,17 @@ class MyDinner {
   fillGrid() {
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
-    const dishes = menu.map(id => this.model.getDish(id));
-    for (const dish of dishes) {
+    for (const dish of menu) {
       const div = document.createElement("div");
       div.appendChild(new FoodItem(dish.name, dish.image).generate());
-      const price = document.createElement("p");
-      price.classList.add("price");
-      price.textContent = `${this.getPrice(dish) * noOfGuests} SEK`;
-      div.appendChild(price);
+
+      const priceElem = document.createElement("p");
+      priceElem.classList.add("price");
+      priceElem.textContent = `${this.model.getDishPrice(dish) * noOfGuests} SEK`;
+      div.appendChild(priceElem);
+
       this.container.appendChild(div);
     }
-  }
-
-  getPrice(dish) {
-    const { ingredients } = dish;
-    let price = 0;
-    for (const ingredient of ingredients) {
-      price += ingredient.price;
-    }
-
-    return price;
   }
 
   addPrice() {

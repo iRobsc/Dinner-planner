@@ -1,6 +1,12 @@
 import Images from "../../images/*"; // eslint-disable-line
 
 class FoodItem {
+  /**
+   * Creates an instance of FoodItem.
+   * @param {String} name Which name to display
+   * @param {String} image Filename of image
+   * @memberof FoodItem
+   */
   constructor(name, image) {
     this.name = name;
     this.image = image;

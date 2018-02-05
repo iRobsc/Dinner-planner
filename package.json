@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass-chokidar css/ -o css/",
-    "watch-css": "npm run build-css && node-sass-chokidar css/ -o css/ --watch --recursive",
-    "build-js": "parcel build index.html --public-url ./",
-    "watch-js": "parcel index.html -p 3000",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-js": "parcel build src/index.html --public-url ./",
+    "watch-js": "parcel src/index.html -p 3000",
     "start": "npm-run-all -p watch-css watch-js",
     "build": "npm run build-css && npm run build-js"
   },
