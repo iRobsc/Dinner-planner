@@ -1,3 +1,6 @@
+# Dinner Planner
+This project is a web based dinner planer where you can plan your dinner and see the prices and information for each dish.
+
 # How to
 Pre-requisites:
 
