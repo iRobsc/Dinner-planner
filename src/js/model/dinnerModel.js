@@ -103,10 +103,20 @@ class DinnerModel {
    */
   addDishToMenu(id) {
     const dishToAdd = this.getDish(id);
+
+    // didn't find dish with matching id
+    if (dishToAdd === -1) return;
+
     const storedDish = this.getSelectedDish(dishToAdd.type);
+
+    // trying to add same dish, do nothing
+    if (storedDish.id === id) return;
+
+    // remove old dish of the same type
     if (storedDish !== -1) {
       this.removeDishFromMenu(storedDish.id);
     }
+
     this.menu.push(id);
     this.menuChange.notifyAll(this.menu);
   }
@@ -118,7 +128,7 @@ class DinnerModel {
    */
   removeDishFromMenu(id) {
     for (let i = 0; i < this.menu.length; i++) {
-      if (this.menu[i].id === id) {
+      if (this.menu[i] === id) {
         this.menu.splice(i, 1);
         return;
       }
