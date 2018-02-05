@@ -4,20 +4,23 @@ import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
+import SidebarController from "./controller/sidebarController";
 
 (function main() {
   // We instantiate our model
   const model = new DinnerModel();
 
-
-  const sidebarContainer = document.getElementById("sidebar");
+  const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
   const myDinnerContainer = document.getElementById("myDinner-dishes");
   const recipeContainer = document.getElementById("myDinner-recipes");
 
   // And create the instance of ExampleView
-  if (sidebarContainer) new Sidebar(sidebarContainer, model);
+  if (sidebarContainer) {
+    const sidebar = new Sidebar(sidebarContainer, model);
+    new SidebarController(sidebar, model);
+  }
 
   if (foodGridContainer) new FoodGrid(foodGridContainer, model);
 
