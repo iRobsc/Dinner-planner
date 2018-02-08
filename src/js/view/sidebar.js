@@ -22,8 +22,7 @@ class Sidebar {
     this.model.menuChange.addObserver(this.update.bind(this));
   }
 
-  update(model) {
-    this.model = model;
+  update() {
     this.menuList();
     this.fetchPrice();
   }
