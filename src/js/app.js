@@ -7,6 +7,7 @@ import RecipeList from "./view/recipeList";
 import recipe from "./view/recipe";
 import ingredientList from "./view/ingredientList";
 import SearchBar from "./view/searchBar";
+import MyDinnerTitle from "./view/myDinnerTitle";
 
 (function main() {
   // We instantiate our model
@@ -18,6 +19,7 @@ import SearchBar from "./view/searchBar";
   const myDinnerContainer = document.getElementById("myDinner-dishes");
   const recipeContainer = document.getElementById("myDinner-recipes");
   const searchBarContainer = document.getElementById("search");
+  const MyDinnerTitleContainer = document.getElementById("title-bar");
 
   let viewState = 0;
   let sideBar;
@@ -38,7 +40,9 @@ import SearchBar from "./view/searchBar";
 
   if (recipeContainer) recipeList = new RecipeList(recipeContainer, model);
   
-  if (searchBarContainer) searchBar = new SearchBar(searchBarContainer, model)
+  if (searchBarContainer) searchBar = new SearchBar(searchBarContainer, model);
+
+  if (MyDinnerTitleContainer) myDinnerTitle = new MyDinnerTitle(searchBarContainer, model);
 
   function showAppScreen() {
     sideBar.show();
@@ -48,6 +52,7 @@ import SearchBar from "./view/searchBar";
     recipeList.hide();
     ingredientList.hide();
     myDinner.hide();
+    myDinnerTitle.hide();
   }
 
   function showDishDetailsScreen() {
@@ -58,6 +63,7 @@ import SearchBar from "./view/searchBar";
     recipeList.hide();
     ingredientList.show();
     myDinner.hide();
+    myDinnerTitle.hide();
   }
 
   function showMyDinnerScreen() {
@@ -68,6 +74,7 @@ import SearchBar from "./view/searchBar";
     recipeList.hide();
     ingredientList.hide();
     myDinner.show();
+    myDinnerTitle.show();
   }
 
   function showRecipeScreen() {
@@ -78,6 +85,7 @@ import SearchBar from "./view/searchBar";
     recipeList.show();
     ingredientList.hide();
     myDinner.hide();
+    myDinnerTitle.show();
   }
 
   /**
