@@ -4,6 +4,9 @@ import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
+import recipe from "./view/recipe";
+import ingredientList from "./view/ingredientList";
+import SearchBar from "./view/searchBar";
 
 (function main() {
   // We instantiate our model
@@ -14,6 +17,7 @@ import RecipeList from "./view/recipeList";
   const dishContainer = document.getElementById("dish-content");
   const myDinnerContainer = document.getElementById("myDinner-dishes");
   const recipeContainer = document.getElementById("myDinner-recipes");
+  const searchBarContainer = document.getElementById("search");
 
   let viewState = 0;
   let sideBar;
@@ -21,6 +25,7 @@ import RecipeList from "./view/recipeList";
   let dishView;
   let myDinner;
   let recipeList;
+  let searchBar;
 
   // And create the instance of ExampleView
   if (sidebarContainer) sideBar = new Sidebar(sidebarContainer, model);
@@ -32,10 +37,47 @@ import RecipeList from "./view/recipeList";
   if (myDinnerContainer) myDinner = new MyDinner(myDinnerContainer, model);
 
   if (recipeContainer) recipeList = new RecipeList(recipeContainer, model);
+  
+  if (searchBarContainer) searchBar = new SearchBar(searchBarContainer, model)
 
   function showAppScreen() {
     sideBar.show();
-    
+    searchBar.show();
+    foodGrid.show();
+    dishView.hide();
+    recipeList.hide();
+    ingredientList.hide();
+    myDinner.hide();
+  }
+
+  function showDishDetailsScreen() {
+    sideBar.show();
+    searchBar.hide();
+    foodGrid.hide();
+    dishView.show();
+    recipeList.hide();
+    ingredientList.show();
+    myDinner.hide();
+  }
+
+  function showMyDinnerScreen() {
+    sideBar.hide();
+    searchBar.hide();
+    foodGrid.hide();
+    dishView.hide();
+    recipeList.hide();
+    ingredientList.hide();
+    myDinner.show();
+  }
+
+  function showRecipeScreen() {
+    sideBar.hide();
+    searchBar.hide();
+    foodGrid.hide();
+    dishView.hide();
+    recipeList.show();
+    ingredientList.hide();
+    myDinner.hide();
   }
 
   /**
