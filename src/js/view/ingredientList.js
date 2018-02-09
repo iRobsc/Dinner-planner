@@ -13,6 +13,14 @@ class IngredientList {
     this.getIngredients();
   }
 
+  hide() {
+    this.container.classList.add(".hideView");
+  }
+
+  show() {
+    this.container.classList.remove(".hideView");
+  }
+
   getIngredients() {
     const dish = this.model.getDish(this.dishId);
     if (dish === -1) {

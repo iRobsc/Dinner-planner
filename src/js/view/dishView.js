@@ -18,6 +18,14 @@ class DishView {
     this.ingredientList();
   }
 
+  hide() {
+    this.container.classList.add(".hideView");
+  }
+
+  show() {
+    this.container.classList.remove(".hideView");
+  }
+
   dishInfo() {
     const dishTitle = this.container.querySelector("#dish-title");
     dishTitle.textContent = this.dish.name;

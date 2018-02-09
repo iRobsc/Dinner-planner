@@ -13,6 +13,14 @@ class RecipeList {
     this.createList();
   }
 
+  hide() {
+    this.container.classList.add(".hideView");
+  }
+
+  show() {
+    this.container.classList.remove(".hideView");
+  }
+
   createList() {
     const dishes = this.model.getFullMenu();
     for (const dish of dishes) {

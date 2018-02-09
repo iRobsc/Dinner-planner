@@ -14,6 +14,14 @@ class MyDinner {
     this.addPrice();
   }
 
+  hide() {
+    this.container.classList.add(".hideView");
+  }
+
+  show() {
+    this.container.classList.remove(".hideView");
+  }
+
   fillGrid() {
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
