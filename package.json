@@ -19,11 +19,15 @@
   "author": "Willy Liu, Robert Kindwall",
   "license": "MIT",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.18",
+    "css-loader": "^0.28.9",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
+    "parcel-bundler": "^1.5.0",
+    "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   }
