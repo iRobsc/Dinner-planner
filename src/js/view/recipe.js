@@ -1,4 +1,4 @@
-import Images from "../../images/*"; // eslint-disable-line
+// import Images from "../../images/*"; // eslint-disable-line
 
 class Recipes {
   /**
@@ -14,7 +14,7 @@ class Recipes {
     div.classList.add("recipe");
 
     const img = document.createElement("img");
-    img.src = Images[this.dish.image];
+    img.src = `/images/${this.dish.image}`;
     div.appendChild(img);
 
     const desc = document.createElement("div");

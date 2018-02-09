@@ -14,6 +14,7 @@ class FoodGrid {
   }
 
   generateGrid() {
+    this.container.innerHTML = "";
     const dishes = this.model.getAllDishes("starter", null);
     const foodItems = dishes.map(dish => new FoodItem(dish.name, dish.image).generate());
     for (let i = 0; i < foodItems.length; i++) {

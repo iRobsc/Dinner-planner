@@ -7,6 +7,8 @@ import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
 import SidebarController from "./controller/sidebarController";
 import IngrListController from "./controller/ingrListController";
+import "../css/index.css";
+import "../css/responsive.css";
 
 (function main() {
   // We instantiate our model
@@ -47,10 +49,3 @@ import IngrListController from "./controller/ingrListController";
   * of the specific view you're working with (see exampleView.js).
   */
 }());
-
-// reload instead of hot module replacement with parcel-bundler
-if (module.hot) {
-  module.hot.accept(() => {
-    window.location.reload();
-  });
-}
