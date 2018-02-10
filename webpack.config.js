@@ -81,6 +81,7 @@ if (production) {
     // source map type
     devtool: "cheap-eval-source-map",
     devServer: {
+      port: 3000,
       contentBase: contentBaseDir,
       // reload page when changing files in contentBase
       // does not interfere with HMR
