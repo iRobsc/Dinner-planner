@@ -1,5 +1,3 @@
-// import Images from "../../images/*"; // eslint-disable-line
-
 class DishView {
   /**
    * Creates an instance of DishView.

@@ -1,5 +1,3 @@
-// import Images from "../../images/*"; // eslint-disable-line
-
 class Recipes {
   /**
    * Creates an instance of Recipes.
