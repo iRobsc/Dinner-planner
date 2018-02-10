@@ -8,7 +8,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "build-js": "NODE_ENV=production webpack",
-    "watch-js": "webpack-dev-server --open --hot --inline",
+    "watch-js": "webpack-dev-server --hot --inline",
     "start": "npm-run-all -p watch-css watch-js",
     "build": "npm run build-css && npm run build-js"
   },
