@@ -14,7 +14,7 @@ class Recipes {
     div.classList.add("recipe");
 
     const img = document.createElement("img");
-    img.src = `/images/${this.dish.image}`;
+    img.src = `images/${this.dish.image}`;
     div.appendChild(img);
 
     const desc = document.createElement("div");
