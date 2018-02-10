@@ -15,6 +15,7 @@ class MyDinner {
   }
 
   fillGrid() {
+    this.container.innerHTML = "";
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
     for (const dish of menu) {

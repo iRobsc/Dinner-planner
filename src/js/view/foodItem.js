@@ -1,5 +1,3 @@
-import Images from "../../images/*"; // eslint-disable-line
-
 class FoodItem {
   /**
    * Creates an instance of FoodItem.
@@ -17,7 +15,7 @@ class FoodItem {
     foodItem.classList.add("food-item");
 
     const img = document.createElement("img");
-    img.src = Images[this.image];
+    img.src = `images/${this.image}`;
     foodItem.appendChild(img);
 
     const name = document.createElement("div");

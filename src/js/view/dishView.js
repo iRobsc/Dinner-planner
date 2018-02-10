@@ -1,5 +1,3 @@
-import Images from "../../images/*"; // eslint-disable-line
-
 class DishView {
   /**
    * Creates an instance of DishView.
@@ -21,7 +19,7 @@ class DishView {
     dishTitle.textContent = this.dish.name;
 
     const dishImg = this.container.querySelector("#dish-img");
-    dishImg.src = Images[this.dish.image];
+    dishImg.src = `images/${this.dish.image}`;
 
     const prepText = this.container.querySelector("#dish-prep-text");
     prepText.textContent = this.dish.description;
