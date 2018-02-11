@@ -31,7 +31,7 @@ import "../css/responsive.css";
 
   if (foodGridContainer) {
     const foodGrid = new FoodGrid(foodGridContainer, model);
-    const foodGridController = new FoodGridController(foodGrid, model);
+    const foodGridController = new FoodGridController(foodGrid);
     foodGridController.init();
   }
 

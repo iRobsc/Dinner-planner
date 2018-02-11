@@ -2,11 +2,9 @@ class FoodGridController {
   /**
    * Creates an instance of FoodGridController.
    * @param {any} view
-   * @param {dinnerModel} model
    */
-  constructor(view, model) {
+  constructor(view) {
     this.view = view;
-    this.model = model;
   }
 
   init() {
