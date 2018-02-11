@@ -5,6 +5,7 @@ import DishView from "./view/dishView";
 import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
+import FoodGridController from "./controller/foodGridController";
 import SidebarController from "./controller/sidebarController";
 import IngrListController from "./controller/ingrListController";
 import "../css/index.css";
@@ -28,7 +29,11 @@ import "../css/responsive.css";
     sidebarController.init();
   }
 
-  if (foodGridContainer) new FoodGrid(foodGridContainer, model);
+  if (foodGridContainer) {
+    const foodGrid = new FoodGrid(foodGridContainer, model);
+    const foodGridController = new FoodGridController(foodGrid, model);
+    foodGridController.init();
+  }
 
   if (dishContainer) new DishView(dishContainer, model, 103);
 
