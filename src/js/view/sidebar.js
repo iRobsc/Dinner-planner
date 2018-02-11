@@ -11,9 +11,10 @@ class Sidebar {
     this.container = container;
     this.model = model;
 
-    this.guestElem = null;
+    this.guestElem = this.container.querySelector("#number-of-guests");
+    this.menuBtn = this.container.querySelector("#sidebar-accordion");
+    this.sidebarContent = this.container.querySelector("#sidebar-content");
 
-    this.menuBtn();
     this.numberOfGuests();
     this.menuList();
     this.fetchPrice();
@@ -23,23 +24,13 @@ class Sidebar {
   }
 
   update() {
+    this.numberOfGuests();
     this.menuList();
     this.fetchPrice();
   }
 
-  menuBtn() {
-    const menuBtn = this.container.querySelector("#sidebar-accordion");
-    const sidebarContent = this.container.querySelector("#sidebar-content");
-
-    menuBtn.addEventListener("click", () => {
-      sidebarContent.classList.toggle("sidebar-hide");
-      sidebarContent.classList.toggle("sidebar-show");
-    });
-  }
-
   numberOfGuests() {
     const numberOfGuests = this.model.getNumberOfGuests();
-    this.guestElem = this.container.querySelector("#number-of-guests");
     this.guestElem.value = numberOfGuests;
   }
 

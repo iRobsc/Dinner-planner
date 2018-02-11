@@ -24,7 +24,8 @@ import "../css/responsive.css";
   // And create the instance of ExampleView
   if (sidebarContainer) {
     const sidebar = new Sidebar(sidebarContainer, model);
-    new SidebarController(sidebar, model);
+    const sidebarController = new SidebarController(sidebar, model);
+    sidebarController.init();
   }
 
   if (foodGridContainer) new FoodGrid(foodGridContainer, model);
