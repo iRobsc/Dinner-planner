@@ -11,9 +11,17 @@ class DishView {
     this.dishId = dishId;
     this.dish = this.model.getDish(this.dishId);
 
-    this.backBtn = this.container.querySelector("#dish-back-btn");
+    this.backBtn = this.container.querySelector("#dish-button-back");
 
     this.dishInfo();
+  }
+
+  hide() {
+    this.container.classList.add(".hideView");
+  }
+
+  show() {
+    this.container.classList.remove(".hideView");
   }
 
   dishInfo() {

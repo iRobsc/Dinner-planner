@@ -10,10 +10,15 @@ class IngredientList {
     this.model = model;
     this.dishId = dishId;
 
-    this.addBtn = this.container.querySelector("#dish-add-btn");
+    this.addBtn = this.container.querySelector("#dish-ingredient-btn");
+  }
+
+  hide() {
+    this.container.classList.add(".hideView");
   }
 
   show() {
+    this.container.classList.remove(".hideView");
     this.setInfo();
     this.getIngredients();
   }
