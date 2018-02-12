@@ -12,3 +12,5 @@ class MyDinnerTitle {
     this.container.classList.remove(".hideView");
   }
 }
+
+export default MyDinnerTitle;
