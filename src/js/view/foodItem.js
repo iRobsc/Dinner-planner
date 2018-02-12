@@ -1,23 +1,22 @@
-import Images from "../../images/*"; // eslint-disable-line
-
 class FoodItem {
   /**
    * Creates an instance of FoodItem.
-   * @param {String} name Which name to display
-   * @param {String} image Filename of image
+   * @param {Dish} dish
    * @memberof FoodItem
    */
-  constructor(name, image) {
-    this.name = name;
-    this.image = image;
+  constructor(dish) {
+    this.name = dish.name;
+    this.image = dish.image;
+    this.id = dish.id;
   }
 
   generate() {
     const foodItem = document.createElement("div");
     foodItem.classList.add("food-item");
+    foodItem.dataset.dishid = this.id;
 
     const img = document.createElement("img");
-    img.src = Images[this.image];
+    img.src = `images/${this.image}`;
     foodItem.appendChild(img);
 
     const name = document.createElement("div");

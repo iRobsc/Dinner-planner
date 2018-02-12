@@ -48,6 +48,11 @@
     color: #B3B3B3;
   }
 
+  #number-of-guests {
+    width: 50px;
+    text-align: right;
+  }
+
   .sidebar-item {
     display: grid;
     grid-template-columns: 1fr auto;

@@ -11,10 +11,16 @@ class Sidebar {
     this.container = container;
     this.model = model;
 
-    this.menuBtn();
+    this.guestElem = this.container.querySelector("#number-of-guests");
+    this.menuBtn = this.container.querySelector("#sidebar-accordion");
+    this.sidebarContent = this.container.querySelector("#sidebar-content");
+
     this.numberOfGuests();
     this.menuList();
     this.fetchPrice();
+    
+    this.model.guestChange.addObserver(this.update.bind(this));
+    this.model.menuChange.addObserver(this.update.bind(this));
   }
 
   hide() {
@@ -32,21 +38,23 @@ class Sidebar {
   menuBtn() {
     const menuBtn = this.container.querySelector("#sidebar-accordion");
     const sidebarContent = this.container.querySelector("#sidebar-content");
+  }
 
-    menuBtn.addEventListener("click", () => {
-      sidebarContent.classList.toggle("sidebar-hide");
-      sidebarContent.classList.toggle("sidebar-show");
-    });
+  update() {
+    this.numberOfGuests();
+    this.menuList();
+    this.fetchPrice();
   }
 
   numberOfGuests() {
     const numberOfGuests = this.model.getNumberOfGuests();
-    const guestElem = this.container.querySelector("#number-of-guests");
-    guestElem.textContent = numberOfGuests;
+    this.guestElem.value = numberOfGuests;
   }
 
   menuList() {
     const listContainer = this.container.querySelector("#sidebar-list");
+    listContainer.innerHTML = "";
+
     const menu = this.model.getFullMenu();
 
     if (menu.length === 0) {

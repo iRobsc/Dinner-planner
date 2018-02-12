@@ -12,9 +12,7 @@
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700|Playfair+Display+SC" rel="stylesheet">
 
-  <!-- CSS -->
-  <link href="css/index.css" rel="stylesheet">
-  <link href="css/responsive.css" rel="stylesheet">
+  <!-- Other CSS is imported in app.js and will be injected with webpack -->
 </head>
 <body>
   <header>Dinner Planner</header>
@@ -32,7 +30,7 @@
           <h2>My Dinner</h2>
 
           <div id="sidebar-inner-container">
-            Number of people: <span id="number-of-guests"></span>
+            Number of people: <input id="number-of-guests" type="number">
             <br>
 
             <div id="sidebar-list"></div>
@@ -75,6 +73,6 @@
   </div>
 
   <a href="dish.html">Next page</a>
-  <script src="js/app.js"></script>
+  <!-- JS will be injected with webpack -->
 </body>
 </html>

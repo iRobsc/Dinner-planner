@@ -23,11 +23,12 @@ class MyDinner {
   }
 
   fillGrid() {
+    this.container.innerHTML = "";
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
     for (const dish of menu) {
       const div = document.createElement("div");
-      div.appendChild(new FoodItem(dish.name, dish.image).generate());
+      div.appendChild(new FoodItem(dish).generate());
 
       const priceElem = document.createElement("p");
       priceElem.classList.add("price");

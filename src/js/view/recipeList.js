@@ -22,6 +22,7 @@ class RecipeList {
   }
 
   createList() {
+    this.container.innerHTML = "";
     const dishes = this.model.getFullMenu();
     for (const dish of dishes) {
       const recipe = new Recipe(dish).generate();

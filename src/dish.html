@@ -13,9 +13,7 @@
   <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700|Playfair+Display+SC" rel="stylesheet">
 
-  <!-- CSS -->
-  <link href="css/index.css" rel="stylesheet">
-  <link href="css/responsive.css" rel="stylesheet">
+  <!-- Other CSS is imported in app.js -->
 </head>
 
 <body>
@@ -62,19 +60,19 @@
         rhoncus risus in, finibus leo. Cras a turpis quis sem accumsan tincidunt. Nunc in dictum massa. Nam metus purus, aliquet
         sit amet rutrum in, facilisis sed augue.
         </div>
-        <a class="dinner-btn" id="dish-button-back" href="app.html">Back to search</a>
+        <a class="dinner-btn" id="dish-back-btn" href="#back">Back to search</a>
       </div>
 
       <div id="dish-ingredients">
         <div id="dish-ingredient-box">
-        <div id="ingredients-title"></div>
-        <div id="dish-ingredient-content">
-          <table id="dish-ingredient-table"></table>
-        </div>
-        <div id="dish-ingredient-add">
-          <button class="dinner-btn" id="dish-ingredient-btn">Add to menu</button>
-          <div id="dish-ingredient-price"></div>
-        </div>
+          <div id="ingredients-title"></div>
+          <div id="dish-ingredient-content">
+            <table id="dish-ingredient-table"></table>
+          </div>
+          <div id="dish-ingredient-add">
+            <button class="dinner-btn" id="dish-add-btn">Add to menu</button>
+            <div id="dish-ingredient-price"></div>
+          </div>
         </div>
       </div>
 
@@ -85,7 +83,7 @@
     </div>
   </div>
 
-  <script src="js/app.js"></script>
+  <!-- JS will be injected with webpack -->
 </body>
 
 </html>

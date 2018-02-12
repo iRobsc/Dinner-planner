@@ -1,6 +1,3 @@
-import IngredientList from "./ingredientList";
-import Images from "../../images/*"; // eslint-disable-line
-
 class DishView {
   /**
    * Creates an instance of DishView.
@@ -14,8 +11,9 @@ class DishView {
     this.dishId = dishId;
     this.dish = this.model.getDish(this.dishId);
 
+    this.backBtn = this.container.querySelector("#dish-back-btn");
+
     this.dishInfo();
-    this.ingredientList();
   }
 
   hide() {
@@ -31,18 +29,10 @@ class DishView {
     dishTitle.textContent = this.dish.name;
 
     const dishImg = this.container.querySelector("#dish-img");
-    dishImg.src = Images[this.dish.image];
+    dishImg.src = `images/${this.dish.image}`;
 
     const prepText = this.container.querySelector("#dish-prep-text");
     prepText.textContent = this.dish.description;
-  }
-
-  ingredientList() {
-    const titleDiv = this.container.querySelector("#ingredients-title");
-    titleDiv.textContent = `Ingredients for ${this.model.getNumberOfGuests()} people`;
-
-    const table = this.container.querySelector("#dish-ingredient-table");
-    new IngredientList(table, this.model, this.dishId);
   }
 }
 

@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "build-js": "parcel build src/index.html --public-url ./",
-    "watch-js": "parcel src/index.html -p 3000",
+    "build-js": "NODE_ENV=production webpack",
+    "watch-js": "webpack-dev-server --hot --inline",
     "start": "npm-run-all -p watch-css watch-js",
     "build": "npm run build-css && npm run build-js"
   },
@@ -19,11 +19,20 @@
   "author": "Willy Liu, Robert Kindwall",
   "license": "MIT",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.18",
+    "copy-webpack-plugin": "^4.4.1",
+    "css-loader": "^0.28.9",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
-    "parcel-bundler": "^1.5.0"
-  }
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {}
 }

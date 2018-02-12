@@ -1,4 +1,5 @@
 import dishes from "./dishes";
+import Observable from "./observable";
 
 /**
  * @typedef {Object} Dish
@@ -23,15 +24,24 @@ class DinnerModel {
   constructor() {
     this.numberOfGuests = 3;
     this.menu = [1, 2, 100];
+
+    this.guestChange = new Observable(this);
+    this.menuChange = new Observable(this);
   }
 
   /**
    * Sets the number of guests
    *
-   * @param {Number} num
+   * @param {Number} num  non-negative number
    */
   setNumberOfGuests(num) {
+    // verify input
+    if (Number.isNaN(parseInt(num, 10)) || parseInt(num, 10) < 0) {
+      this.guestChange.notifyAll(this.numberOfGuests);
+      return;
+    }
     this.numberOfGuests = num;
+    this.guestChange.notifyAll(num);
   }
 
   /**
@@ -98,11 +108,22 @@ class DinnerModel {
    */
   addDishToMenu(id) {
     const dishToAdd = this.getDish(id);
+
+    // didn't find dish with matching id
+    if (dishToAdd === -1) return;
+
     const storedDish = this.getSelectedDish(dishToAdd.type);
+
+    // trying to add same dish, do nothing
+    if (storedDish.id === id) return;
+
+    // remove old dish of the same type
     if (storedDish !== -1) {
       this.removeDishFromMenu(storedDish.id);
     }
+
     this.menu.push(id);
+    this.menuChange.notifyAll(this.menu);
   }
 
   /**
@@ -112,11 +133,12 @@ class DinnerModel {
    */
   removeDishFromMenu(id) {
     for (let i = 0; i < this.menu.length; i++) {
-      if (this.menu[i].id === id) {
+      if (this.menu[i] === id) {
         this.menu.splice(i, 1);
         return;
       }
     }
+    this.menuChange.notifyAll(this.menu);
   }
 
   /**
