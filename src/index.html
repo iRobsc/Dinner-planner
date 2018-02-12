@@ -65,27 +65,29 @@
 		</div>
 		<div>
 			<div id="main-content">
-				<h2>Find a dish</h2>
-				<form id="search">
-					<div class="search-container">
-						<i class="fa fa-search"></i>
-						<input type="text" placeholder="Enter keywords">
-					</div>
+				<div id="search-container">
+					<h2>Find a dish</h2>
+					<form id="search">
+						<div class="search-container">
+							<i class="fa fa-search"></i>
+							<input type="text" placeholder="Enter keywords">
+						</div>
 
-					<div class="select-container">
-						<select>
-							<option>Main Course</option>
-							<option>Side Dish</option>
-							<option>Dessert</option>
-							<option>Appetizer</option>
-						</select>
-						<span class="arrow-container">
-							<i class="fa fa-angle-down"></i>
-						</span>
-					</div>
+						<div class="select-container">
+							<select>
+								<option>Main Course</option>
+								<option>Side Dish</option>
+								<option>Dessert</option>
+								<option>Appetizer</option>
+							</select>
+							<span class="arrow-container">
+								<i class="fa fa-angle-down"></i>
+							</span>
+						</div>
 
-					<button type="submit" class="dinner-btn">Search</button>
-				</form>
+						<button type="submit" class="dinner-btn">Search</button>
+					</form>
+				</div>
 
 				<div id="food-grid"></div>
 			</div>
@@ -131,11 +133,12 @@
 			<a href="app.html" class="dinner-btn">Go back and edit dinner</a>
 		</div>
 
-		<div id="myDinner-dishes"></div>
-		<footer id="myDinner-footer">
-			<a href="recipes.html" class="dinner-btn">Print full recipe</a>
-		</footer>
-
+		<div id="myDinner-container">
+			<div id="myDinner-dishes"></div>
+			<div id="myDinner-footer">
+				<a href="recipes.html" class="dinner-btn">Print full recipe</a>
+			</div>
+		</div>
 		<div id="myDinner-recipes"></div>
 
 	</div>

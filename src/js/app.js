@@ -23,7 +23,7 @@ import "../css/responsive.css";
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
   const ingredientContainer = document.getElementById("dish-ingredients");
-  const myDinnerContainer = document.getElementById("myDinner-dishes");
+  const myDinnerContainer = document.getElementById("myDinner-container");
   const recipeContainer = document.getElementById("myDinner-recipes");
   const searchBarContainer = document.getElementById("search-container");
   const myDinnerTitleContainer = document.getElementById("title-bar");
