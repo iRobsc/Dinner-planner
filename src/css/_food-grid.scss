@@ -17,11 +17,13 @@
   img {
     width: 100%;
     display: block;
+    pointer-events: none;
   }
 
   .name {
     padding: 20px;
     font-weight: bold;
+    pointer-events: none;
   }
 
   &:hover {

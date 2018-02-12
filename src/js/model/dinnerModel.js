@@ -32,9 +32,14 @@ class DinnerModel {
   /**
    * Sets the number of guests
    *
-   * @param {Number} num
+   * @param {Number} num  non-negative number
    */
   setNumberOfGuests(num) {
+    // verify input
+    if (Number.isNaN(parseInt(num, 10)) || parseInt(num, 10) < 0) {
+      this.guestChange.notifyAll(this.numberOfGuests);
+      return;
+    }
     this.numberOfGuests = num;
     this.guestChange.notifyAll(num);
   }

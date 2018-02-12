@@ -5,7 +5,9 @@ import DishView from "./view/dishView";
 import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
+import FoodGridController from "./controller/foodGridController";
 import SidebarController from "./controller/sidebarController";
+import DishViewController from "./controller/dishViewController";
 import IngrListController from "./controller/ingrListController";
 import "../css/index.css";
 import "../css/responsive.css";
@@ -24,12 +26,21 @@ import "../css/responsive.css";
   // And create the instance of ExampleView
   if (sidebarContainer) {
     const sidebar = new Sidebar(sidebarContainer, model);
-    new SidebarController(sidebar, model);
+    const sidebarController = new SidebarController(sidebar, model);
+    sidebarController.init();
   }
 
-  if (foodGridContainer) new FoodGrid(foodGridContainer, model);
+  if (foodGridContainer) {
+    const foodGrid = new FoodGrid(foodGridContainer, model);
+    const foodGridController = new FoodGridController(foodGrid);
+    foodGridController.init();
+  }
 
-  if (dishContainer) new DishView(dishContainer, model, 103);
+  if (dishContainer) {
+    const dishView = new DishView(dishContainer, model, 103);
+    const dishViewController = new DishViewController(dishView);
+    dishViewController.init();
+  }
 
   if (ingrContainer) {
     const ingrListView = new IngredientList(ingrContainer, model, 103);
