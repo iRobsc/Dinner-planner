@@ -177,7 +177,7 @@ class DinnerModel {
    */
   getDish(id) {
     for (const key in dishes) {
-      if (parseInt(dishes[key].id, 10) === parseInt(id, 10)) {
+      if (dishes[key].id === id) {
         return dishes[key];
       }
     }
