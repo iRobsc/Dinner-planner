@@ -9,6 +9,7 @@ import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
 import SearchBar from "./view/searchBar";
 import MyDinnerTitle from "./view/myDinnerTitle";
+import WelcomeScreenController from "./controller/welcomeScreenController";
 import FoodGridController from "./controller/foodGridController";
 import SidebarController from "./controller/sidebarController";
 import DishViewController from "./controller/dishViewController";
@@ -45,6 +46,7 @@ import "../css/responsive.css";
   };
 
   const controllers = {
+    welcomeScreenController: new WelcomeScreenController(views.welcomeScreen),
     sidebarController: new SidebarController(views.sidebar, model),
     foodGridController: new FoodGridController(views.foodGrid),
     dishViewController: new DishViewController(views.dishView),

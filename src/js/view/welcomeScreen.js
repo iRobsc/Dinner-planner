@@ -5,6 +5,7 @@ class WelcomeScreen {
    */
   constructor(container) {
     this.container = container;
+    this.btn = this.container.querySelector("#welcome-btn");
   }
 
   hide() {
