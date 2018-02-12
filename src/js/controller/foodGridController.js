@@ -1,3 +1,5 @@
+import Router from "../router";
+
 class FoodGridController {
   /**
    * Creates an instance of FoodGridController.
@@ -16,8 +18,7 @@ class FoodGridController {
       if (clicked.classList.contains("food-item")) {
         const { dishid } = clicked.dataset;
 
-        // temporary until router is implemented
-        window.history.pushState(null, null, `/dish?id=${dishid}`);
+        Router.goTo(`/dish?id=${dishid}`);
       }
     });
   }
