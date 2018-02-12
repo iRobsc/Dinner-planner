@@ -36,7 +36,7 @@ import "../css/responsive.css";
     welcomeScreen: new WelcomeScreen(welcomeScreenContainer),
     sidebar: new Sidebar(sidebarContainer, model),
     foodGrid: new FoodGrid(foodGridContainer, model),
-    dishView: new DishView(dishContainer, model, 103),
+    dishView: new DishView(dishContainer, model),
     myDinner: new MyDinner(myDinnerContainer, model),
     recipeList: new RecipeList(recipeContainer, model),
     searchBar: new SearchBar(searchBarContainer, model),
@@ -73,11 +73,11 @@ import "../css/responsive.css";
     views.foodGrid.show();
   }
 
-  function showDishDetailsScreen() {
+  function showDishDetailsScreen(dishId) {
     hideAllViews();
     views.sidebar.show();
-    views.dishView.show();
-    views.ingredientList.show();
+    views.dishView.show(dishId);
+    views.ingredientList.show(dishId);
   }
 
   function showMyDinnerScreen() {
@@ -98,8 +98,8 @@ import "../css/responsive.css";
   Router.on("/search", () => {
     showAppScreen();
   });
-  Router.on("/dish", () => {
-    showDishDetailsScreen();
+  Router.on("/dish", (params) => {
+    showDishDetailsScreen(params.id);
   });
   Router.on("/mydinner", () => {
     showMyDinnerScreen();
