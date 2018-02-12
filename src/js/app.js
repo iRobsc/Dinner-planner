@@ -1,3 +1,4 @@
+import Router from "./router";
 import DinnerModel from "./model/dinnerModel";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
@@ -24,76 +25,81 @@ import "../css/responsive.css";
   const ingredientContainer = document.getElementById("dish-ingredients");
   const myDinnerContainer = document.getElementById("myDinner-dishes");
   const recipeContainer = document.getElementById("myDinner-recipes");
-  const searchBarContainer = document.getElementById("search");
-  const MyDinnerTitleContainer = document.getElementById("title-bar");
+  const searchBarContainer = document.getElementById("search-container");
+  const myDinnerTitleContainer = document.getElementById("title-bar");
 
   let viewState = 0;
 
-  const sidebar = new Sidebar(sidebarContainer, model);
-  const sidebarController = new SidebarController(sidebar, model);
-  sidebarController.init();
+  const views = {
+    sidebar: new Sidebar(sidebarContainer, model),
+    foodGrid: new FoodGrid(foodGridContainer, model),
+    dishView: new DishView(dishContainer, model, 103),
+    myDinner: new MyDinner(myDinnerContainer, model),
+    recipeList: new RecipeList(recipeContainer, model),
+    searchBar: new SearchBar(searchBarContainer, model),
+    ingredientList: new IngredientList(ingredientContainer, model, 103),
+    myDinnerTitle: new MyDinnerTitle(myDinnerTitleContainer, model),
+  };
 
-  const foodGrid = new FoodGrid(foodGridContainer, model);
-  const foodGridController = new FoodGridController(foodGrid);
-  foodGridController.init();
+  const controllers = {
+    sidebarController: new SidebarController(views.sidebar, model),
+    foodGridController: new FoodGridController(views.foodGrid),
+    dishViewController: new DishViewController(views.dishView),
+    ingrListController: new IngrListController(views.ingredientList, model),
+  };
 
-  const dishView = new DishView(dishContainer, model, 103);
-  const dishViewController = new DishViewController(dishView);
-  dishViewController.init();
+  Object.values(controllers).forEach((controller) => {
+    controller.init();
+  });
 
-  const myDinner = new MyDinner(myDinnerContainer, model);
-  const recipeList = new RecipeList(recipeContainer, model);
-  const searchBar = new SearchBar(searchBarContainer, model);
-  const myDinnerTitle = new MyDinnerTitle(searchBarContainer, model);
-
-  const ingredientList = new IngredientList(ingredientContainer, model, 103);
-  ingredientList.show();
-  const ingrListController = new IngrListController(ingredientList, model);
-  ingrListController.init();
+  function hideAllViews() {
+    Object.values(views).forEach((view) => {
+      view.hide();
+    });
+  }
 
   function showAppScreen() {
-    sidebar.show();
-    searchBar.show();
-    foodGrid.show();
-    dishView.hide();
-    recipeList.hide();
-    ingredientList.hide();
-    myDinner.hide();
-    myDinnerTitle.hide();
+    hideAllViews();
+    views.sidebar.show();
+    views.searchBar.show();
+    views.foodGrid.show();
   }
 
   function showDishDetailsScreen() {
-    sidebar.show();
-    searchBar.hide();
-    foodGrid.hide();
-    dishView.show();
-    recipeList.hide();
-    ingredientList.show();
-    myDinner.hide();
-    myDinnerTitle.hide();
+    hideAllViews();
+    views.sidebar.show();
+    views.dishView.show();
+    views.ingredientList.show();
   }
 
   function showMyDinnerScreen() {
-    sidebar.hide();
-    searchBar.hide();
-    foodGrid.hide();
-    dishView.hide();
-    recipeList.hide();
-    ingredientList.hide();
-    myDinner.show();
-    myDinnerTitle.show();
+    hideAllViews();
+    views.myDinner.show();
+    views.myDinnerTitle.show();
   }
 
   function showRecipeScreen() {
-    sidebar.hide();
-    searchBar.hide();
-    foodGrid.hide();
-    dishView.hide();
-    recipeList.show();
-    ingredientList.hide();
-    myDinner.hide();
-    myDinnerTitle.show();
+    hideAllViews();
+    views.recipeList.show();
+    views.myDinnerTitle.show();
   }
+
+  Router.on("/", () => {
+    hideAllViews();
+  });
+  Router.on("/search", () => {
+    showAppScreen();
+  });
+  Router.on("/dish", () => {
+    showDishDetailsScreen();
+  });
+  Router.on("/mydinner", () => {
+    showMyDinnerScreen();
+  });
+  Router.on("/recipes", () => {
+    showRecipeScreen();
+  });
+  Router.listen();
 
   /**
   * IMPORTANT: app.js is the only place where you are allowed to

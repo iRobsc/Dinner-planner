@@ -1,8 +1,10 @@
 class SearchBar {
   constructor(container, model) {
+    /*
     this.searchButton;
     this.dropDown;
     this.searchField;
+    */
     this.container = container;
     this.model = model;
   }
