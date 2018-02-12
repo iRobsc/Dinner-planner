@@ -15,15 +15,17 @@ class MyDinner {
   }
 
   hide() {
-    this.container.classList.add(".hideView");
+    this.container.classList.add("hideView");
   }
 
   show() {
-    this.container.classList.remove(".hideView");
+    this.container.classList.remove("hideView");
   }
 
   fillGrid() {
-    this.container.innerHTML = "";
+    const container = this.container.querySelector("#myDinner-dishes");
+
+    container.innerHTML = "";
     const noOfGuests = this.model.getNumberOfGuests();
     const menu = this.model.getFullMenu();
     for (const dish of menu) {
@@ -35,7 +37,7 @@ class MyDinner {
       priceElem.textContent = `${this.model.getDishPrice(dish) * noOfGuests} SEK`;
       div.appendChild(priceElem);
 
-      this.container.appendChild(div);
+      container.appendChild(div);
     }
   }
 
@@ -44,7 +46,9 @@ class MyDinner {
     const div = document.createElement("div");
     div.classList.add("total-price");
     div.textContent = `Total price: ${totalPrice} SEK`;
-    this.container.appendChild(div);
+
+    const container = this.container.querySelector("#myDinner-dishes");
+    container.appendChild(div);
   }
 }
 

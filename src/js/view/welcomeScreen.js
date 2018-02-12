@@ -1,7 +1,10 @@
-class MyDinnerTitle {
-  constructor(container, model) {
+class WelcomeScreen {
+  /**
+   * Create an instance of WelcomeScreen-
+   * @param {Element} container
+   */
+  constructor(container) {
     this.container = container;
-    this.model = model;
   }
 
   hide() {
@@ -13,4 +16,4 @@ class MyDinnerTitle {
   }
 }
 
-export default MyDinnerTitle;
+export default WelcomeScreen;

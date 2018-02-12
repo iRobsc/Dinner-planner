@@ -3,25 +3,23 @@ class DishView {
    * Creates an instance of DishView.
    * @param {Element} container
    * @param {dinnerModel} model
-   * @param {Number} dishId
    */
-  constructor(container, model, dishId) {
+  constructor(container, model) {
     this.container = container;
     this.model = model;
-    this.dishId = dishId;
-    this.dish = this.model.getDish(this.dishId);
+    this.dish = null;
 
     this.backBtn = this.container.querySelector("#dish-button-back");
-
-    this.dishInfo();
   }
 
   hide() {
-    this.container.classList.add(".hideView");
+    this.container.classList.add("hideView");
   }
 
-  show() {
-    this.container.classList.remove(".hideView");
+  show(dishId) {
+    this.dish = this.model.getDish(dishId);
+    this.container.classList.remove("hideView");
+    this.dishInfo();
   }
 
   dishInfo() {

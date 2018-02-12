@@ -3,22 +3,22 @@ class IngredientList {
    * Creates an instance of IngredientList.
    * @param {Element} container
    * @param {dinnerModel} model
-   * @param {Number} dishId
    */
-  constructor(container, model, dishId) {
+  constructor(container, model) {
     this.container = container;
     this.model = model;
-    this.dishId = dishId;
+    this.dishId = null;
 
     this.addBtn = this.container.querySelector("#dish-ingredient-btn");
   }
 
   hide() {
-    this.container.classList.add(".hideView");
+    this.container.classList.add("hideView");
   }
 
-  show() {
-    this.container.classList.remove(".hideView");
+  show(dishId) {
+    this.dishId = dishId;
+    this.container.classList.remove("hideView");
     this.setInfo();
     this.getIngredients();
   }
@@ -30,6 +30,8 @@ class IngredientList {
 
   getIngredients() {
     const tableContainer = this.container.querySelector("#dish-ingredient-table");
+    tableContainer.innerHTML = "";
+
     const dish = this.model.getDish(this.dishId);
     if (dish === -1) {
       console.log("Couldn't find dish");
