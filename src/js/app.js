@@ -14,6 +14,7 @@ import FoodGridController from "./controller/foodGridController";
 import SidebarController from "./controller/sidebarController";
 import DishViewController from "./controller/dishViewController";
 import IngrListController from "./controller/ingrListController";
+import MyDinnerTitleController from "./controller/myDinnerTitleContainer";
 import "../css/index.css";
 import "../css/responsive.css";
 
@@ -51,6 +52,7 @@ import "../css/responsive.css";
     foodGridController: new FoodGridController(views.foodGrid),
     dishViewController: new DishViewController(views.dishView),
     ingrListController: new IngrListController(views.ingredientList, model),
+    myDinnerTitleController: new MyDinnerTitleController(views.myDinnerTitle),
   };
 
   Object.values(controllers).forEach((controller) => {
