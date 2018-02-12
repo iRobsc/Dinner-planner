@@ -35,4 +35,5 @@
 .dinner-btn-disabled {
   @include dinner-btn;
   background-color: #EBEBEB;
+  pointer-events: none;
 }

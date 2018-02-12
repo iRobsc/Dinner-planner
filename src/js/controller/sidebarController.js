@@ -1,3 +1,5 @@
+import Router from "../router";
+
 class SidebarController {
   constructor(view, model) {
     this.view = view;
@@ -17,12 +19,17 @@ class SidebarController {
   }
 
   setValue() {
-    const input = this.view.guestElem;
-    input.addEventListener("input", () => {
-      if (input.value !== "") this.model.setNumberOfGuests(parseInt(input.value, 10));
+    const { guestElem, confirmBtn } = this.view;
+    guestElem.addEventListener("input", () => {
+      if (guestElem.value !== "") this.model.setNumberOfGuests(parseInt(guestElem.value, 10));
     });
-    input.addEventListener("blur", () => {
-      this.model.setNumberOfGuests(parseInt(input.value, 10));
+    guestElem.addEventListener("blur", () => {
+      this.model.setNumberOfGuests(parseInt(guestElem.value, 10));
+    });
+
+    confirmBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      Router.goTo("/mydinner");
     });
   }
 }
