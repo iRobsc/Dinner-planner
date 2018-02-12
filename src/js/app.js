@@ -17,7 +17,7 @@ import "../css/responsive.css";
 (function main() {
   // We instantiate our model
   const model = new DinnerModel();
-  
+
   const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
@@ -28,15 +28,15 @@ import "../css/responsive.css";
   const MyDinnerTitleContainer = document.getElementById("title-bar");
 
   let viewState = 0;
-  
+
   const sidebar = new Sidebar(sidebarContainer, model);
   const sidebarController = new SidebarController(sidebar, model);
   sidebarController.init();
-  
+
   const foodGrid = new FoodGrid(foodGridContainer, model);
   const foodGridController = new FoodGridController(foodGrid);
   foodGridController.init();
-  
+
   const dishView = new DishView(dishContainer, model, 103);
   const dishViewController = new DishViewController(dishView);
   dishViewController.init();
@@ -45,7 +45,7 @@ import "../css/responsive.css";
   const recipeList = new RecipeList(recipeContainer, model);
   const searchBar = new SearchBar(searchBarContainer, model);
   const myDinnerTitle = new MyDinnerTitle(searchBarContainer, model);
-  
+
   const ingredientList = new IngredientList(ingredientContainer, model, 103);
   ingredientList.show();
   const ingrListController = new IngrListController(ingredientList, model);
