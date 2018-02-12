@@ -10,8 +10,9 @@ class IngrListController {
   }
 
   init() {
-    const { addBtn, dishId } = this.view;
+    const { addBtn } = this.view;
     addBtn.addEventListener("click", () => {
+      const { dishId } = this.view;
       this.model.addDishToMenu(dishId);
     });
   }
