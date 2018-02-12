@@ -22,8 +22,8 @@ import Observable from "./observable";
 // DinnerModel Object constructor
 class DinnerModel {
   constructor() {
-    this.numberOfGuests = 3;
-    this.menu = [1, 2, 100];
+    this.numberOfGuests = 0;
+    this.menu = [];
 
     this.guestChange = new Observable(this);
     this.menuChange = new Observable(this);
