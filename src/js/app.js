@@ -1,5 +1,6 @@
 import Router from "./router";
 import DinnerModel from "./model/dinnerModel";
+import WelcomeScreen from "./view/welcomeScreen";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
@@ -19,6 +20,7 @@ import "../css/responsive.css";
   // We instantiate our model
   const model = new DinnerModel();
 
+  const welcomeScreenContainer = document.getElementById("welcome-box");
   const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
@@ -28,9 +30,10 @@ import "../css/responsive.css";
   const searchBarContainer = document.getElementById("search-container");
   const myDinnerTitleContainer = document.getElementById("title-bar");
 
-  let viewState = 0;
+  // let viewState = 0;
 
   const views = {
+    welcomeScreen: new WelcomeScreen(welcomeScreenContainer),
     sidebar: new Sidebar(sidebarContainer, model),
     foodGrid: new FoodGrid(foodGridContainer, model),
     dishView: new DishView(dishContainer, model, 103),
@@ -56,6 +59,11 @@ import "../css/responsive.css";
     Object.values(views).forEach((view) => {
       view.hide();
     });
+  }
+
+  function showWelcomeScreen() {
+    hideAllViews();
+    views.welcomeScreen.show();
   }
 
   function showAppScreen() {
@@ -85,7 +93,7 @@ import "../css/responsive.css";
   }
 
   Router.on("/", () => {
-    hideAllViews();
+    showWelcomeScreen();
   });
   Router.on("/search", () => {
     showAppScreen();
