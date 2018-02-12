@@ -10,6 +10,8 @@ class MyDinner {
     this.container = container;
     this.model = model;
 
+    this.printBtn = this.container.querySelector("#mydinner-print-btn");
+
     this.fillGrid();
     this.addPrice();
   }
