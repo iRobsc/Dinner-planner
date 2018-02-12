@@ -15,3 +15,5 @@ class SearchBar {
     this.container.classList.remove(".hideView");
   }
 }
+
+export default SearchBar;
