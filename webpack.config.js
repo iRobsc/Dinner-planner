@@ -25,10 +25,6 @@ const outputDirName = "./dist";
 // file names of all HTML files in src
 const htmlFiles = [
   "index.html",
-  "app.html",
-  "dish.html",
-  "myDinner.html",
-  "recipes.html",
 ];
 
 // static folders to copy
