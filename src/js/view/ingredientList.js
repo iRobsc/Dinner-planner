@@ -14,11 +14,11 @@ class IngredientList {
   }
 
   hide() {
-    this.container.classList.add(".hideView");
+    this.container.classList.add("hideView");
   }
 
   show() {
-    this.container.classList.remove(".hideView");
+    this.container.classList.remove("hideView");
     this.setInfo();
     this.getIngredients();
   }
