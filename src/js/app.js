@@ -5,7 +5,6 @@ import DishView from "./view/dishView";
 import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
-import recipe from "./view/recipe";
 import SearchBar from "./view/searchBar";
 import MyDinnerTitle from "./view/myDinnerTitle";
 import FoodGridController from "./controller/foodGridController";
