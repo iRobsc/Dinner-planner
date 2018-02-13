@@ -21,8 +21,7 @@ class IngredientList {
   show(dishId) {
     this.dishId = dishId;
     this.container.classList.remove("hideView");
-    this.setInfo();
-    this.getIngredients();
+    this.update();
   }
 
   update() {
