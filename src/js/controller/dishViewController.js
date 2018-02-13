@@ -1,3 +1,5 @@
+import Router from "../router";
+
 class DishViewController {
   /**
    * Creates an instance of DishViewController.
@@ -10,9 +12,7 @@ class DishViewController {
   init() {
     this.view.backBtn.addEventListener("click", (e) => {
       e.preventDefault();
-
-      // temporary until router is implemented
-      window.history.back();
+      Router.goTo("/search");
     });
   }
 }

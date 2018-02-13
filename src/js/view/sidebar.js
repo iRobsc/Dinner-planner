@@ -11,6 +11,7 @@ class Sidebar {
     this.container = container;
     this.model = model;
 
+    this.confirmBtn = this.container.querySelector("#sidebar-confirm-btn");
     this.guestElem = this.container.querySelector("#number-of-guests");
     this.menuBtn = this.container.querySelector("#sidebar-accordion");
     this.sidebarContent = this.container.querySelector("#sidebar-content");
@@ -29,15 +30,27 @@ class Sidebar {
 
   show() {
     this.container.classList.remove("hideView");
-    this.numberOfGuests();
-    this.menuList();
-    this.fetchPrice();
+    this.update();
   }
 
   update() {
     this.numberOfGuests();
     this.menuList();
     this.fetchPrice();
+    this.setConfirmBtn();
+  }
+
+  setConfirmBtn() {
+    const numberOfGuests = this.model.getNumberOfGuests();
+    const menu = this.model.getFullMenu();
+
+    if (numberOfGuests === 0 || menu.length === 0) {
+      this.confirmBtn.classList.remove("dinner-btn");
+      this.confirmBtn.classList.add("dinner-btn-disabled");
+    } else {
+      this.confirmBtn.classList.add("dinner-btn");
+      this.confirmBtn.classList.remove("dinner-btn-disabled");
+    }
   }
 
   numberOfGuests() {

@@ -9,10 +9,13 @@ import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
 import SearchBar from "./view/searchBar";
 import MyDinnerTitle from "./view/myDinnerTitle";
+import WelcomeScreenController from "./controller/welcomeScreenController";
 import FoodGridController from "./controller/foodGridController";
 import SidebarController from "./controller/sidebarController";
 import DishViewController from "./controller/dishViewController";
 import IngrListController from "./controller/ingrListController";
+import MyDinnerTitleController from "./controller/myDinnerTitleContainer";
+import MyDinnerController from "./controller/myDinnerController";
 import "../css/index.css";
 import "../css/responsive.css";
 
@@ -45,10 +48,13 @@ import "../css/responsive.css";
   };
 
   const controllers = {
+    welcomeScreenController: new WelcomeScreenController(views.welcomeScreen),
     sidebarController: new SidebarController(views.sidebar, model),
     foodGridController: new FoodGridController(views.foodGrid),
     dishViewController: new DishViewController(views.dishView),
     ingrListController: new IngrListController(views.ingredientList, model),
+    myDinnerTitleController: new MyDinnerTitleController(views.myDinnerTitle),
+    myDinnerController: new MyDinnerController(views.myDinner),
   };
 
   Object.values(controllers).forEach((controller) => {

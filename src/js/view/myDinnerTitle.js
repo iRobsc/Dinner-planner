@@ -1,7 +1,14 @@
 class MyDinnerTitle {
+  /**
+   * Creates an instance of MyDinnerTitle.
+   * @param {Element} container
+   * @param {dinenrModel} model
+   */
   constructor(container, model) {
     this.container = container;
     this.model = model;
+
+    this.backBtn = this.container.querySelector("#mydinner-back-btn");
   }
 
   hide() {
