@@ -10,6 +10,8 @@ class IngredientList {
     this.dishId = null;
 
     this.addBtn = this.container.querySelector("#dish-ingredient-btn");
+
+    this.model.guestChange.addObserver(this.update.bind(this));
   }
 
   hide() {
@@ -19,6 +21,10 @@ class IngredientList {
   show(dishId) {
     this.dishId = dishId;
     this.container.classList.remove("hideView");
+    this.update();
+  }
+
+  update() {
     this.setInfo();
     this.getIngredients();
   }
