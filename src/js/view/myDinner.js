@@ -14,6 +14,9 @@ class MyDinner {
 
     this.fillGrid();
     this.addPrice();
+
+    this.model.menuChange.addObserver(this.update.bind(this));
+    this.model.guestChange.addObserver(this.update.bind(this));
   }
 
   hide() {
@@ -22,6 +25,12 @@ class MyDinner {
 
   show() {
     this.container.classList.remove("hideView");
+    this.update();
+  }
+
+  update() {
+    this.fillGrid();
+    this.addPrice();
   }
 
   fillGrid() {

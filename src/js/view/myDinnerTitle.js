@@ -8,7 +8,10 @@ class MyDinnerTitle {
     this.container = container;
     this.model = model;
 
+    this.setPeopleAmount();
+
     this.backBtn = this.container.querySelector("#mydinner-back-btn");
+    this.model.guestChange.addObserver(this.update.bind(this));
   }
 
   hide() {
@@ -17,6 +20,16 @@ class MyDinnerTitle {
 
   show() {
     this.container.classList.remove("hideView");
+    this.update();
+  }
+
+  update() {
+    this.setPeopleAmount();
+  }
+
+  setPeopleAmount() {
+    const noOfGuests = this.model.getNumberOfGuests();
+    document.getElementById("people").innerHTML = noOfGuests;
   }
 }
 
