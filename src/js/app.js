@@ -105,7 +105,8 @@ import "../css/responsive.css";
     showAppScreen();
   });
   Router.on("/dish", (params) => {
-    showDishDetailsScreen(params.id);
+    // params.id is a string
+    showDishDetailsScreen(parseInt(params.id, 10));
   });
   Router.on("/mydinner", () => {
     showMyDinnerScreen();
