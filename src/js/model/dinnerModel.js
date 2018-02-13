@@ -157,11 +157,11 @@ class DinnerModel {
       if (filter) {
         found = false;
         dish.ingredients.forEach((ingredient) => {
-          if (ingredient.name.indexOf(filter) !== -1) {
+          if (ingredient.name.toLowerCase().indexOf(filter) !== -1) {
             found = true;
           }
         });
-        if (dish.name.indexOf(filter) !== -1) {
+        if (dish.name.toLowerCase().indexOf(filter) !== -1) {
           found = true;
         }
       }

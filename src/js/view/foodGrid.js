@@ -15,14 +15,24 @@ class FoodGrid {
     this.container.classList.add("hideView");
   }
 
-  show() {
+  show(type, keywords) {
     this.container.classList.remove("hideView");
-    this.generateGrid();
+
+    const parsedType = type.replace("_", " ");
+    const parsedKeywords = keywords.replace("_", " ");
+    this.generateGrid(parsedType, parsedKeywords);
   }
 
-  generateGrid() {
+  generateGrid(type, keywords) {
     this.container.innerHTML = "";
-    const dishes = this.model.getAllDishes("starter", null);
+    const dishes = this.model.getAllDishes(type, keywords);
+    if (dishes.length < 4) {
+      this.container.classList.add("sparse-grid");
+      this.container.classList.remove("responsive-grid");
+    } else {
+      this.container.classList.add("responsive-grid");
+      this.container.classList.remove("sparse-grid");
+    }
     const foodItems = dishes.map(dish => new FoodItem(dish).generate());
     for (let i = 0; i < foodItems.length; i++) {
       this.container.appendChild(foodItems[i]);
