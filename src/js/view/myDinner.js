@@ -16,6 +16,7 @@ class MyDinner {
     this.addPrice();
 
     this.model.menuChange.addObserver(this.update.bind(this));
+    this.model.guestChange.addObserver(this.update.bind(this));
   }
 
   hide() {
