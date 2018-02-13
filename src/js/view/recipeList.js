@@ -11,6 +11,8 @@ class RecipeList {
     this.model = model;
 
     this.createList();
+
+    this.model.menuChange.addObserver(this.update.bind(this));
   }
 
   hide() {
@@ -19,6 +21,11 @@ class RecipeList {
 
   show() {
     this.container.classList.remove("hideView");
+    update();
+  }
+
+  update() {
+    this.createList();
   }
 
   createList() {
