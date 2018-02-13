@@ -21,7 +21,7 @@ class RecipeList {
 
   show() {
     this.container.classList.remove("hideView");
-    update();
+    this.update();
   }
 
   update() {
