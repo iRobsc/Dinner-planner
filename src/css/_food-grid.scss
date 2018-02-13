@@ -2,9 +2,16 @@
 
 #food-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 20px;
   padding-top: 40px;
+}
+
+.sparse-grid {
+  grid-template-columns: repeat(auto-fit, 200px);
+}
+
+.responsive-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .food-item {

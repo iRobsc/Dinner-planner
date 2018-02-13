@@ -26,6 +26,13 @@ class FoodGrid {
   generateGrid(type, keywords) {
     this.container.innerHTML = "";
     const dishes = this.model.getAllDishes(type, keywords);
+    if (dishes.length < 4) {
+      this.container.classList.add("sparse-grid");
+      this.container.classList.remove("responsive-grid");
+    } else {
+      this.container.classList.add("responsive-grid");
+      this.container.classList.remove("sparse-grid");
+    }
     const foodItems = dishes.map(dish => new FoodItem(dish).generate());
     for (let i = 0; i < foodItems.length; i++) {
       this.container.appendChild(foodItems[i]);

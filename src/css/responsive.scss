@@ -50,6 +50,10 @@
     font-size: 24px;
   }
 
+  #food-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
   #search {
     grid-template-columns: 1fr 130px;
     grid-template-areas:
