@@ -1,12 +1,14 @@
 class SearchBar {
+  /**
+   * Creates an instance of SearchBar.
+   * @param {Element} container
+   * @param {dinnerModel} model
+   * @memberof SearchBar
+   */
   constructor(container, model) {
-    /*
-    this.searchButton;
-    this.dropDown;
-    this.searchField;
-    */
     this.container = container;
     this.model = model;
+    this.searchForm = this.container.querySelector("#search");
   }
 
   hide() {

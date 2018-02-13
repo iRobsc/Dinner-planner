@@ -16,6 +16,7 @@ import DishViewController from "./controller/dishViewController";
 import IngrListController from "./controller/ingrListController";
 import MyDinnerTitleController from "./controller/myDinnerTitleContainer";
 import MyDinnerController from "./controller/myDinnerController";
+import SearchbarController from "./controller/searchbarController";
 import "../css/index.css";
 import "../css/responsive.css";
 
@@ -55,6 +56,7 @@ import "../css/responsive.css";
     ingrListController: new IngrListController(views.ingredientList, model),
     myDinnerTitleController: new MyDinnerTitleController(views.myDinnerTitle),
     myDinnerController: new MyDinnerController(views.myDinner),
+    searchbarController: new SearchbarController(views.searchBar, model),
   };
 
   Object.values(controllers).forEach((controller) => {
@@ -72,11 +74,11 @@ import "../css/responsive.css";
     views.welcomeScreen.show();
   }
 
-  function showAppScreen() {
+  function showAppScreen(type, keywords) {
     hideAllViews();
     views.sidebar.show();
     views.searchBar.show();
-    views.foodGrid.show();
+    views.foodGrid.show(type, keywords);
   }
 
   function showDishDetailsScreen(dishId) {
@@ -101,8 +103,10 @@ import "../css/responsive.css";
   Router.on("/", () => {
     showWelcomeScreen();
   });
-  Router.on("/search", () => {
-    showAppScreen();
+  Router.on("/search", (params) => {
+    const type = params.type || "starter";
+    const keywords = params.keywords || "";
+    showAppScreen(type, keywords);
   });
   Router.on("/dish", (params) => {
     showDishDetailsScreen(params.id);
