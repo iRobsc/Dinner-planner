@@ -30,10 +30,6 @@ $ npm run build
 
 This project uses the History API for manipulating URLs, so simply opening the `index.html` file from your computer won't work, as you need a web server. The simplest way is to use the `webpack-dev-server` in this project with `npm start`, which is configured to serve `index.html` when it doesn't recognize the URL.
 
-## Navigation
-
-In the search page, the dish views aren't interactive, there's a link in the bottom left corner to the dish details page. This is just temporary for lab 1
-
 Interaction Programing - Lab assignment - HTML
 =================================================
 
