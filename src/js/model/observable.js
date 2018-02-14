@@ -26,7 +26,7 @@ class Observable {
    */
   removeObserver(callback) {
     for (const [index, value] of this._listeners.entries()) {
-      if (value.toString() === callback.toString()) {
+      if (value === callback) {
         this._listeners.splice(index, 1);
       }
     }

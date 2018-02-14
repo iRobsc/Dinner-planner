@@ -11,16 +11,18 @@ class IngredientList {
 
     this.addBtn = this.container.querySelector("#dish-ingredient-btn");
 
-    this.model.guestChange.addObserver(this.update.bind(this));
+    this.update = this.update.bind(this);
   }
 
   hide() {
     this.container.classList.add("hideView");
+    this.model.guestChange.removeObserver(this.update);
   }
 
   show(dishId) {
     this.dishId = dishId;
     this.container.classList.remove("hideView");
+    this.model.guestChange.addObserver(this.update);
     this.update();
   }
 
