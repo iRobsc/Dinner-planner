@@ -16,20 +16,19 @@ class Sidebar {
     this.menuBtn = this.container.querySelector("#sidebar-accordion");
     this.sidebarContent = this.container.querySelector("#sidebar-content");
 
-    this.numberOfGuests();
-    this.menuList();
-    this.fetchPrice();
-
-    this.model.guestChange.addObserver(this.update.bind(this));
-    this.model.menuChange.addObserver(this.update.bind(this));
+    this.update = this.update.bind(this);
   }
 
   hide() {
     this.container.classList.add("hideView");
+    this.model.menuChange.removeObserver(this.update);
+    this.model.guestChange.removeObserver(this.update);
   }
 
   show() {
     this.container.classList.remove("hideView");
+    this.model.menuChange.addObserver(this.update);
+    this.model.guestChange.addObserver(this.update);
     this.update();
   }
 

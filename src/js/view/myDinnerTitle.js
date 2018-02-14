@@ -8,18 +8,19 @@ class MyDinnerTitle {
     this.container = container;
     this.model = model;
 
-    this.setPeopleAmount();
-
     this.backBtn = this.container.querySelector("#mydinner-back-btn");
-    this.model.guestChange.addObserver(this.update.bind(this));
+
+    this.update = this.update.bind(this);
   }
 
   hide() {
     this.container.classList.add("hideView");
+    this.model.guestChange.removeObserver(this.update);
   }
 
   show() {
     this.container.classList.remove("hideView");
+    this.model.guestChange.addObserver(this.update);
     this.update();
   }
 
