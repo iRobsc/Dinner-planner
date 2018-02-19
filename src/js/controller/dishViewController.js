@@ -12,7 +12,7 @@ class DishViewController {
   init() {
     this.view.backBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      Router.goTo("/search");
+      Router.goBack();
     });
   }
 }
