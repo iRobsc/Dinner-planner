@@ -194,6 +194,7 @@ class DinnerModel {
         },
       }).then(res => res.json())
         .then((json) => {
+          this.cache.setDish(id, json);
           console.log(json);
           return json;
         });
