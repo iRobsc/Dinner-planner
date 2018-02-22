@@ -183,12 +183,26 @@ class DinnerModel {
    * @returns {Dish}
    */
   getDish(id) {
-    for (const key in dishes) {
-      if (dishes[key].id === id) {
-        return dishes[key];
-      }
+    const cached = this.cache.getDish(id);
+
+    // cache miss
+    if (cached === -1) {
+      const endPoint = `${URL}/recipes/${id}/information`;
+      return fetch(endPoint, {
+        headers: {
+          "X-Mashape-Key": API_KEY,
+        },
+      }).then(res => res.json())
+        .then((json) => {
+          console.log(json);
+          return json;
+        });
     }
-    return -1;
+
+    // cache hit
+    return new Promise((resolve) => {
+      resolve(cached);
+    });
   }
 
   /**
