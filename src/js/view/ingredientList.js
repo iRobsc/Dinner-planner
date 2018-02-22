@@ -40,62 +40,59 @@ class IngredientList {
     const tableContainer = this.container.querySelector("#dish-ingredient-table");
     tableContainer.innerHTML = "";
 
-    const dish = this.model.getDish(this.dishId);
-    if (dish === -1) {
-      console.log("Couldn't find dish");
-      return;
-    }
+    this.model.getDish(this.dishId)
+      .then((dish) => {
+        let totalPrice = 0;
 
-    let totalPrice = 0;
+        const { extendedIngredients } = dish;
+        const ingredientTableRows = extendedIngredients.map((ingredient) => {
+          const noOfGuests = this.model.getNumberOfGuests();
+          const row = document.createElement("tr");
 
-    const { ingredients } = dish; // == const ingredients = dish.ingredients
-    const ingredientTableRows = ingredients.map((ingredient) => {
-      const noOfGuests = this.model.getNumberOfGuests();
-      const row = document.createElement("tr");
+          const quantity = document.createElement("td");
+          quantity.textContent = `${ingredient.amount * noOfGuests} ${ingredient.unit}`;
+          row.appendChild(quantity);
 
-      const quantity = document.createElement("td");
-      quantity.textContent = `${ingredient.quantity * noOfGuests} ${ingredient.unit}`;
-      row.appendChild(quantity);
+          const name = document.createElement("td");
+          name.textContent = ingredient.name;
+          row.appendChild(name);
 
-      const name = document.createElement("td");
-      name.textContent = ingredient.name;
-      row.appendChild(name);
+          const sek = document.createElement("td");
+          sek.textContent = "SEK";
+          row.appendChild(sek);
 
-      const sek = document.createElement("td");
-      sek.textContent = "SEK";
-      row.appendChild(sek);
+          const priceElem = document.createElement("td");
+          const price = ingredient.price * noOfGuests;
+          priceElem.textContent = price;
+          totalPrice += price;
+          row.appendChild(priceElem);
 
-      const priceElem = document.createElement("td");
-      const price = ingredient.price * noOfGuests;
-      priceElem.textContent = price;
-      totalPrice += price;
-      row.appendChild(priceElem);
+          return row;
+        });
 
-      return row;
-    });
+        const lastRow = document.createElement("tr");
+        lastRow.classList.add("last-row");
 
-    const lastRow = document.createElement("tr");
-    lastRow.classList.add("last-row");
+        const total = document.createElement("td");
+        total.textContent = "Total price";
+        lastRow.appendChild(total);
 
-    const total = document.createElement("td");
-    total.textContent = "Total price";
-    lastRow.appendChild(total);
+        const empty = document.createElement("td");
+        lastRow.appendChild(empty);
 
-    const empty = document.createElement("td");
-    lastRow.appendChild(empty);
+        const sek = document.createElement("td");
+        sek.textContent = "SEK";
+        lastRow.appendChild(sek);
 
-    const sek = document.createElement("td");
-    sek.textContent = "SEK";
-    lastRow.appendChild(sek);
+        const price = document.createElement("td");
+        price.textContent = totalPrice;
+        lastRow.appendChild(price);
 
-    const price = document.createElement("td");
-    price.textContent = totalPrice;
-    lastRow.appendChild(price);
-
-    for (const row of ingredientTableRows) {
-      tableContainer.appendChild(row);
-    }
-    tableContainer.appendChild(lastRow);
+        for (const row of ingredientTableRows) {
+          tableContainer.appendChild(row);
+        }
+        tableContainer.appendChild(lastRow);
+      });
   }
 }
 
