@@ -1,4 +1,3 @@
-import dishes from "./dishes";
 import Observable from "./observable";
 import Cache from "./cache";
 import { API_KEY, URL } from "./APIkey";
