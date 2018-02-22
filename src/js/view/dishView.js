@@ -30,7 +30,7 @@ class DishView {
     dishTitle.textContent = this.dish.title;
 
     const dishImg = this.container.querySelector("#dish-img");
-    dishImg.src = `https://spoonacular.com/recipeImages/${this.dish.id}-636x393.jpg`;
+    dishImg.src = `https://spoonacular.com/recipeImages/${this.dish.id}-480x360.jpg`;
 
     const prepText = this.container.querySelector("#dish-prep-text");
     prepText.textContent = this.dish.instructions;
