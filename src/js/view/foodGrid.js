@@ -17,26 +17,26 @@ class FoodGrid {
 
   show(type, keywords) {
     this.container.classList.remove("hideView");
-
-    const parsedType = type.replace("_", " ");
-    const parsedKeywords = keywords.replace("_", " ");
-    this.generateGrid(parsedType, parsedKeywords);
+    this.generateGrid(type, keywords);
   }
 
   generateGrid(type, keywords) {
     this.container.innerHTML = "";
-    const dishes = this.model.getAllDishes(type, keywords);
-    if (dishes.length < 4) {
-      this.container.classList.add("sparse-grid");
-      this.container.classList.remove("responsive-grid");
-    } else {
-      this.container.classList.add("responsive-grid");
-      this.container.classList.remove("sparse-grid");
-    }
-    const foodItems = dishes.map(dish => new FoodItem(dish).generate());
-    for (let i = 0; i < foodItems.length; i++) {
-      this.container.appendChild(foodItems[i]);
-    }
+    this.model.getAllDishes(type, keywords)
+      .then((dishes) => {
+        if (dishes.length < 4) {
+          this.container.classList.add("sparse-grid");
+          this.container.classList.remove("responsive-grid");
+        } else {
+          this.container.classList.add("responsive-grid");
+          this.container.classList.remove("sparse-grid");
+        }
+        const foodItems = dishes.map(dish => new FoodItem(dish).generate());
+        for (let i = 0; i < foodItems.length; i++) {
+          this.container.appendChild(foodItems[i]);
+        }
+      })
+      .catch(console.log);
   }
 }
 

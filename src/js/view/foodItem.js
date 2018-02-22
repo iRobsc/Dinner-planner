@@ -5,8 +5,7 @@ class FoodItem {
    * @memberof FoodItem
    */
   constructor(dish) {
-    this.name = dish.name;
-    this.image = dish.image;
+    this.title = dish.title;
     this.id = dish.id;
   }
 
@@ -16,13 +15,13 @@ class FoodItem {
     foodItem.dataset.dishid = this.id;
 
     const img = document.createElement("img");
-    img.src = `images/${this.image}`;
+    img.src = `https://spoonacular.com/recipeImages/${this.id}-636x393.jpg`;
     foodItem.appendChild(img);
 
-    const name = document.createElement("div");
-    name.classList.add("name");
-    name.textContent = this.name;
-    foodItem.appendChild(name);
+    const title = document.createElement("div");
+    title.classList.add("title");
+    title.textContent = this.title;
+    foodItem.appendChild(title);
 
     return foodItem;
   }

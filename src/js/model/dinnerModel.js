@@ -1,5 +1,6 @@
 import dishes from "./dishes";
 import Observable from "./observable";
+import { API_KEY, URL } from "./APIkey";
 
 /**
  * @typedef {Object} Dish
@@ -152,21 +153,13 @@ class DinnerModel {
    * @returns {Dish[]}
    */
   getAllDishes(type, filter) {
-    return dishes.filter((dish) => {
-      let found = true;
-      if (filter) {
-        found = false;
-        dish.ingredients.forEach((ingredient) => {
-          if (ingredient.name.toLowerCase().indexOf(filter) !== -1) {
-            found = true;
-          }
-        });
-        if (dish.name.toLowerCase().indexOf(filter) !== -1) {
-          found = true;
-        }
-      }
-      return dish.type === type && found;
-    });
+    const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}`;
+    return fetch(endPoint, {
+      headers: {
+        "X-Mashape-Key": API_KEY,
+      },
+    }).then(res => res.json())
+      .then(json => json.results);
   }
 
   /**

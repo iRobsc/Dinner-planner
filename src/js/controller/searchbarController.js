@@ -27,12 +27,12 @@ class SearchbarController {
     const typeElem = inputs["search-type"];
     const selectedType = typeElem.options[typeElem.selectedIndex]
       .value
-      .replace(/\s/g, "_")
+      .replace(/\s/g, "+")
       .toLowerCase();
     const keywords = inputs["search-text"]
       .value
       .trim()
-      .replace(/\s/g, "_")
+      .replace(/\s/g, "+")
       .toLowerCase();
     Router.goTo(`/search?type=${selectedType}&keywords=${keywords}`);
   }
