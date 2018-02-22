@@ -30,6 +30,10 @@ $ npm run build
 
 This project uses the History API for manipulating URLs, so simply opening the `index.html` file from your computer won't work, as you need a web server. The simplest way is to use the `webpack-dev-server` in this project with `npm start`, which is configured to serve `index.html` when it doesn't recognize the URL.
 
+# API key
+
+This project uses the Spoonacular API. If you have an API key, put the key in the file `src/js/model/APIkeyPlaceholder.js` and rename the file to `APIkey.js`.
+
 Interaction Programing - Lab assignment - HTML
 =================================================
 
