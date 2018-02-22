@@ -1,5 +1,6 @@
 import dishes from "./dishes";
 import Observable from "./observable";
+import Cache from "./cache";
 import { API_KEY, URL } from "./APIkey";
 
 /**
@@ -25,6 +26,7 @@ class DinnerModel {
   constructor() {
     this.numberOfGuests = 1;
     this.menu = [];
+    this.cache = new Cache();
 
     this.guestChange = new Observable(this);
     this.menuChange = new Observable(this);
@@ -153,13 +155,26 @@ class DinnerModel {
    * @returns {Dish[]}
    */
   getAllDishes(type, filter) {
-    const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}`;
-    return fetch(endPoint, {
-      headers: {
-        "X-Mashape-Key": API_KEY,
-      },
-    }).then(res => res.json())
-      .then(json => json.results);
+    const cached = this.cache.getSearch(type, filter);
+
+    // cache miss
+    if (cached === -1) {
+      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}`;
+      return fetch(endPoint, {
+        headers: {
+          "X-Mashape-Key": API_KEY,
+        },
+      }).then(res => res.json())
+        .then((json) => {
+          this.cache.setSearch(type, filter, json.results);
+          return json.results;
+        });
+    }
+
+    // cache hit
+    return new Promise((resolve) => {
+      resolve(cached);
+    });
   }
 
   /**
