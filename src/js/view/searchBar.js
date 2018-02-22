@@ -15,8 +15,12 @@ class SearchBar {
     this.container.classList.add("hideView");
   }
 
-  show() {
+  show(type, keywords) {
     this.container.classList.remove("hideView");
+    const searchbar = this.container.querySelector("#search-text");
+    searchbar.value = keywords;
+    const dropdown = this.container.querySelector("#search-type");
+    dropdown.value = type;
   }
 }
 

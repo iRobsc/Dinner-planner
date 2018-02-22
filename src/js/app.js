@@ -77,7 +77,7 @@ import "../css/responsive.css";
   function showAppScreen(type, keywords) {
     hideAllViews();
     views.sidebar.show();
-    views.searchBar.show();
+    views.searchBar.show(type, keywords);
     views.foodGrid.show(type, keywords);
   }
 
