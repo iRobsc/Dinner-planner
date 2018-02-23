@@ -5,6 +5,10 @@
 .recipe {
   margin-bottom: 40px;
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 40px;
+
+  img {
+    max-width: 100%;
+  }
 }

@@ -159,6 +159,16 @@ class DinnerModel {
       resolve(cached);
     });
   }
+
+  /**
+   * Takes a dish as parameter and returns its price
+   *
+   * @param {Dish} dish
+   * @returns {Number}
+   */
+  getDishPrice(dish) {
+    return dish.pricePerServing;
+  }
 }
 
 export default DinnerModel;
