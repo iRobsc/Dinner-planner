@@ -109,20 +109,8 @@ class DinnerModel {
    * @param {Number} id
    */
   addDishToMenu(id) {
-    const dishToAdd = this.getDish(id);
-
-    // didn't find dish with matching id
-    if (dishToAdd === -1) return;
-
-    const storedDish = this.getSelectedDish(dishToAdd.type);
-
-    // trying to add same dish, do nothing
-    if (storedDish.id === id) return;
-
-    // remove old dish of the same type
-    if (storedDish !== -1) {
-      this.removeDishFromMenu(storedDish.id);
-    }
+    // don't add the dish more than once
+    if (this.menu.indexOf(id) !== -1) return;
 
     this.menu.push(id);
     this.menuChange.notifyAll(this.menu);
@@ -213,8 +201,11 @@ class DinnerModel {
    * @returns {Number}
    */
   getDishPrice(dish) {
+    /*
     const { ingredients } = dish;
     return ingredients.reduce((total, ingr) => total + ingr.price, 0);
+    */
+   return 0;
   }
 }
 
