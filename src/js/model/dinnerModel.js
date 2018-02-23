@@ -2,24 +2,6 @@ import Observable from "./observable";
 import Cache from "./cache";
 import { API_KEY, URL } from "./APIkey";
 
-/**
- * @typedef {Object} Dish
- * @property {Number} id
- * @property {String} name
- * @property {String} type
- * @property {String} image
- * @property {String} description
- * @property {Ingredient[]} ingredients
- */
-
-/**
- * @typedef {Object} Ingredient
- * @property {String} name
- * @property {Number} quantity
- * @property {String} unit
- * @property {Number} price
- */
-
 // DinnerModel Object constructor
 class DinnerModel {
   constructor() {
@@ -56,28 +38,13 @@ class DinnerModel {
   }
 
   /**
-   * Returns the dish that is on the menu for selected type
-   * Why does this need to exist??
-   *
-   * @param {String} type
-   * @returns {-1 | Dish}
-   */
-  getSelectedDish(type) {
-    const menu = this.getFullMenu();
-    for (const dish of menu) {
-      if (dish.type === type) return dish;
-    }
-    return -1;
-  }
-
-  /**
    * Returns all the dishes on the menu.
    *
    * @returns {Dish[]}
    * @memberof DinnerModel
    */
   getFullMenu() {
-    return this.menu.map(id => this.getDish(id));
+    return this.menu;
   }
 
   /**
@@ -95,8 +62,7 @@ class DinnerModel {
    * @returns {Number}
    */
   getTotalMenuPrice() {
-    const ingredients = this.getAllIngredients();
-    return ingredients.reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
+    return this.menu.reduce((total, dish) => total + dish.pricePerServing, 0) * this.numberOfGuests;
   }
 
   /**
@@ -106,13 +72,13 @@ class DinnerModel {
    * Willy: if we want to add a new starter for example, delete the starter
    * that we already have, if there is one.
    *
-   * @param {Number} id
+   * @param {Object} dish
    */
-  addDishToMenu(id) {
+  addDishToMenu(dish) {
     // don't add the dish more than once
-    if (this.menu.indexOf(id) !== -1) return;
+    if (this.menu.indexOf(dish) !== -1) return;
 
-    this.menu.push(id);
+    this.menu.push(dish);
     this.menuChange.notifyAll(this.menu);
   }
 
@@ -192,20 +158,6 @@ class DinnerModel {
     return new Promise((resolve) => {
       resolve(cached);
     });
-  }
-
-  /**
-   * Takes a dish as parameter and returns its price
-   *
-   * @param {Dish} dish
-   * @returns {Number}
-   */
-  getDishPrice(dish) {
-    /*
-    const { ingredients } = dish;
-    return ingredients.reduce((total, ingr) => total + ingr.price, 0);
-    */
-   return 0;
   }
 }
 

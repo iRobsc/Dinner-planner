@@ -70,9 +70,9 @@ class Sidebar {
 
     for (const dish of menu) {
       const noOfGuests = this.model.getNumberOfGuests();
-      const price = this.model.getDishPrice(dish) * noOfGuests;
+      const price = dish.pricePerServing * noOfGuests;
 
-      listContainer.appendChild(new SidebarItem(dish.name, price).generate());
+      listContainer.appendChild(new SidebarItem(dish.title, price).generate());
     }
   }
 

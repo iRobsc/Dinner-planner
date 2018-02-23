@@ -16,13 +16,10 @@ class DishView {
     this.container.classList.add("hideView");
   }
 
-  show(dishId) {
+  show(dish) {
     this.container.classList.remove("hideView");
-    this.model.getDish(dishId)
-      .then((dish) => {
-        this.dish = dish;
-        this.dishInfo();
-      });
+    this.dish = dish;
+    this.dishInfo();
   }
 
   dishInfo() {

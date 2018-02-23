@@ -84,8 +84,14 @@ import "../css/responsive.css";
   function showDishDetailsScreen(dishId) {
     hideAllViews();
     views.sidebar.show();
-    views.dishView.show(dishId);
-    views.ingredientList.show(dishId);
+    model.getDish(dishId)
+      .then((dish) => {
+        views.dishView.show(dish);
+        views.ingredientList.show(dish);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   function showMyDinnerScreen() {

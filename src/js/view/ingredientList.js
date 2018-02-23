@@ -7,7 +7,7 @@ class IngredientList {
   constructor(container, model) {
     this.container = container;
     this.model = model;
-    this.dishId = null;
+    this.dish = null;
 
     this.addBtn = this.container.querySelector("#dish-ingredient-btn");
 
@@ -19,8 +19,8 @@ class IngredientList {
     this.model.guestChange.removeObserver(this.update);
   }
 
-  show(dishId) {
-    this.dishId = dishId;
+  show(dish) {
+    this.dish = dish;
     this.container.classList.remove("hideView");
     this.model.guestChange.addObserver(this.update);
     this.update();
@@ -40,59 +40,58 @@ class IngredientList {
     const tableContainer = this.container.querySelector("#dish-ingredient-table");
     tableContainer.innerHTML = "";
 
-    this.model.getDish(this.dishId)
-      .then((dish) => {
-        let totalPrice = 0;
+    const { dish } = this;
 
-        const { extendedIngredients } = dish;
-        const ingredientTableRows = extendedIngredients.map((ingredient) => {
-          const noOfGuests = this.model.getNumberOfGuests();
-          const row = document.createElement("tr");
+    let totalPrice = 0;
 
-          const quantity = document.createElement("td");
-          quantity.textContent = `${ingredient.amount * noOfGuests} ${ingredient.unit}`;
-          row.appendChild(quantity);
+    const { extendedIngredients } = dish;
+    const ingredientTableRows = extendedIngredients.map((ingredient) => {
+      const noOfGuests = this.model.getNumberOfGuests();
+      const row = document.createElement("tr");
 
-          const name = document.createElement("td");
-          name.textContent = ingredient.name;
-          row.appendChild(name);
+      const quantity = document.createElement("td");
+      quantity.textContent = `${ingredient.amount * noOfGuests} ${ingredient.unit}`;
+      row.appendChild(quantity);
 
-          const sek = document.createElement("td");
-          sek.textContent = "SEK";
-          row.appendChild(sek);
+      const name = document.createElement("td");
+      name.textContent = ingredient.name;
+      row.appendChild(name);
 
-          const priceElem = document.createElement("td");
-          const price = ingredient.price * noOfGuests;
-          priceElem.textContent = price;
-          totalPrice += price;
-          row.appendChild(priceElem);
+      const sek = document.createElement("td");
+      sek.textContent = "SEK";
+      row.appendChild(sek);
 
-          return row;
-        });
+      const priceElem = document.createElement("td");
+      const price = ingredient.price * noOfGuests;
+      priceElem.textContent = price;
+      totalPrice += price;
+      row.appendChild(priceElem);
 
-        const lastRow = document.createElement("tr");
-        lastRow.classList.add("last-row");
+      return row;
+    });
 
-        const total = document.createElement("td");
-        total.textContent = "Total price";
-        lastRow.appendChild(total);
+    const lastRow = document.createElement("tr");
+    lastRow.classList.add("last-row");
 
-        const empty = document.createElement("td");
-        lastRow.appendChild(empty);
+    const total = document.createElement("td");
+    total.textContent = "Total price";
+    lastRow.appendChild(total);
 
-        const sek = document.createElement("td");
-        sek.textContent = "SEK";
-        lastRow.appendChild(sek);
+    const empty = document.createElement("td");
+    lastRow.appendChild(empty);
 
-        const price = document.createElement("td");
-        price.textContent = totalPrice;
-        lastRow.appendChild(price);
+    const sek = document.createElement("td");
+    sek.textContent = "SEK";
+    lastRow.appendChild(sek);
 
-        for (const row of ingredientTableRows) {
-          tableContainer.appendChild(row);
-        }
-        tableContainer.appendChild(lastRow);
-      });
+    const price = document.createElement("td");
+    price.textContent = totalPrice;
+    lastRow.appendChild(price);
+
+    for (const row of ingredientTableRows) {
+      tableContainer.appendChild(row);
+    }
+    tableContainer.appendChild(lastRow);
   }
 }
 
