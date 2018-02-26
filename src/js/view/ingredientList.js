@@ -47,7 +47,7 @@ class IngredientList {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${round(ingredient.amount, 10) * noOfGuests} ${ingredient.unit}</td>
+        <td>${round(ingredient.amount, 2) * noOfGuests} ${ingredient.unit}</td>
         <td>${ingredient.name}</td>
         <td>SEK</td>
         <td>${noOfGuests}</td>`;
