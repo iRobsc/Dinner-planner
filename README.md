@@ -14,17 +14,13 @@ $ npm install
 
 Run locally:
 
+First fix the API key according to the instructions below, then:
+
 ```
 $ npm start
 ```
 
 Then open `localhost:3000`
-
-Build project (into `dist` folder):
-
-```
-$ npm run build
-```
 
 # Important note
 
