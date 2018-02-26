@@ -7,7 +7,6 @@ const path = require("path");
 const merge = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const production = process.env.NODE_ENV === "production";
@@ -23,17 +22,7 @@ const contentBaseDir = "./src";
 const outputDirName = "./dist";
 
 // file names of all HTML files in src
-const htmlFiles = [
-  "index.html",
-];
-
-// static folders to copy
-const staticContent = [
-  {
-    from: path.resolve(__dirname, "src/images"),
-    to: path.resolve(__dirname, `${outputDirName}/images`),
-  },
-];
+const htmlFile = "index.html";
 
 // common config options for both dev and prod
 let config = {
@@ -64,13 +53,11 @@ if (production) {
       new CleanWebpackPlugin([outputDirName]),
       // output CSS bundle
       new ExtractTextPlugin(cssBundleName),
-      // copy over static files to output dir
-      new CopyWebpackPlugin(staticContent),
-      // create new instance of HtmlWebpackPlugin for each HTML file
-    ].concat(htmlFiles.map(filename => new HtmlWebpackPlugin({
-      filename,
-      template: path.resolve(__dirname, `${contentBaseDir}/${filename}`),
-    }))),
+      new HtmlWebpackPlugin({
+        filename: htmlFile,
+        template: path.resolve(__dirname, `${contentBaseDir}/${htmlFile}`),
+      }),
+    ],
   });
 } else {
   config = merge(config, {
@@ -99,10 +86,12 @@ if (production) {
         },
       ],
     },
-    plugins: htmlFiles.map(filename => new HtmlWebpackPlugin({
-      filename,
-      template: path.resolve(__dirname, `${contentBaseDir}/${filename}`),
-    })),
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: htmlFile,
+        template: path.resolve(__dirname, `${contentBaseDir}/${htmlFile}`),
+      }),
+    ],
   });
 }
 
