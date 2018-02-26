@@ -116,7 +116,7 @@ import "../css/responsive.scss";
     showWelcomeScreen();
   });
   Router.on("/search", (params) => {
-    const type = params.type || "starter";
+    const type = params.type || "";
     const keywords = params.keywords || "";
     showAppScreen(type, keywords);
   });
