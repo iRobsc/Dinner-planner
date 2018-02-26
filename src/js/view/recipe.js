@@ -19,8 +19,9 @@ class Recipes {
     const h2 = document.createElement("h2");
     h2.textContent = this.dish.title;
     desc.appendChild(h2);
+
     const prep = document.createElement("div");
-    prep.textContent = this.dish.instructions;
+    prep.innerHTML = this.dish.instructions.split(".").join("<br>");
     desc.appendChild(prep);
     div.appendChild(desc);
 
