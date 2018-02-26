@@ -97,6 +97,7 @@ import "../css/responsive.scss";
       .catch((error) => {
         views.dishViewLoading.hide();
         console.error(error);
+        alert("Couldn't get info, are you offline?");
       });
   }
 

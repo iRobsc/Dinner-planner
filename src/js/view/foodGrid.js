@@ -46,7 +46,10 @@ class FoodGrid {
           this.container.appendChild(foodItems[i]);
         }
       })
-      .catch(console.log);
+      .catch((error) => {
+        console.error(error);
+        this.container.innerHTML = "Couldn't fetch dishes, are you offline?";
+      });
   }
 }
 
