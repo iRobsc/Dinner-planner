@@ -40,10 +40,14 @@ if (production) {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.scss$/,
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: "css-loader",
+            use: [{
+              loader: "css-loader",
+            }, {
+              loader: "sass-loader",
+            }],
           }),
         },
       ],
@@ -81,8 +85,14 @@ if (production) {
         {
           // enable importing CSS in JS
           // to use hot reloading for CSS, must import it in JS
-          test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          test: /\.scss$/,
+          use: [{
+            loader: "style-loader", // creates style nodes from JS strings
+          }, {
+            loader: "css-loader", // translates CSS into CommonJS
+          }, {
+            loader: "sass-loader", // compiles Sass to CSS
+          }],
         },
       ],
     },

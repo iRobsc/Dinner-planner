@@ -17,8 +17,8 @@ import IngrListController from "./controller/ingrListController";
 import MyDinnerTitleController from "./controller/myDinnerTitleContainer";
 import MyDinnerController from "./controller/myDinnerController";
 import SearchbarController from "./controller/searchbarController";
-import "../css/index.css";
-import "../css/responsive.css";
+import "../css/index.scss";
+import "../css/responsive.scss";
 
 (function main() {
   // We instantiate our model
