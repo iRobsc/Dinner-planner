@@ -29,7 +29,6 @@ class FoodGrid {
     this.keywords = keywords;
     this.page = page;
 
-    this.buttonStates(page);
     this.generateGrid(type, keywords, page);
   }
 
