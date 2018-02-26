@@ -1,4 +1,5 @@
 import FoodItem from "./foodItem";
+import loadingFoodItem from "./loadingFoodItem";
 
 class FoodGrid {
   /**
@@ -22,8 +23,17 @@ class FoodGrid {
 
   generateGrid(type, keywords) {
     this.container.innerHTML = "";
+
+    this.container.classList.add("responsive-grid");
+    this.container.classList.remove("sparse-grid");
+    for (let i = 0; i < 8; i++) {
+      this.container.appendChild(loadingFoodItem());
+    }
+
     this.model.getAllDishes(type, keywords)
       .then((dishes) => {
+        this.container.innerHTML = "";
+
         if (dishes.length < 4) {
           this.container.classList.add("sparse-grid");
           this.container.classList.remove("responsive-grid");
