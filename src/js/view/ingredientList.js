@@ -1,3 +1,5 @@
+import round from "../round";
+
 class IngredientList {
   /**
    * Creates an instance of IngredientList.
@@ -45,7 +47,7 @@ class IngredientList {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${ingredient.amount * noOfGuests} ${ingredient.unit}</td>
+        <td>${round(ingredient.amount, 10) * noOfGuests} ${ingredient.unit}</td>
         <td>${ingredient.name}</td>
         <td>SEK</td>
         <td>${noOfGuests}</td>`;
@@ -60,7 +62,7 @@ class IngredientList {
       <td>Total price</td>
       <td></td>
       <td>SEK</td>
-      <td>${this.dish.pricePerServing * noOfGuests}</td>`;
+      <td>${round(this.dish.pricePerServing * noOfGuests)}</td>`;
 
     tableContainer.appendChild(lastRow);
   }

@@ -112,7 +112,7 @@ class DinnerModel {
 
     // cache miss
     if (cached === -1) {
-      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}&number=12`;
+      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}&number=12&instructionsRequired=true`;
       return fetch(endPoint, {
         headers: {
           "X-Mashape-Key": API_KEY,

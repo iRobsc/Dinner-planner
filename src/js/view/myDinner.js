@@ -1,4 +1,5 @@
 import FoodItem from "./foodItem";
+import round from "../round";
 
 class MyDinner {
   /**
@@ -48,7 +49,7 @@ class MyDinner {
 
       const priceElem = document.createElement("p");
       priceElem.classList.add("price");
-      priceElem.textContent = `${this.model.getDishPrice(dish) * noOfGuests} SEK`;
+      priceElem.textContent = `${round(this.model.getDishPrice(dish)) * noOfGuests} SEK`;
       div.appendChild(priceElem);
 
       container.appendChild(div);
@@ -59,7 +60,7 @@ class MyDinner {
     const totalPrice = this.model.getTotalMenuPrice();
     const div = document.createElement("div");
     div.classList.add("total-price");
-    div.textContent = `Total price: ${totalPrice} SEK`;
+    div.textContent = `Total price: ${round(totalPrice)} SEK`;
 
     const container = this.container.querySelector("#myDinner-dishes");
     container.appendChild(div);
