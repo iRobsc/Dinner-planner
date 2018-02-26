@@ -48,7 +48,7 @@ class IngredientList {
         <td>${ingredient.amount * noOfGuests} ${ingredient.unit}</td>
         <td>${ingredient.name}</td>
         <td>SEK</td>
-        <td>${ingredient.price * noOfGuests}</td>`;
+        <td>${noOfGuests}</td>`;
 
       tableContainer.appendChild(row);
     }
@@ -60,7 +60,7 @@ class IngredientList {
       <td>Total price</td>
       <td></td>
       <td>SEK</td>
-      <td>${this.dish.pricePerServing}</td>`;
+      <td>${this.dish.pricePerServing * noOfGuests}</td>`;
 
     tableContainer.appendChild(lastRow);
   }

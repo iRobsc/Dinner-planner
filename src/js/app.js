@@ -4,6 +4,7 @@ import WelcomeScreen from "./view/welcomeScreen";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
+import DishViewLoading from "./view/dishViewLoading";
 import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
@@ -28,6 +29,7 @@ import "../css/responsive.scss";
   const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
+  const dishViewLoadingContainer = document.getElementById("dish-view-loading");
   const ingredientContainer = document.getElementById("dish-ingredients");
   const myDinnerContainer = document.getElementById("myDinner-container");
   const recipeContainer = document.getElementById("myDinner-recipes");
@@ -41,10 +43,11 @@ import "../css/responsive.scss";
     sidebar: new Sidebar(sidebarContainer, model),
     foodGrid: new FoodGrid(foodGridContainer, model),
     dishView: new DishView(dishContainer, model),
+    dishViewLoading: new DishViewLoading(dishViewLoadingContainer),
     myDinner: new MyDinner(myDinnerContainer, model),
     recipeList: new RecipeList(recipeContainer, model),
     searchBar: new SearchBar(searchBarContainer, model),
-    ingredientList: new IngredientList(ingredientContainer, model, 103),
+    ingredientList: new IngredientList(ingredientContainer, model),
     myDinnerTitle: new MyDinnerTitle(myDinnerTitleContainer, model),
   };
 
@@ -84,12 +87,15 @@ import "../css/responsive.scss";
   function showDishDetailsScreen(dishId) {
     hideAllViews();
     views.sidebar.show();
+    views.dishViewLoading.show();
     model.getDish(dishId)
       .then((dish) => {
+        views.dishViewLoading.hide();
         views.dishView.show(dish);
         views.ingredientList.show(dish);
       })
       .catch((error) => {
+        views.dishViewLoading.hide();
         console.error(error);
       });
   }

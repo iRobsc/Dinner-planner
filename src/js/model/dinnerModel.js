@@ -105,7 +105,7 @@ class DinnerModel {
    *
    * @param {String} type
    * @param {String} [filter]
-   * @returns {Dish[]}
+   * @returns {Promise<Dish[]>}
    */
   getAllDishes(type, filter) {
     const cached = this.cache.getSearch(type, filter);
@@ -134,7 +134,7 @@ class DinnerModel {
    * Function that returns a dish of specific ID
    *
    * @param {Number} id
-   * @returns {Dish}
+   * @returns {Promise<Dish>}
    */
   getDish(id) {
     const cached = this.cache.getDish(id);
