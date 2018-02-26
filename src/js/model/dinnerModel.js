@@ -105,21 +105,25 @@ class DinnerModel {
    *
    * @param {String} type
    * @param {String} [filter]
+   * @param {Number} [page]
    * @returns {Promise<Dish[]>}
    */
-  getAllDishes(type, filter) {
-    const cached = this.cache.getSearch(type, filter);
+  getAllDishes(type, filter, page) {
+    const cached = this.cache.getSearch(type, filter, page);
 
     // cache miss
     if (cached === -1) {
-      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}&number=12&instructionsRequired=true`;
+      const resultsPerPage = 12;
+      const offset = page * resultsPerPage;
+      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}&number=12&instructionsRequired=true&offset=${offset}`;
+
       return fetch(endPoint, {
         headers: {
           "X-Mashape-Key": API_KEY,
         },
       }).then(res => res.json())
         .then((json) => {
-          this.cache.setSearch(type, filter, json.results);
+          this.cache.setSearch(type, filter, page, json.results);
           return json.results;
         });
     }

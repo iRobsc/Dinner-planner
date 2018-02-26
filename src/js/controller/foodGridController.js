@@ -21,6 +21,37 @@ class FoodGridController {
         Router.goTo(`/dish?id=${dishid}`);
       }
     });
+
+    const {
+      nextBtn,
+      prevBtn,
+    } = this.view;
+
+    nextBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const {
+        type,
+        keywords,
+        page,
+      } = this.view;
+
+      Router.goTo(`/search?type=${type}&keywords=${keywords}&page=${page + 1}`);
+    });
+
+    prevBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const {
+        type,
+        keywords,
+        page,
+      } = this.view;
+
+      const destinationPage = (page - 1) < 0 ? 0 : (page - 1);
+
+      Router.goTo(`/search?type=${type}&keywords=${keywords}&page=${destinationPage}`);
+    });
   }
 }
 

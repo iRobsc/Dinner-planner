@@ -10,44 +10,57 @@ class FoodGrid {
   constructor(container, model) {
     this.container = container;
     this.model = model;
+
+    this.page = 0;
+    this.type = "";
+    this.keywords = "";
+    this.prevBtn = this.container.querySelector("#prev-btn");
+    this.nextBtn = this.container.querySelector("#next-btn");
   }
 
   hide() {
     this.container.classList.add("hideView");
   }
 
-  show(type, keywords) {
+  show(type, keywords, page) {
     this.container.classList.remove("hideView");
-    this.generateGrid(type, keywords);
+
+    this.type = type;
+    this.keywords = keywords;
+    this.page = page;
+
+    this.buttonStates(page);
+    this.generateGrid(type, keywords, page);
   }
 
-  generateGrid(type, keywords) {
-    this.container.innerHTML = "";
+  generateGrid(type, keywords, page) {
+    const gridContainer = this.container.querySelector("#grid-container");
+    gridContainer.innerHTML = "";
 
-    this.container.classList.add("responsive-grid");
-    this.container.classList.remove("sparse-grid");
+    gridContainer.classList.add("responsive-grid");
+    gridContainer.classList.remove("sparse-grid");
     for (let i = 0; i < 8; i++) {
-      this.container.appendChild(loadingFoodItem());
+      gridContainer.appendChild(loadingFoodItem());
     }
 
-    this.model.getAllDishes(type, keywords)
+    this.model.getAllDishes(type, keywords, page)
       .then((dishes) => {
-        this.container.innerHTML = "";
+        gridContainer.innerHTML = "";
 
         if (dishes.length < 4) {
-          this.container.classList.add("sparse-grid");
-          this.container.classList.remove("responsive-grid");
+          gridContainer.classList.add("sparse-grid");
+          gridContainer.classList.remove("responsive-grid");
         } else {
-          this.container.classList.add("responsive-grid");
-          this.container.classList.remove("sparse-grid");
+          gridContainer.classList.add("responsive-grid");
+          gridContainer.classList.remove("sparse-grid");
         }
         const foodItems = dishes.map(dish => new FoodItem(dish).generate());
         for (let i = 0; i < foodItems.length; i++) {
-          this.container.appendChild(foodItems[i]);
+          gridContainer.appendChild(foodItems[i]);
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error.message);
         this.container.innerHTML = "Couldn't fetch dishes, are you offline?";
       });
   }

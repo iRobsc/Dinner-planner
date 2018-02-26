@@ -77,11 +77,11 @@ import "../css/responsive.scss";
     views.welcomeScreen.show();
   }
 
-  function showAppScreen(type, keywords) {
+  function showAppScreen(type, keywords, page) {
     hideAllViews();
     views.sidebar.show();
     views.searchBar.show(type, keywords);
-    views.foodGrid.show(type, keywords);
+    views.foodGrid.show(type, keywords, page);
   }
 
   function showDishDetailsScreen(dishId) {
@@ -119,7 +119,9 @@ import "../css/responsive.scss";
   Router.on("/search", (params) => {
     const type = params.type || "";
     const keywords = params.keywords || "";
-    showAppScreen(type, keywords);
+    const page = parseInt(params.page, 10) || 0;
+
+    showAppScreen(type, keywords, page);
   });
   Router.on("/dish", (params) => {
     // params.id is a string
