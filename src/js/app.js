@@ -4,6 +4,7 @@ import WelcomeScreen from "./view/welcomeScreen";
 import Sidebar from "./view/sidebar";
 import FoodGrid from "./view/foodGrid";
 import DishView from "./view/dishView";
+import DishViewLoading from "./view/dishViewLoading";
 import IngredientList from "./view/ingredientList";
 import MyDinner from "./view/myDinner";
 import RecipeList from "./view/recipeList";
@@ -17,8 +18,8 @@ import IngrListController from "./controller/ingrListController";
 import MyDinnerTitleController from "./controller/myDinnerTitleContainer";
 import MyDinnerController from "./controller/myDinnerController";
 import SearchbarController from "./controller/searchbarController";
-import "../css/index.css";
-import "../css/responsive.css";
+import "../css/index.scss";
+import "../css/responsive.scss";
 
 (function main() {
   // We instantiate our model
@@ -28,6 +29,7 @@ import "../css/responsive.css";
   const sidebarContainer = document.getElementById("sidebar-container");
   const foodGridContainer = document.getElementById("food-grid");
   const dishContainer = document.getElementById("dish-content");
+  const dishViewLoadingContainer = document.getElementById("dish-view-loading");
   const ingredientContainer = document.getElementById("dish-ingredients");
   const myDinnerContainer = document.getElementById("myDinner-container");
   const recipeContainer = document.getElementById("myDinner-recipes");
@@ -41,10 +43,11 @@ import "../css/responsive.css";
     sidebar: new Sidebar(sidebarContainer, model),
     foodGrid: new FoodGrid(foodGridContainer, model),
     dishView: new DishView(dishContainer, model),
+    dishViewLoading: new DishViewLoading(dishViewLoadingContainer),
     myDinner: new MyDinner(myDinnerContainer, model),
     recipeList: new RecipeList(recipeContainer, model),
     searchBar: new SearchBar(searchBarContainer, model),
-    ingredientList: new IngredientList(ingredientContainer, model, 103),
+    ingredientList: new IngredientList(ingredientContainer, model),
     myDinnerTitle: new MyDinnerTitle(myDinnerTitleContainer, model),
   };
 
@@ -74,18 +77,28 @@ import "../css/responsive.css";
     views.welcomeScreen.show();
   }
 
-  function showAppScreen(type, keywords) {
+  function showAppScreen(type, keywords, page) {
     hideAllViews();
     views.sidebar.show();
-    views.searchBar.show();
-    views.foodGrid.show(type, keywords);
+    views.searchBar.show(type, keywords);
+    views.foodGrid.show(type, keywords, page);
   }
 
   function showDishDetailsScreen(dishId) {
     hideAllViews();
     views.sidebar.show();
-    views.dishView.show(dishId);
-    views.ingredientList.show(dishId);
+    views.dishViewLoading.show();
+    model.getDish(dishId)
+      .then((dish) => {
+        views.dishViewLoading.hide();
+        views.dishView.show(dish);
+        views.ingredientList.show(dish);
+      })
+      .catch((error) => {
+        views.dishViewLoading.hide();
+        console.error(error);
+        alert("Couldn't get info, are you offline?");
+      });
   }
 
   function showMyDinnerScreen() {
@@ -104,9 +117,11 @@ import "../css/responsive.css";
     showWelcomeScreen();
   });
   Router.on("/search", (params) => {
-    const type = params.type || "starter";
+    const type = params.type || "";
     const keywords = params.keywords || "";
-    showAppScreen(type, keywords);
+    const page = parseInt(params.page, 10) || 0;
+
+    showAppScreen(type, keywords, page);
   });
   Router.on("/dish", (params) => {
     // params.id is a string

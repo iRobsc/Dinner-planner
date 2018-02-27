@@ -1,29 +1,13 @@
-import dishes from "./dishes";
 import Observable from "./observable";
-
-/**
- * @typedef {Object} Dish
- * @property {Number} id
- * @property {String} name
- * @property {String} type
- * @property {String} image
- * @property {String} description
- * @property {Ingredient[]} ingredients
- */
-
-/**
- * @typedef {Object} Ingredient
- * @property {String} name
- * @property {Number} quantity
- * @property {String} unit
- * @property {Number} price
- */
+import Cache from "./cache";
+import { API_KEY, URL } from "./APIkey";
 
 // DinnerModel Object constructor
 class DinnerModel {
   constructor() {
     this.numberOfGuests = 1;
     this.menu = [];
+    this.cache = new Cache();
 
     this.guestChange = new Observable(this);
     this.menuChange = new Observable(this);
@@ -54,28 +38,13 @@ class DinnerModel {
   }
 
   /**
-   * Returns the dish that is on the menu for selected type
-   * Why does this need to exist??
-   *
-   * @param {String} type
-   * @returns {-1 | Dish}
-   */
-  getSelectedDish(type) {
-    const menu = this.getFullMenu();
-    for (const dish of menu) {
-      if (dish.type === type) return dish;
-    }
-    return -1;
-  }
-
-  /**
    * Returns all the dishes on the menu.
    *
    * @returns {Dish[]}
    * @memberof DinnerModel
    */
   getFullMenu() {
-    return this.menu.map(id => this.getDish(id));
+    return this.menu;
   }
 
   /**
@@ -93,8 +62,7 @@ class DinnerModel {
    * @returns {Number}
    */
   getTotalMenuPrice() {
-    const ingredients = this.getAllIngredients();
-    return ingredients.reduce((total, ingr) => total + ingr.price, 0) * this.numberOfGuests;
+    return this.menu.reduce((total, dish) => total + dish.pricePerServing, 0) * this.numberOfGuests;
   }
 
   /**
@@ -104,25 +72,13 @@ class DinnerModel {
    * Willy: if we want to add a new starter for example, delete the starter
    * that we already have, if there is one.
    *
-   * @param {Number} id
+   * @param {Object} dish
    */
-  addDishToMenu(id) {
-    const dishToAdd = this.getDish(id);
+  addDishToMenu(dish) {
+    // don't add the dish more than once
+    if (this.menu.indexOf(dish) !== -1) return;
 
-    // didn't find dish with matching id
-    if (dishToAdd === -1) return;
-
-    const storedDish = this.getSelectedDish(dishToAdd.type);
-
-    // trying to add same dish, do nothing
-    if (storedDish.id === id) return;
-
-    // remove old dish of the same type
-    if (storedDish !== -1) {
-      this.removeDishFromMenu(storedDish.id);
-    }
-
-    this.menu.push(id);
+    this.menu.push(dish);
     this.menuChange.notifyAll(this.menu);
   }
 
@@ -149,23 +105,32 @@ class DinnerModel {
    *
    * @param {String} type
    * @param {String} [filter]
-   * @returns {Dish[]}
+   * @param {Number} [page]
+   * @returns {Promise<Dish[]>}
    */
-  getAllDishes(type, filter) {
-    return dishes.filter((dish) => {
-      let found = true;
-      if (filter) {
-        found = false;
-        dish.ingredients.forEach((ingredient) => {
-          if (ingredient.name.toLowerCase().indexOf(filter) !== -1) {
-            found = true;
-          }
+  getAllDishes(type, filter, page) {
+    const cached = this.cache.getSearch(type, filter, page);
+
+    // cache miss
+    if (cached === -1) {
+      const resultsPerPage = 12;
+      const offset = page * resultsPerPage;
+      const endPoint = `${URL}/recipes/search?type=${type}&query=${filter}&number=12&instructionsRequired=true&offset=${offset}`;
+
+      return fetch(endPoint, {
+        headers: {
+          "X-Mashape-Key": API_KEY,
+        },
+      }).then(res => res.json())
+        .then((json) => {
+          this.cache.setSearch(type, filter, page, json.results);
+          return json.results;
         });
-        if (dish.name.toLowerCase().indexOf(filter) !== -1) {
-          found = true;
-        }
-      }
-      return dish.type === type && found;
+    }
+
+    // cache hit
+    return new Promise((resolve) => {
+      resolve(cached);
     });
   }
 
@@ -173,15 +138,30 @@ class DinnerModel {
    * Function that returns a dish of specific ID
    *
    * @param {Number} id
-   * @returns {Dish}
+   * @returns {Promise<Dish>}
    */
   getDish(id) {
-    for (const key in dishes) {
-      if (dishes[key].id === id) {
-        return dishes[key];
-      }
+    const cached = this.cache.getDish(id);
+
+    // cache miss
+    if (cached === -1) {
+      const endPoint = `${URL}/recipes/${id}/information`;
+      return fetch(endPoint, {
+        headers: {
+          "X-Mashape-Key": API_KEY,
+        },
+      }).then(res => res.json())
+        .then((json) => {
+          this.cache.setDish(id, json);
+          console.log(json);
+          return json;
+        });
     }
-    return -1;
+
+    // cache hit
+    return new Promise((resolve) => {
+      resolve(cached);
+    });
   }
 
   /**
@@ -191,8 +171,7 @@ class DinnerModel {
    * @returns {Number}
    */
   getDishPrice(dish) {
-    const { ingredients } = dish;
-    return ingredients.reduce((total, ingr) => total + ingr.price, 0);
+    return dish.pricePerServing;
   }
 }
 

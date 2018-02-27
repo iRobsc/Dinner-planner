@@ -1,3 +1,5 @@
+import round from "../round";
+
 class IngredientList {
   /**
    * Creates an instance of IngredientList.
@@ -7,7 +9,7 @@ class IngredientList {
   constructor(container, model) {
     this.container = container;
     this.model = model;
-    this.dishId = null;
+    this.dish = null;
 
     this.addBtn = this.container.querySelector("#dish-ingredient-btn");
 
@@ -19,8 +21,8 @@ class IngredientList {
     this.model.guestChange.removeObserver(this.update);
   }
 
-  show(dishId) {
-    this.dishId = dishId;
+  show(dish) {
+    this.dish = dish;
     this.container.classList.remove("hideView");
     this.model.guestChange.addObserver(this.update);
     this.update();
@@ -37,64 +39,31 @@ class IngredientList {
   }
 
   getIngredients() {
+    const noOfGuests = this.model.getNumberOfGuests();
     const tableContainer = this.container.querySelector("#dish-ingredient-table");
     tableContainer.innerHTML = "";
 
-    const dish = this.model.getDish(this.dishId);
-    if (dish === -1) {
-      console.log("Couldn't find dish");
-      return;
-    }
-
-    let totalPrice = 0;
-
-    const { ingredients } = dish; // == const ingredients = dish.ingredients
-    const ingredientTableRows = ingredients.map((ingredient) => {
-      const noOfGuests = this.model.getNumberOfGuests();
+    for (const ingredient of this.dish.extendedIngredients) {
       const row = document.createElement("tr");
 
-      const quantity = document.createElement("td");
-      quantity.textContent = `${ingredient.quantity * noOfGuests} ${ingredient.unit}`;
-      row.appendChild(quantity);
+      row.innerHTML = `
+        <td>${round(ingredient.amount, 2) * noOfGuests} ${ingredient.unit}</td>
+        <td>${ingredient.name}</td>
+        <td>SEK</td>
+        <td>${noOfGuests}</td>`;
 
-      const name = document.createElement("td");
-      name.textContent = ingredient.name;
-      row.appendChild(name);
-
-      const sek = document.createElement("td");
-      sek.textContent = "SEK";
-      row.appendChild(sek);
-
-      const priceElem = document.createElement("td");
-      const price = ingredient.price * noOfGuests;
-      priceElem.textContent = price;
-      totalPrice += price;
-      row.appendChild(priceElem);
-
-      return row;
-    });
+      tableContainer.appendChild(row);
+    }
 
     const lastRow = document.createElement("tr");
     lastRow.classList.add("last-row");
 
-    const total = document.createElement("td");
-    total.textContent = "Total price";
-    lastRow.appendChild(total);
+    lastRow.innerHTML = `
+      <td>Total price</td>
+      <td></td>
+      <td>SEK</td>
+      <td>${round(this.dish.pricePerServing * noOfGuests)}</td>`;
 
-    const empty = document.createElement("td");
-    lastRow.appendChild(empty);
-
-    const sek = document.createElement("td");
-    sek.textContent = "SEK";
-    lastRow.appendChild(sek);
-
-    const price = document.createElement("td");
-    price.textContent = totalPrice;
-    lastRow.appendChild(price);
-
-    for (const row of ingredientTableRows) {
-      tableContainer.appendChild(row);
-    }
     tableContainer.appendChild(lastRow);
   }
 }

@@ -12,21 +12,18 @@ class Recipes {
     div.classList.add("recipe");
 
     const img = document.createElement("img");
-    img.src = `images/${this.dish.image}`;
+    img.src = `https://spoonacular.com/recipeImages/${this.dish.id}-636x393.jpg`;
     div.appendChild(img);
 
     const desc = document.createElement("div");
     const h2 = document.createElement("h2");
-    h2.textContent = this.dish.name;
+    h2.textContent = this.dish.title;
     desc.appendChild(h2);
-    const text = document.createElement("p");
-    text.textContent = "Lorem Ipsum";
-    desc.appendChild(text);
-    div.appendChild(desc);
 
     const prep = document.createElement("div");
-    prep.textContent = this.dish.description;
-    div.appendChild(prep);
+    prep.innerHTML = this.dish.instructions.split(".").join("<br>");
+    desc.appendChild(prep);
+    div.appendChild(desc);
 
     return div;
   }

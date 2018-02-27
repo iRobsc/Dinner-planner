@@ -1,9 +1,10 @@
 @import "shared";
 
-#food-grid {
+#grid-container {
   display: grid;
   grid-gap: 20px;
   padding-top: 40px;
+  margin-bottom: 40px;
 }
 
 .sparse-grid {
@@ -11,7 +12,7 @@
 }
 
 .responsive-grid {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .food-item {
@@ -23,11 +24,13 @@
 
   img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
     display: block;
     pointer-events: none;
   }
 
-  .name {
+  .title {
     padding: 20px;
     font-weight: bold;
     pointer-events: none;
@@ -43,4 +46,24 @@
     transform: scale(0.995);
     box-shadow: rgba(black, 0.15) 0 10px 20px;
   }
+}
+
+.loading {
+  border-radius: 10px;
+  height: 200px;
+  max-width: 250px;
+  background: linear-gradient(270deg, #f5f5f5, #e9e9e9, #f5f5f5);
+  background-size: 400% 400%;
+  animation: panel-loading-anim 1s ease infinite;
+}
+
+@keyframes panel-loading-anim {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+#nav-buttons {
+  display: flex;
+  justify-content: flex-end;
 }

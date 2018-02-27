@@ -16,21 +16,21 @@ class DishView {
     this.container.classList.add("hideView");
   }
 
-  show(dishId) {
-    this.dish = this.model.getDish(dishId);
+  show(dish) {
     this.container.classList.remove("hideView");
+    this.dish = dish;
     this.dishInfo();
   }
 
   dishInfo() {
     const dishTitle = this.container.querySelector("#dish-title");
-    dishTitle.textContent = this.dish.name;
+    dishTitle.textContent = this.dish.title;
 
     const dishImg = this.container.querySelector("#dish-img");
-    dishImg.src = `images/${this.dish.image}`;
+    dishImg.src = `https://spoonacular.com/recipeImages/${this.dish.id}-480x360.jpg`;
 
     const prepText = this.container.querySelector("#dish-prep-text");
-    prepText.textContent = this.dish.description;
+    prepText.innerHTML = this.dish.instructions.split(".").join("<br><br>");
   }
 }
 

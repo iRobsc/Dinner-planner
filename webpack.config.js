@@ -7,7 +7,6 @@ const path = require("path");
 const merge = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const production = process.env.NODE_ENV === "production";
@@ -23,17 +22,7 @@ const contentBaseDir = "./src";
 const outputDirName = "./dist";
 
 // file names of all HTML files in src
-const htmlFiles = [
-  "index.html",
-];
-
-// static folders to copy
-const staticContent = [
-  {
-    from: path.resolve(__dirname, "src/images"),
-    to: path.resolve(__dirname, `${outputDirName}/images`),
-  },
-];
+const htmlFile = "index.html";
 
 // common config options for both dev and prod
 let config = {
@@ -51,10 +40,14 @@ if (production) {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.scss$/,
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: "css-loader",
+            use: [{
+              loader: "css-loader",
+            }, {
+              loader: "sass-loader",
+            }],
           }),
         },
       ],
@@ -64,13 +57,11 @@ if (production) {
       new CleanWebpackPlugin([outputDirName]),
       // output CSS bundle
       new ExtractTextPlugin(cssBundleName),
-      // copy over static files to output dir
-      new CopyWebpackPlugin(staticContent),
-      // create new instance of HtmlWebpackPlugin for each HTML file
-    ].concat(htmlFiles.map(filename => new HtmlWebpackPlugin({
-      filename,
-      template: path.resolve(__dirname, `${contentBaseDir}/${filename}`),
-    }))),
+      new HtmlWebpackPlugin({
+        filename: htmlFile,
+        template: path.resolve(__dirname, `${contentBaseDir}/${htmlFile}`),
+      }),
+    ],
   });
 } else {
   config = merge(config, {
@@ -94,15 +85,23 @@ if (production) {
         {
           // enable importing CSS in JS
           // to use hot reloading for CSS, must import it in JS
-          test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          test: /\.scss$/,
+          use: [{
+            loader: "style-loader", // creates style nodes from JS strings
+          }, {
+            loader: "css-loader", // translates CSS into CommonJS
+          }, {
+            loader: "sass-loader", // compiles Sass to CSS
+          }],
         },
       ],
     },
-    plugins: htmlFiles.map(filename => new HtmlWebpackPlugin({
-      filename,
-      template: path.resolve(__dirname, `${contentBaseDir}/${filename}`),
-    })),
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: htmlFile,
+        template: path.resolve(__dirname, `${contentBaseDir}/${htmlFile}`),
+      }),
+    ],
   });
 }
 

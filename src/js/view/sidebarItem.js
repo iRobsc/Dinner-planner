@@ -1,3 +1,5 @@
+import round from "../round";
+
 class SidebarItem {
   /**
    * Creates an instance of SidebarItem.
@@ -18,7 +20,7 @@ class SidebarItem {
     div.appendChild(name);
 
     const price = document.createElement("div");
-    price.textContent = `${this.price} SEK`;
+    price.textContent = `${round(this.price)} SEK`;
     div.appendChild(price);
 
     return div;

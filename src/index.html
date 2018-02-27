@@ -63,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div id="right-container">
 			<div id="main-content">
 				<div id="searchbar-container">
 					<h2>Find a dish</h2>
@@ -75,9 +75,18 @@
 
 						<div class="select-container">
 							<select id="search-type">
-								<option>Starter</option>
-								<option>Main Dish</option>
-								<option>Dessert</option>
+								<option value="">All</option>
+								<option value="main dish">Main Dish</option>
+								<option value="dessert">Dessert</option>
+								<option value="side dish">Side Dish</option>
+								<option value="appertizer">Appertizer</option>
+								<option value="salad">Salad</option>
+								<option value="bread">Bread</option>
+								<option value="breakfast">Breakfast</option>
+								<option value="soup">Soup</option>
+								<option value="beverage">Beverage</option>
+								<option value="sauce">Sauce</option>
+								<option value="drink">Drink</option>
 							</select>
 							<span class="arrow-container">
 								<i class="fa fa-angle-down"></i>
@@ -88,19 +97,19 @@
 					</form>
 				</div>
 
-				<div id="food-grid"></div>
+				<div id="food-grid">
+					<div id="grid-container"></div>
+					<div id="nav-buttons">
+						<button id="prev-btn" class="dinner-btn">&larr; Previous page</button>&nbsp;
+						<button id="next-btn" class="dinner-btn">Next page &rarr;</button>
+					</div>
+				</div>
+
 			</div>
 			<div id="dish-content">
 				<div id="dish-object">
 					<div id="dish-title">Dish title</div>
 					<img id="dish-img" src="#">
-					<div id="dish-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dictum est sed lacinia finibus. Etiam efficitur dignissim
-						sem, nec porttitor enim faucibus laoreet. Etiam a ante at urna dignissim pretium aliquet ut dolor. Aliquam ac orci
-						lobortis, consectetur nisl rutrum, maximus nunc. Nulla facilisi. Phasellus nec rhoncus mauris, a porta massa. Nunc
-						non sem gravida, rhoncus risus in, finibus leo. Cras a turpis quis sem accumsan tincidunt. Nunc in dictum massa. Nam
-						metus purus, aliquet sit amet rutrum in, facilisis sed augue.
-					</div>
 					<a class="dinner-btn" id="dish-button-back" href="app.html">Back to search</a>
 				</div>
 
@@ -121,6 +130,9 @@
 					<h2>Preparation</h2>
 					<div id="dish-prep-text"></div>
 				</div>
+			</div>
+			<div id="dish-view-loading">
+				<i class="fa fa-circle-notch"></i>
 			</div>
 		</div>
 	</div>

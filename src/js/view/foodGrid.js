@@ -1,4 +1,5 @@
 import FoodItem from "./foodItem";
+import loadingFoodItem from "./loadingFoodItem";
 
 class FoodGrid {
   /**
@@ -9,34 +10,58 @@ class FoodGrid {
   constructor(container, model) {
     this.container = container;
     this.model = model;
+
+    this.page = 0;
+    this.type = "";
+    this.keywords = "";
+    this.prevBtn = this.container.querySelector("#prev-btn");
+    this.nextBtn = this.container.querySelector("#next-btn");
   }
 
   hide() {
     this.container.classList.add("hideView");
   }
 
-  show(type, keywords) {
+  show(type, keywords, page) {
     this.container.classList.remove("hideView");
 
-    const parsedType = type.replace("_", " ");
-    const parsedKeywords = keywords.replace("_", " ");
-    this.generateGrid(parsedType, parsedKeywords);
+    this.type = type;
+    this.keywords = keywords;
+    this.page = page;
+
+    this.generateGrid(type, keywords, page);
   }
 
-  generateGrid(type, keywords) {
-    this.container.innerHTML = "";
-    const dishes = this.model.getAllDishes(type, keywords);
-    if (dishes.length < 4) {
-      this.container.classList.add("sparse-grid");
-      this.container.classList.remove("responsive-grid");
-    } else {
-      this.container.classList.add("responsive-grid");
-      this.container.classList.remove("sparse-grid");
+  generateGrid(type, keywords, page) {
+    const gridContainer = this.container.querySelector("#grid-container");
+    gridContainer.innerHTML = "";
+
+    gridContainer.classList.add("responsive-grid");
+    gridContainer.classList.remove("sparse-grid");
+    for (let i = 0; i < 8; i++) {
+      gridContainer.appendChild(loadingFoodItem());
     }
-    const foodItems = dishes.map(dish => new FoodItem(dish).generate());
-    for (let i = 0; i < foodItems.length; i++) {
-      this.container.appendChild(foodItems[i]);
-    }
+
+    this.model.getAllDishes(type, keywords, page)
+      .then((dishes) => {
+        gridContainer.innerHTML = "";
+
+        if (dishes.length < 4) {
+          gridContainer.classList.add("sparse-grid");
+          gridContainer.classList.remove("responsive-grid");
+        } else {
+          gridContainer.classList.add("responsive-grid");
+          gridContainer.classList.remove("sparse-grid");
+        }
+        const foodItems = dishes.map(dish => new FoodItem(dish).generate());
+        for (let i = 0; i < foodItems.length; i++) {
+          gridContainer.appendChild(foodItems[i]);
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+        this.container.innerHTML = "Couldn't fetch dishes, are you offline?";
+      });
   }
 }
 

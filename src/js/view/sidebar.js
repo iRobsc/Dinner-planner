@@ -1,4 +1,5 @@
 import SidebarItem from "./sidebarItem";
+import round from "../round";
 
 class Sidebar {
   /**
@@ -72,7 +73,7 @@ class Sidebar {
       const noOfGuests = this.model.getNumberOfGuests();
       const price = this.model.getDishPrice(dish) * noOfGuests;
 
-      listContainer.appendChild(new SidebarItem(dish.name, price).generate());
+      listContainer.appendChild(new SidebarItem(dish.title, price).generate());
     }
   }
 
@@ -80,7 +81,7 @@ class Sidebar {
     const priceElems = this.container.querySelectorAll(".price");
     const price = this.model.getTotalMenuPrice();
     for (const elem of priceElems) {
-      elem.textContent = `${price} kr`;
+      elem.textContent = `${round(price)} kr`;
     }
   }
 }

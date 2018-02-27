@@ -14,7 +14,10 @@ class Router {
   static goTo(newPath) {
     window.history.pushState(null, "", newPath);
 
-    if (Router._isListening) Router._checkListeners(newPath);
+    if (Router._isListening) {
+      window.scrollTo(0, 0);
+      Router._checkListeners(newPath);
+    }
   }
 
   static goBack() {
