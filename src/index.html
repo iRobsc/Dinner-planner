@@ -63,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div id="right-container">
 			<div id="main-content">
 				<div id="searchbar-container">
 					<h2>Find a dish</h2>
@@ -75,9 +75,18 @@
 
 						<div class="select-container">
 							<select id="search-type">
-								<option value="starter">Starter</option>
+								<option value="">All</option>
 								<option value="main dish">Main Dish</option>
 								<option value="dessert">Dessert</option>
+								<option value="side dish">Side Dish</option>
+								<option value="appertizer">Appertizer</option>
+								<option value="salad">Salad</option>
+								<option value="bread">Bread</option>
+								<option value="breakfast">Breakfast</option>
+								<option value="soup">Soup</option>
+								<option value="beverage">Beverage</option>
+								<option value="sauce">Sauce</option>
+								<option value="drink">Drink</option>
 							</select>
 							<span class="arrow-container">
 								<i class="fa fa-angle-down"></i>
@@ -88,7 +97,14 @@
 					</form>
 				</div>
 
-				<div id="food-grid"></div>
+				<div id="food-grid">
+					<div id="grid-container"></div>
+					<div id="nav-buttons">
+						<button id="prev-btn" class="dinner-btn">&larr; Previous page</button>&nbsp;
+						<button id="next-btn" class="dinner-btn">Next page &rarr;</button>
+					</div>
+				</div>
+
 			</div>
 			<div id="dish-content">
 				<div id="dish-object">
@@ -114,6 +130,9 @@
 					<h2>Preparation</h2>
 					<div id="dish-prep-text"></div>
 				</div>
+			</div>
+			<div id="dish-view-loading">
+				<i class="fa fa-circle-notch"></i>
 			</div>
 		</div>
 	</div>

@@ -30,7 +30,7 @@ class DishView {
     dishImg.src = `https://spoonacular.com/recipeImages/${this.dish.id}-480x360.jpg`;
 
     const prepText = this.container.querySelector("#dish-prep-text");
-    prepText.textContent = this.dish.instructions;
+    prepText.innerHTML = this.dish.instructions.split(".").join("<br><br>");
   }
 }
 

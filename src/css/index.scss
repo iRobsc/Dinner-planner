@@ -6,6 +6,7 @@
 @import "dish-content";
 @import "my-dinner";
 @import "recipes";
+@import "loading";
 
 * {
   box-sizing: border-box;
@@ -70,6 +71,8 @@ h2 {
   max-width: 1280px;
   margin: 0 auto;
 }
+
+#right-container { position: relative; }
 
 .container-nogrid {
   padding: 0px 20px;

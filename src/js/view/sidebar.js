@@ -1,4 +1,5 @@
 import SidebarItem from "./sidebarItem";
+import round from "../round";
 
 class Sidebar {
   /**
@@ -80,7 +81,7 @@ class Sidebar {
     const priceElems = this.container.querySelectorAll(".price");
     const price = this.model.getTotalMenuPrice();
     for (const elem of priceElems) {
-      elem.textContent = `${price} kr`;
+      elem.textContent = `${round(price)} kr`;
     }
   }
 }

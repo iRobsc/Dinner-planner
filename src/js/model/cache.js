@@ -1,6 +1,6 @@
 class Cache {
-  getSearch(type, filter) {
-    const key = `${type};${filter}`;
+  getSearch(type, filter, page) {
+    const key = `${type};${filter};${page}`;
     const search = JSON.parse(localStorage.getItem("search"));
 
     // the cache hasn't been initialized yet
@@ -19,8 +19,8 @@ class Cache {
     return search[key];
   }
 
-  setSearch(type, filter, value) {
-    const key = `${type};${filter}`;
+  setSearch(type, filter, page, value) {
+    const key = `${type};${filter};${page}`;
     const search = JSON.parse(localStorage.getItem("search")) || {};
 
     search[key] = value;
