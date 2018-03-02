@@ -1,9 +1,15 @@
 /**
  * Script to build: NODE_ENV=production webpack
  * Script to dev: webpack-dev-server --open --hot --inline
+ *
+ * Install dependencies:
+ * npm i -D sass-loader css-loader style-loader extract-text-plugin html-webpack-plugin
+ * npm i -D babel-loader clean-webpack-plugin webpack-merge
+ * npm i -D babel-cli babel-preset-react babel-preset-env
 */
 
 const path = require("path");
+const webpack = require("webpack");
 const merge = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -30,6 +36,15 @@ let config = {
   output: {
     path: path.resolve(__dirname, outputDirName),
     filename: jsBundleName,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+    ],
   },
 };
 
@@ -60,7 +75,23 @@ if (production) {
       new HtmlWebpackPlugin({
         filename: htmlFile,
         template: path.resolve(__dirname, `${contentBaseDir}/${htmlFile}`),
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          keepClosingSlash: true,
+          minifyJS: true,
+          minifyCSS: true,
+          minifyURLs: true,
+        },
       }),
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify("production"),
+      }),
+      new webpack.optimize.UglifyJsPlugin(),
     ],
   });
 } else {
@@ -106,6 +137,3 @@ if (production) {
 }
 
 module.exports = config;
-
-// npm i -D css-loader style-loader extract-text-plugin copy-webpack-plugin html-webpack-plugin
-// npm i -D clean-webpack-plugin webpack-merge
