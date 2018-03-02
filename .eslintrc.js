@@ -1,5 +1,5 @@
 module.exports = {
-    "extends": "airbnb-base",
+    "extends": "airbnb",
     "env": {
         "node": true,
         "browser": true,
@@ -14,8 +14,6 @@ module.exports = {
         "no-use-before-define": 0,
         "no-plusplus": 0,
         "quote-props": 0,
-        "no-restricted-syntax": 0,
-        "no-new": 0,
-        "class-methods-use-this": 0,
+        "react/jsx-filename-extension": 0,
     },
 };
