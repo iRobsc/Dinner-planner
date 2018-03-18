@@ -30,12 +30,16 @@ const outputDirName = "./dist";
 // file names of all HTML files in src
 const htmlFile = "index.html";
 
+// the public path, must be specified so historyApiFallback works for nested/paths/
+const publicPath = "/";
+
 // common config options for both dev and prod
 const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, outputDirName),
     filename: jsBundleName,
+    publicPath,
   },
   module: {
     rules: [
