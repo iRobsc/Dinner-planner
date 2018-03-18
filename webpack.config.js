@@ -2,10 +2,10 @@
  * Script to build: NODE_ENV=production webpack
  * Script to dev: webpack-dev-server --open --hot --inline
  *
- * Install dependencies:
- * npm i -D sass-loader css-loader style-loader extract-text-plugin html-webpack-plugin
- * npm i -D babel-loader clean-webpack-plugin webpack-merge
- * npm i -D babel-cli babel-preset-react babel-preset-env
+ * Dependencies in this config:
+ * sass-loader css-loader style-loader extract-text-plugin html-webpack-plugin
+ * babel-loader clean-webpack-plugin webpack-merge
+ * babel-cli babel-preset-react babel-preset-env
 */
 
 const path = require("path");
@@ -31,8 +31,8 @@ const outputDirName = "./dist";
 const htmlFile = "index.html";
 
 // common config options for both dev and prod
-let config = {
-  entry: "./src/js/app.js",
+const config = {
+  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, outputDirName),
     filename: jsBundleName,
@@ -48,8 +48,9 @@ let config = {
   },
 };
 
+let merged;
 if (production) {
-  config = merge(config, {
+  merged = merge(config, {
     // source map type
     devtool: "source-map",
     module: {
@@ -95,7 +96,7 @@ if (production) {
     ],
   });
 } else {
-  config = merge(config, {
+  merged = merge(config, {
     // source map type
     devtool: "cheap-eval-source-map",
     devServer: {
@@ -136,4 +137,4 @@ if (production) {
   });
 }
 
-module.exports = config;
+module.exports = merged;
