@@ -10,7 +10,7 @@ function DinnerButtonLink({ to, children, onClick }) {
 
 DinnerButtonLink.propTypes = {
   to: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
