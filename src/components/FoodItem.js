@@ -31,7 +31,7 @@ FoodItem.propTypes = {
   title: PropTypes.string.isRequired,
   /** ID of the dish, needed for the image */
   id: PropTypes.string.isRequired,
-  /**  */
+  /** Optional, if present will change url when clicking */
   to: PropTypes.string,
 };
 
