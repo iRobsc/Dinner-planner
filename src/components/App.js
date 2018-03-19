@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import WelcomePage from "../pages/WelcomePage";
+import Welcome from "../components/Welcome";
 import SearchPage from "../pages/SearchPage";
 import DishDetailsPage from "../pages/DishDetailsPage";
 import MyDinnerPage from "../pages/MyDinnerPage";
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={WelcomePage} />
+          <Route exact path="/" component={Welcome} />
           <Route path="/search/:type/:keywords/:page" component={SearchPage} />
           <Route path="/dish/:id" component={DishDetailsPage} />
           <Route path="/mydinner" component={MyDinnerPage} />

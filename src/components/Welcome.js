@@ -14,8 +14,7 @@ function Welcome() {
 
       <div id="welcome-btn-container">
         <DinnerButtonLink to="/search">
-          Create new dinner
-          <i className="fa fa-utensils" />
+          Create new dinner <i className="fa fa-utensils" />
         </DinnerButtonLink>
       </div>
     </div>
