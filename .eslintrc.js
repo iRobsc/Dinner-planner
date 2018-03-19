@@ -4,6 +4,7 @@ module.exports = {
         "node": true,
         "browser": true,
     },
+    "parser": "babel-eslint",
     "rules": {
         "quotes": [
             "error",
