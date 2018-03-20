@@ -1,14 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Sidebar from "../components/Sidebar";
 
-function MainLayout({ menu, numberOfGuests, children }) {
+function MainLayout({ menu, numberOfGuests, setNumberOfGuests, children }) {
+  const onGuestChange = (event) => {
+    let value = parseInt(event.target.value, 10);
+
+    if (!value || value < 0) value = 0;
+
+    setNumberOfGuests(value);
+  };
+
   return (
     <div id="container">
-      <div className="sidebar">
-        Sidebar goes here:
-        numberOfGuests: {numberOfGuests}
-        menu: {menu.map(dish => <div>{`${dish.title}${dish.price}`}</div>)}
-      </div>
+      <Sidebar menu={menu} numberOfGuests={numberOfGuests} onGuestChange={onGuestChange} />
       {children}
     </div>
   );
@@ -20,6 +25,7 @@ MainLayout.propTypes = {
     price: PropTypes.string,
   })).isRequired,
   numberOfGuests: PropTypes.number.isRequired,
+  setNumberOfGuests: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 
