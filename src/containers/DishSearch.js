@@ -20,6 +20,7 @@ class DishSearch extends Component {
 
   state = {
     searchResults: [],
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -52,6 +53,10 @@ class DishSearch extends Component {
     this.search(type, keywords, 0);
   }
 
+  setLoading(isLoading) {
+    this.setState({ isLoading });
+  }
+
   getNextRoute() {
     const { type, keywords, page } = this.props;
     return `/search?type=${type}&keywords=${keywords}&page=${page + 1}`;
@@ -64,12 +69,14 @@ class DishSearch extends Component {
   }
 
   search(type, keywords, page) {
+    this.setLoading(true);
     getAllDishes(type, keywords, page)
       .then((searchResults) => {
         this.setState({ searchResults });
+        this.setLoading(false);
       })
-      .catch((error) => {
-        alert(error);
+      .catch(() => {
+        alert("Search failed, are you offline?");
       });
   }
 
@@ -79,10 +86,31 @@ class DishSearch extends Component {
     const nextTo = this.getNextRoute();
     const prevTo = this.getPrevRoute();
 
-    const foodItems = searchResults.map(({ title, id }) =>
-      <FoodItem key={id} title={title} id={id} to={`/dish/${id}`} />);
+    let gridContent;
+    if (this.state.isLoading) {
+      gridContent = [1, 2, 3, 4, 5, 6, 7, 8].map(index => <div key={index} className="loading" />);
+    } else {
+      gridContent = searchResults.map(({ title, id }) =>
+        <FoodItem key={id} title={title} id={id} to={`/dish/${id}`} />);
+    }
 
-    const gridClass = foodItems.length < 4 ? "sparse-grid" : "responsive-grid";
+    const gridClass = gridContent.length < 4 ? "sparse-grid" : "responsive-grid";
+
+    const resultComponent = (
+      <div id="food-grid">
+        <div id="grid-container" className={gridClass}>
+          {gridContent}
+        </div>
+        <div id="nav-buttons">
+          <DinnerButtonLink to={prevTo}>
+            &larr; Previous page
+          </DinnerButtonLink>&nbsp;
+          <DinnerButtonLink to={nextTo}>
+            Next page &rarr;
+          </DinnerButtonLink>
+        </div>
+      </div>
+    );
 
     return (
       <div>
@@ -91,19 +119,7 @@ class DishSearch extends Component {
           defaultType={type}
           onSearchSubmit={this.onSearchSubmit}
         />
-        <div id="food-grid">
-          <div id="grid-container" className={gridClass}>
-            {foodItems}
-          </div>
-          <div id="nav-buttons">
-            <DinnerButtonLink to={prevTo}>
-              &larr; Previous page
-            </DinnerButtonLink>&nbsp;
-            <DinnerButtonLink to={nextTo}>
-              Next page &rarr;
-            </DinnerButtonLink>
-          </div>
-        </div>
+        {searchResults.length !== 0 ? resultComponent : "No results" }
       </div>
     );
   }
