@@ -5,21 +5,25 @@ import "../css/DishContent.scss";
 
 function Ingredientlist({ numberOfGuests, dish, addDishToMenu }) {
   const content = dish.extendedIngredients.map(ingredient => (
-    <tr>
-      <td>{Math.round(ingredient.amount) * numberOfGuests} {ingredient.unit}</td>
-      <td>{ingredient.name}</td>
-      <td>SEK</td>
-      <td>{numberOfGuests}</td>
-    </tr>
+    <tbody key={ingredient.id}>
+      <tr>
+        <td>{Math.round(ingredient.amount) * numberOfGuests} {ingredient.unit}</td>
+        <td>{ingredient.name}</td>
+        <td>SEK</td>
+        <td>{numberOfGuests}</td>
+      </tr>
+    </tbody>
   ));
 
   const lastRow = (
-    <tr className="last-row">
-      <td>Total price</td>
-      <td />
-      <td>SEK</td>
-      <td>{Math.round(dish.pricePerServing * numberOfGuests)}</td>
-    </tr>
+    <tbody>
+      <tr className="last-row">
+        <td>Total price</td>
+        <td />
+        <td>SEK</td>
+        <td>{Math.round(dish.pricePerServing * numberOfGuests)}</td>
+      </tr>
+    </tbody>
   );
 
   return (
