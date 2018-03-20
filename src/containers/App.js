@@ -23,7 +23,7 @@ class App extends Component {
     const { numberOfGuests, menu } = this.state;
     const { setNumberOfGuests } = this;
     return (
-      <Router onUpdate={() => window.scrollTo(0, 0)}>
+      <Router>
         <Switch>
           <Route exact path="/" component={Welcome} />
           <AppRoute
