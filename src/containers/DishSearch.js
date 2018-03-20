@@ -74,6 +74,7 @@ class DishSearch extends Component {
   }
 
   render() {
+    const { keywords, type } = this.props;
     const { searchResults } = this.state;
     const nextTo = this.getNextRoute();
     const prevTo = this.getPrevRoute();
@@ -85,7 +86,11 @@ class DishSearch extends Component {
 
     return (
       <div>
-        <Searchbar onSearchSubmit={this.onSearchSubmit} />
+        <Searchbar
+          defaultKeywords={keywords}
+          defaultType={type}
+          onSearchSubmit={this.onSearchSubmit}
+        />
         <div id="food-grid">
           <div id="grid-container" className={gridClass}>
             {foodItems}
