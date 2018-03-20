@@ -30,7 +30,7 @@ class App extends Component {
             path="/search/:type?/:keywords?/:page?"
             component={SearchPage}
             layout={MainLayout}
-            componentProps={{ numberOfGuests, menu, setNumberOfGuests }}
+            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
           />
           <Route path="/dish/:id" component={DishDetailsPage} />
           <Route path="/mydinner" component={MyDinnerPage} />
