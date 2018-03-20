@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ReactRouterPropTypes from "react-router-prop-types";
 import getAllDishes from "../utils/getAllDishes";
 import DishSelect from "../components/DishSelect";
 
 class DishSearch extends Component {
   static propTypes = {
-    type: PropTypes.string,
-    keywords: PropTypes.string,
-    page: PropTypes.number,
-  }
-
-  static defaultProps = {
-    type: "",
-    keywords: "",
-    page: 0,
+    type: PropTypes.string.isRequired,
+    keywords: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
+    history: ReactRouterPropTypes.history.isRequired, // eslint-disable-line react/no-typos
   }
 
   state = {
@@ -27,15 +23,18 @@ class DishSearch extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.page !== this.props.page) {
-      console.log("search");
-      const { type, keywords, page } = newProps;
-      this.search(type, keywords, page);
+    const { type, keywords, page } = this.props;
+    const { type: newType, keywords: newKeywords, page: newPage } = newProps;
+
+    // if any prop is different, do a new search
+    if (newPage !== page || newType !== type || newKeywords !== keywords) {
+      this.search(newType, newKeywords, newPage);
     }
   }
 
   onSearchSubmit = (event) => {
     event.preventDefault();
+    const { history } = this.props;
     const inputs = event.target.elements;
     const typeElem = inputs["search-type"];
     const type = typeElem.options[typeElem.selectedIndex]
@@ -47,8 +46,7 @@ class DishSearch extends Component {
       .trim()
       .replace(/\s/g, "+")
       .toLowerCase();
-    window.history.pushState(null, "", `/search?type=${type}&keywords=${keywords}`);
-    this.search(type, keywords, 0);
+    history.push(`/search?type=${type}&keywords=${keywords}`);
   }
 
   setLoading(isLoading) {
@@ -74,6 +72,7 @@ class DishSearch extends Component {
         this.setLoading(false);
       })
       .catch(() => {
+        this.setLoading(false);
         alert("Search failed, are you offline?");
       });
   }
