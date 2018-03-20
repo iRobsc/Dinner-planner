@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DinnerButton from "./DinnerButton";
+import "../css/DishContent.scss";
 
 function Ingredientlist({ numberOfGuests, dish, addDishToMenu }) {
   const content = dish.extendedIngredients.map(ingredient => (
