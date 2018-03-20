@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DinnerButtonLink from "./DinnerButtonLink";
 import SidebarItem from "./SidebarItem";
+import getTotalMenuPrice from "../utils/getTotalMenuPrice";
 import "../css/Sidebar.scss";
 
 class Sidebar extends Component {
@@ -21,13 +22,16 @@ class Sidebar extends Component {
     if (menu.length === 0) {
       content = "Your list is empty!";
     } else {
-      content = menu.map(dish => <SidebarItem title={dish.title} price={dish.price} />);
+      content = menu.map(dish =>
+        <SidebarItem key={dish.id} title={dish.title} price={dish.pricePerServing} />);
     }
 
     let disabled = false;
     if (numberOfGuests === 0 || menu.length === 0) {
       disabled = true;
     }
+
+    const totalPrice = getTotalMenuPrice(menu, numberOfGuests);
 
     return (
       <div id="sidebar-container">
@@ -54,7 +58,7 @@ class Sidebar extends Component {
 
               <div id="sidebar-list">{content}</div>
 
-              Total cost: <span className="price">0kr</span>
+              Total cost: <span className="price">{totalPrice} kr</span>
               <br />
               <DinnerButtonLink to="/mydinner" disabled={disabled}>
                 Confirm Dinner <i className="fa fa-check-circle" />
