@@ -27,8 +27,8 @@ export default function getAllDishes(type, filter, page) {
       },
     }).then(res => res.json())
       .then((json) => {
-        Cache.setSearch(type, filter, page, json.results);
-        console.log(json);
+        if (json.results.length !== 0) Cache.setSearch(type, filter, page, json.results);
+
         return json.results;
       });
   }
