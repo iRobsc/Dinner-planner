@@ -1,6 +1,6 @@
 @import "shared";
 
-#myDinner-dishes {
+.myDinner-dishes {
   display: grid;
   grid-template-columns: repeat(auto-fit, 200px);
   grid-gap: 20px;
@@ -19,7 +19,7 @@
   }
 }
 
-#myDinner-footer {
+.myDinner-footer {
   display: flex;
   justify-content: center;
 }
