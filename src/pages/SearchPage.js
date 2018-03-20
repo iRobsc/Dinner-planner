@@ -1,5 +1,5 @@
 import React from "react";
-import DishSearch from "../containers/DishSearch";
+import DishSearch from "../containers/DishSearchContainer";
 
 function SearchPage() {
   const url = new URL(window.location.href);

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Searchbar from "../components/Searchbar";
-import DinnerButtonLink from "../components/DinnerButtonLink";
-import FoodItem from "../components/FoodItem";
 import getAllDishes from "../utils/getAllDishes";
+import DishSelect from "../components/DishSelect";
 
 class DishSearch extends Component {
   static propTypes = {
@@ -81,46 +79,16 @@ class DishSearch extends Component {
   }
 
   render() {
-    const { keywords, type } = this.props;
-    const { searchResults } = this.state;
     const nextTo = this.getNextRoute();
     const prevTo = this.getPrevRoute();
-
-    let gridContent;
-    if (this.state.isLoading) {
-      gridContent = [1, 2, 3, 4, 5, 6, 7, 8].map(index => <div key={index} className="loading" />);
-    } else {
-      gridContent = searchResults.map(({ title, id }) =>
-        <FoodItem key={id} title={title} id={id} to={`/dish/${id}`} />);
-    }
-
-    const gridClass = gridContent.length < 4 ? "sparse-grid" : "responsive-grid";
-
-    const resultComponent = (
-      <div id="food-grid">
-        <div id="grid-container" className={gridClass}>
-          {gridContent}
-        </div>
-        <div id="nav-buttons">
-          <DinnerButtonLink to={prevTo}>
-            &larr; Previous page
-          </DinnerButtonLink>&nbsp;
-          <DinnerButtonLink to={nextTo}>
-            Next page &rarr;
-          </DinnerButtonLink>
-        </div>
-      </div>
-    );
-
     return (
-      <div>
-        <Searchbar
-          defaultKeywords={keywords}
-          defaultType={type}
-          onSearchSubmit={this.onSearchSubmit}
-        />
-        {searchResults.length !== 0 ? resultComponent : "No results" }
-      </div>
+      <DishSelect
+        nextTo={nextTo}
+        prevTo={prevTo}
+        onSearchSubmit={this.onSearchSubmit}
+        {...this.props}
+        {...this.state}
+      />
     );
   }
 }
