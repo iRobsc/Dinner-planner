@@ -1,0 +1,8 @@
+#title-bar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "title btn";
+
+  h2 { grid-area: title; }
+  a { grid-area: btn; }
+}
