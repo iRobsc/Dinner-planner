@@ -1,10 +1,12 @@
 import React from "react";
 import ReactRouterPropTypes from "react-router-prop-types";
+import DishSearch from "../containers/DishSearch";
 
 function SearchPage({ match }) {
   const { type, keywords, page } = match.params;
+  const pageNumber = page ? parseInt(page, 10) : 0;
   return (
-    <div>Search type {type}, keywords {keywords} page {page}</div>
+    <DishSearch type={type} keywords={keywords} page={pageNumber} />
   );
 }
 
