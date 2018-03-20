@@ -1,5 +1,5 @@
 import React from "react";
-import DishSearch from "../containers/DishSearchContainer";
+import DishSearchContainer from "../containers/DishSearchContainer";
 
 function SearchPage() {
   const url = new URL(window.location.href);
@@ -9,7 +9,7 @@ function SearchPage() {
   const pageNumber = page ? parseInt(page, 10) : 0;
 
   return (
-    <DishSearch type={type} keywords={keywords} page={pageNumber} />
+    <DishSearchContainer type={type} keywords={keywords} page={pageNumber} />
   );
 }
 
