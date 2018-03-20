@@ -1,0 +1,24 @@
+#dish-ingredient-box {
+  @include box-shadow;
+  background: white;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+#dish-ingredient-table {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+
+  td:nth-child(3) {
+    text-align: right;
+  }
+
+  .last-row td {
+    padding-top: 10px;
+    font-weight: bold;
+  }
+}
+
+#dish-ingredients { grid-area: ingred; }
