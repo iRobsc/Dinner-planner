@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 
-function AppRoute({ component: Component, layout: Layout, componentProps, ...rest }) {
+function AppRoute({ component: Component, layout: Layout, componentProps, layoutProps, ...rest }) {
   return (
     <Route
       {...rest}
-      render={matchProps => (
-        <Layout {...matchProps} {...componentProps}>
-          <Component {...matchProps} {...componentProps} />
+      render={routerProps => (
+        <Layout {...routerProps} {...layoutProps}>
+          <Component {...routerProps} {...componentProps} />
         </Layout>
       )}
     />
@@ -17,6 +17,7 @@ function AppRoute({ component: Component, layout: Layout, componentProps, ...res
 
 AppRoute.defaultProps = {
   componentProps: {},
+  layoutProps: {},
 };
 
 AppRoute.propTypes = {
@@ -24,8 +25,10 @@ AppRoute.propTypes = {
   component: PropTypes.func.isRequired,
   /** Which layout component to use, will get the match props from react-router */
   layout: PropTypes.func.isRequired,
-  /** Custom props to pass to the layout and component */
-  componentProps: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  /** Custom props to pass to the component */
+  componentProps: PropTypes.object,
+  /** Custom props to pass to the layout component */
+  layoutProps: PropTypes.object,
 };
 
 export default AppRoute;
