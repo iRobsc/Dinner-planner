@@ -13,7 +13,7 @@ function Welcome() {
       non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
       <div id="welcome-btn-container">
-        <DinnerButtonLink to="/search">
+        <DinnerButtonLink to="/search" disabled={false}>
           Create new dinner <i className="fa fa-utensils" />
         </DinnerButtonLink>
       </div>
