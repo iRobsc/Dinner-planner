@@ -2,18 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../css/Searchbar.scss";
 
-function Searchbar({ onSearchSubmit }) {
+function Searchbar({ defaultType, defaultKeywords, onSearchSubmit }) {
   return (
     <div id="searchbar-container">
       <h2>Find a dish</h2>
       <form id="search" onSubmit={onSearchSubmit}>
         <div className="search-container">
           <i className="fa fa-search" />
-          <input id="search-text" type="text" placeholder="Enter keywords" />
+          <input defaultValue={defaultKeywords} id="search-text" type="text" placeholder="Enter keywords" />
         </div>
 
         <div className="select-container">
-          <select id="search-type">
+          <select id="search-type" defaultValue={defaultType}>
             <option value="">All</option>
             <option value="main dish">Main Dish</option>
             <option value="dessert">Dessert</option>
@@ -41,6 +41,8 @@ function Searchbar({ onSearchSubmit }) {
 Searchbar.propTypes = {
   /** Event handler for the search form submit */
   onSearchSubmit: PropTypes.func.isRequired,
+  defaultType: PropTypes.string.isRequired,
+  defaultKeywords: PropTypes.string.isRequired,
 };
 
 export default Searchbar;

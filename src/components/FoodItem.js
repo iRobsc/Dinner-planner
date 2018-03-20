@@ -30,7 +30,7 @@ FoodItem.propTypes = {
   /** Which text should be displayed on the card */
   title: PropTypes.string.isRequired,
   /** ID of the dish, needed for the image */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   /** Optional, if present will change url when clicking */
   to: PropTypes.string,
 };
