@@ -17,10 +17,14 @@ function DinnerButtonLink({ to, children, disabled }) {
   );
 }
 
+DinnerButtonLink.defaultProps = {
+  disabled: false,
+};
+
 DinnerButtonLink.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default DinnerButtonLink;
