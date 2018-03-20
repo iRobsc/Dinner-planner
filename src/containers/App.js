@@ -27,7 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Welcome} />
           <AppRoute
-            path="/search/:page?/:type?/:keywords?"
+            path="/search"
             component={SearchPage}
             layout={MainLayout}
             layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}

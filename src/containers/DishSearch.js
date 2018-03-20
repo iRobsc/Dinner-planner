@@ -11,27 +11,22 @@ class DishSearch extends Component {
   }
 
   static defaultProps = {
-    type: null,
-    keywords: null,
-    page: null,
+    type: "",
+    keywords: "",
+    page: 0,
   }
 
   state = {};
 
   getNextRoute() {
     const { type, keywords, page } = this.props;
-    const nextPage = page + 1;
-    const nextType = type ? `/${type}` : "";
-    const nextKeywords = keywords ? `/${keywords}` : "";
-    return `/search/${nextPage}${nextType}${nextKeywords}`;
+    return `/search?type=${type}&keywords=${keywords}&page=${page + 1}`;
   }
 
   getPrevRoute() {
     const { type, keywords, page } = this.props;
-    const nextPage = page === 0 ? 0 : page - 1;
-    const nextType = type ? `/${type}` : "";
-    const nextKeywords = keywords ? `/${keywords}` : "";
-    return `/search/${nextPage}${nextType}${nextKeywords}`;
+    const destinationPage = (page - 1) < 0 ? 0 : (page - 1);
+    return `/search?type=${type}&keywords=${keywords}&page=${destinationPage}`;
   }
 
   render() {

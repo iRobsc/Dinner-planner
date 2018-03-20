@@ -1,17 +1,16 @@
 import React from "react";
-import ReactRouterPropTypes from "react-router-prop-types";
 import DishSearch from "../containers/DishSearch";
 
-function SearchPage({ match }) {
-  const { type, keywords, page } = match.params;
+function SearchPage() {
+  const url = new URL(window.location.href);
+  const type = url.searchParams.get("type");
+  const keywords = url.searchParams.get("keywords");
+  const page = url.searchParams.get("page");
   const pageNumber = page ? parseInt(page, 10) : 0;
+
   return (
     <DishSearch type={type} keywords={keywords} page={pageNumber} />
   );
 }
-
-SearchPage.propTypes = {
-  match: ReactRouterPropTypes.match, // eslint-disable-line
-};
 
 export default SearchPage;
