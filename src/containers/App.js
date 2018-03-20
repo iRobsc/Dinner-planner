@@ -13,7 +13,7 @@ import NoMatchPage from "../pages/NoMatchPage";
 class App extends Component {
   state = {
     menu: [],
-    numberOfGuests: 0,
+    numberOfGuests: 1,
   };
 
   setNumberOfGuests = (numberOfGuests) => {
