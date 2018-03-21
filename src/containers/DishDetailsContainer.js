@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import getDish from "../utils/getDish";
 import DishDetails from "../components/DishDetails";
+import SpinnerLoader from "../components/SpinnerLoader";
 
 class DishDetailsContainer extends Component {
   static propTypes = {
@@ -24,7 +25,7 @@ class DishDetailsContainer extends Component {
 
   render() {
     if (this.state.currentDish === null) {
-      return <div />;
+      return <SpinnerLoader />;
     }
     return (
       <DishDetails
