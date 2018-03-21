@@ -4,6 +4,10 @@ import DinnerButton from "./DinnerButton";
 import "../css/Ingredientlist.scss";
 
 function Ingredientlist({ numberOfGuests, dish, addDishToMenu }) {
+  const onClick = () => {
+    addDishToMenu(dish);
+  };
+
   const content = dish.extendedIngredients.map(ingredient => (
     <tbody key={ingredient.id}>
       <tr>
@@ -37,7 +41,7 @@ function Ingredientlist({ numberOfGuests, dish, addDishToMenu }) {
           </table>
         </div>
         <div id="dish-ingredient-add">
-          <DinnerButton onClick={addDishToMenu}>Add to menu</DinnerButton>
+          <DinnerButton onClick={onClick}>Add to menu</DinnerButton>
           <div id="dish-ingredient-price" />
         </div>
       </div>

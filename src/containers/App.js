@@ -20,9 +20,13 @@ class App extends Component {
     this.setState({ numberOfGuests });
   }
 
+  addDishToMenu = (dish) => {
+    this.setState({ menu: [...this.state.menu, dish] });
+  }
+
   render() {
     const { numberOfGuests, menu } = this.state;
-    const { setNumberOfGuests } = this;
+    const { setNumberOfGuests, addDishToMenu } = this;
     return (
       <Router>
         <Switch>
@@ -33,7 +37,13 @@ class App extends Component {
             layout={MainLayout}
             layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
           />
-          <Route path="/dish/:id" component={DishDetailsPage} />
+          <AppRoute
+            path="/dish/:id"
+            component={DishDetailsPage}
+            componentProps={{ numberOfGuests, addDishToMenu }}
+            layout={MainLayout}
+            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
+          />
           <AppRoute
             path="/mydinner"
             component={MyDinnerPage}
