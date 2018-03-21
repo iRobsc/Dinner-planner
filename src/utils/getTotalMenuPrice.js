@@ -1,3 +1,5 @@
+import round from "./round";
+
 /**
  * Returns the total price of the menu multiplied by number of guests
  *
@@ -6,5 +8,5 @@
  * @returns {Number}
  */
 export default function getTotalMenuPrice(menu, numberOfGuests) {
-  return menu.reduce((total, dish) => total + dish.pricePerServing, 0) * numberOfGuests;
+  return round(menu.reduce((total, dish) => total + dish.pricePerServing, 0) * numberOfGuests);
 }

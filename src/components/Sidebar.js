@@ -38,7 +38,7 @@ class Sidebar extends Component {
         <div id="sidebar">
           <div id="sidebar-accordion">
             <h2>My Dinner</h2>
-            <div className="price">0kr</div>
+            <div className="price">{totalPrice}</div>
             <button id="sidebar-toggle" onClick={this.toggleSidebar}>
               <i className="fa fa-bars" />
             </button>

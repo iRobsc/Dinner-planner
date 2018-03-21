@@ -19,7 +19,7 @@ function MyDinnerPage({ menu, numberOfGuests }) {
             ))
         }
         <p className="total-price">
-          Total price: {round(getTotalMenuPrice(menu, numberOfGuests))} SEK
+          Total price: {getTotalMenuPrice(menu, numberOfGuests)} SEK
         </p>
       </div>
       <div className="myDinner-footer">
