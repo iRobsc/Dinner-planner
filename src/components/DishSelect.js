@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Searchbar from "../components/Searchbar";
 import DinnerButtonLink from "../components/DinnerButtonLink";
 import FoodItem from "../components/FoodItem";
+import "../css/DishSelect.scss";
 
 function DishSelect({ keywords, type, onSearchSubmit, searchResults, isLoading, prevTo, nextTo }) {
   let gridContent;
@@ -38,7 +39,7 @@ function DishSelect({ keywords, type, onSearchSubmit, searchResults, isLoading, 
         defaultType={type}
         onSearchSubmit={onSearchSubmit}
       />
-      {searchResults.length !== 0 ? resultComponent : "No results"}
+      {(searchResults.length !== 0 || isLoading) ? resultComponent : "No results"}
     </div>
   );
 }
