@@ -1,15 +1,19 @@
 import React from "react";
 import ReactRouterPropTypes from "react-router-prop-types";
+import PropTypes from "prop-types";
+import DishDetailsContainer from "../containers/DishDetailsContainer";
 
-function DishDetails({ match }) {
+function DishDetailsPage({ match, numberOfGuests, addDishToMenu }) {
   const { id } = match.params;
   return (
-    <div>Dish details, dish ID: {id}</div>
+    <DishDetailsContainer id={parseInt(id, 10)} numberOfGuests={numberOfGuests} addDishToMenu={addDishToMenu} />
   );
 }
 
-DishDetails.propTypes = {
+DishDetailsPage.propTypes = {
   match: ReactRouterPropTypes.match, // eslint-disable-line
+  numberOfGuests: PropTypes.number.isRequired,
+  addDishToMenu: PropTypes.func.isRequired,
 };
 
-export default DishDetails;
+export default DishDetailsPage;
