@@ -39,7 +39,7 @@ function DishSelect({ keywords, type, onSearchSubmit, searchResults, isLoading, 
         defaultType={type}
         onSearchSubmit={onSearchSubmit}
       />
-      {searchResults.length !== 0 ? resultComponent : "No results"}
+      {(searchResults.length !== 0 || isLoading) ? resultComponent : "No results"}
     </div>
   );
 }
