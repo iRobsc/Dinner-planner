@@ -20,8 +20,13 @@ class App extends Component {
     this.setState({ numberOfGuests });
   }
 
-  addDishToMenu = (dish) => {
-    this.setState({ menu: [...this.state.menu, dish] });
+  addDishToMenu = (newDish) => {
+    const { menu } = this.state;
+    if (menu.some(dish => dish.id === newDish.id)) {
+      // already added a dish with this id
+      return;
+    }
+    this.setState({ menu: [...menu, newDish] });
   }
 
   render() {
