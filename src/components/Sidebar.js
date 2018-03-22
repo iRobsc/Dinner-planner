@@ -6,6 +6,13 @@ import getTotalMenuPrice from "../utils/getTotalMenuPrice";
 import "../css/Sidebar.scss";
 
 class Sidebar extends Component {
+  static propTypes = {
+    numberOfGuests: PropTypes.number.isRequired,
+    menu: PropTypes.array.isRequired,
+    onGuestChange: PropTypes.func.isRequired,
+    deleteDishFromMenu: PropTypes.func.isRequired,
+  }
+
   state = {
     open: false,
   };
@@ -15,15 +22,22 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { numberOfGuests, menu, onGuestChange } = this.props;
+    const { numberOfGuests, menu, onGuestChange, deleteDishFromMenu } = this.props;
     const { open } = this.state;
 
     let content;
     if (menu.length === 0) {
       content = "Your list is empty!";
     } else {
-      content = menu.map(dish =>
-        <SidebarItem key={dish.id} title={dish.title} price={dish.pricePerServing} />);
+      content = menu.map(dish => (
+        <SidebarItem
+          key={dish.id}
+          id={dish.id}
+          title={dish.title}
+          price={dish.pricePerServing}
+          deleteDishFromMenu={deleteDishFromMenu}
+        />
+      ));
     }
 
     let disabled = false;
@@ -70,11 +84,5 @@ class Sidebar extends Component {
     );
   }
 }
-
-Sidebar.propTypes = {
-  numberOfGuests: PropTypes.number.isRequired,
-  menu: PropTypes.array.isRequired,
-  onGuestChange: PropTypes.func.isRequired,
-};
 
 export default Sidebar;

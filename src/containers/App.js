@@ -29,9 +29,14 @@ class App extends Component {
     this.setState({ menu: [...menu, newDish] });
   }
 
+  deleteDishFromMenu = (deleteId) => {
+    const newMenu = this.state.menu.filter(dish => dish.id !== deleteId);
+    this.setState({ menu: newMenu });
+  }
+
   render() {
     const { numberOfGuests, menu } = this.state;
-    const { setNumberOfGuests, addDishToMenu } = this;
+    const { setNumberOfGuests, addDishToMenu, deleteDishFromMenu } = this;
     return (
       <Router>
         <Switch>
@@ -40,14 +45,14 @@ class App extends Component {
             path="/search"
             component={SearchPage}
             layout={MainLayout}
-            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
+            layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
           />
           <AppRoute
             path="/dish/:id"
             component={DishDetailsPage}
             componentProps={{ numberOfGuests, addDishToMenu }}
             layout={MainLayout}
-            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
+            layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
           />
           <AppRoute
             path="/mydinner"
