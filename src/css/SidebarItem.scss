@@ -1,0 +1,43 @@
+.sidebar-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: linear-gradient(90deg, #FF79AD, #FF418A);
+  margin-bottom: 20px;
+  color: white;
+  padding: 15px;
+  box-shadow: rgba(#FF1D78, 0.4) 0 10px 20px;
+  position: relative;
+
+  .name { text-align: left; }
+  .price {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    transition: opacity 300ms;
+  }
+  .delete {
+    background: none;
+    font-size: 24px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 300ms;
+    border: none;
+    cursor: pointer;
+
+    .fa-circle { color: rgba(white, 0.5); }
+
+    .fa-times { color: rgb(71, 18, 43); }
+
+    &:active {
+      .fa-circle { color: rgba(white, 0.2); }
+    }
+  }
+
+  &:hover {
+    .price { opacity: 0; }
+    .delete { opacity: 1; }
+  }
+}
