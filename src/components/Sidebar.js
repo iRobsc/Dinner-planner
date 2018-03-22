@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DinnerButtonLink from "./DinnerButtonLink";
 import SidebarItem from "./SidebarItem";
 import getTotalMenuPrice from "../utils/getTotalMenuPrice";
+import round from "../utils/round";
 import "../css/Sidebar.scss";
 
 class Sidebar extends Component {
@@ -34,7 +35,7 @@ class Sidebar extends Component {
           key={dish.id}
           id={dish.id}
           title={dish.title}
-          price={dish.pricePerServing}
+          price={round(dish.pricePerServing * numberOfGuests)}
           deleteDishFromMenu={deleteDishFromMenu}
         />
       ));

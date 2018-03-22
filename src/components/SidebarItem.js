@@ -10,7 +10,7 @@ function SidebarItem({ id, title, price, deleteDishFromMenu }) {
   return (
     <div className="sidebar-item">
       <div className="name">{title}</div>
-      <div className="price">{Math.round(price)} SEK</div>
+      <div className="price">{price} SEK</div>
       <button className="delete" onClick={onDeleteClick}>
         <span className="fa-layers fa-fw">
           <i className="fas fa-circle" />
