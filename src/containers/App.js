@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ScrollToTop from "../pages/ScrollToTop";
 import AppRoute from "../pages/AppRoute";
 import MainLayout from "../layouts/MainLayout";
 import ResultLayout from "../layouts/ResultLayout";
@@ -20,46 +21,52 @@ class App extends Component {
     this.setState({ numberOfGuests });
   }
 
-  addDishToMenu = (dish) => {
-    this.setState({ menu: [...this.state.menu, dish] });
+  addDishToMenu = (newDish) => {
+    const { menu } = this.state;
+    if (menu.some(dish => dish.id === newDish.id)) {
+      // already added a dish with this id
+      return;
+    }
+    this.setState({ menu: [...menu, newDish] });
+  }
+
+  deleteDishFromMenu = (deleteId) => {
+    const newMenu = this.state.menu.filter(dish => dish.id !== deleteId);
+    this.setState({ menu: newMenu });
   }
 
   render() {
     const { numberOfGuests, menu } = this.state;
-    const { setNumberOfGuests, addDishToMenu } = this;
+    const { setNumberOfGuests, addDishToMenu, deleteDishFromMenu } = this;
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" component={Welcome} />
-          <AppRoute
-            path="/search"
-            component={SearchPage}
-            layout={MainLayout}
-            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
-          />
-          <AppRoute
-            path="/dish/:id"
-            component={DishDetailsPage}
-            componentProps={{ numberOfGuests, addDishToMenu }}
-            layout={MainLayout}
-            layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
-          />
-          <AppRoute
-            path="/mydinner"
-            component={MyDinnerPage}
-            layout={ResultLayout}
-            layoutProps={{ numberOfGuests }}
-            componentProps={{ menu, numberOfGuests }}
-          />
-          <AppRoute
-            path="/recipes"
-            component={RecipesPage}
-            layout={ResultLayout}
-            layoutProps={{ numberOfGuests }}
-            componentProps={{ menu }}
-          />
-          <Route component={NoMatchPage} />
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/" component={Welcome} />
+            <AppRoute
+              path="/search"
+              component={SearchPage}
+              layout={MainLayout}
+              layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
+            />
+            <AppRoute
+              path="/dish/:id"
+              component={DishDetailsPage}
+              componentProps={{ numberOfGuests, addDishToMenu }}
+              layout={MainLayout}
+              layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
+            />
+            <AppRoute
+              path="/mydinner"
+              component={MyDinnerPage}
+              layout={ResultLayout}
+              layoutProps={{ numberOfGuests }}
+              componentProps={{ menu, numberOfGuests }}
+            />
+            <Route path="/recipes" component={RecipesPage} />
+            <Route component={NoMatchPage} />
+          </Switch>
+        </ScrollToTop>
       </Router>
     );
   }
