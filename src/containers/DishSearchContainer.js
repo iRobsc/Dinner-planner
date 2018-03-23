@@ -15,6 +15,7 @@ class DishSearch extends Component {
   state = {
     searchResults: [],
     isLoading: false,
+    error: false,
   };
 
   componentDidMount() {
@@ -46,11 +47,13 @@ class DishSearch extends Component {
       .trim()
       .replace(/\s/g, "+")
       .toLowerCase();
-    history.push(`/search?type=${type}&keywords=${keywords}`);
-  }
 
-  setLoading(isLoading) {
-    this.setState({ isLoading });
+    const targetParams = `?type=${type}&keywords=${keywords}`;
+    if (history.location.search === targetParams) {
+      this.search(type, keywords, 0);
+    } else {
+      history.push(`/search${targetParams}`);
+    }
   }
 
   getNextRoute() {
@@ -65,15 +68,13 @@ class DishSearch extends Component {
   }
 
   search(type, keywords, page) {
-    this.setLoading(true);
+    this.setState({ isLoading: true, error: false });
     getAllDishes(type, keywords, page)
       .then((searchResults) => {
-        this.setState({ searchResults });
-        this.setLoading(false);
+        this.setState({ searchResults, isLoading: false, error: false });
       })
       .catch(() => {
-        this.setLoading(false);
-        alert("Search failed, are you offline?");
+        this.setState({ isLoading: false, error: true });
       });
   }
 

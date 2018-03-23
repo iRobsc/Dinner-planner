@@ -5,7 +5,9 @@ import DinnerButtonLink from "../components/DinnerButtonLink";
 import FoodItem from "../components/FoodItem";
 import "../css/DishSelect.scss";
 
-function DishSelect({ keywords, type, onSearchSubmit, searchResults, isLoading, prevTo, nextTo }) {
+function DishSelect({
+  error, keywords, type, onSearchSubmit, searchResults, isLoading, prevTo, nextTo,
+}) {
   let gridContent;
   if (isLoading) {
     gridContent = [1, 2, 3, 4, 5, 6, 7, 8].map(index => <div key={index} className="loading" />);
@@ -32,19 +34,33 @@ function DishSelect({ keywords, type, onSearchSubmit, searchResults, isLoading, 
     </div>
   );
 
+  const searchBar = (
+    <Searchbar
+      defaultKeywords={keywords}
+      defaultType={type}
+      onSearchSubmit={onSearchSubmit}
+    />
+  );
+
+  if (error) {
+    return (
+      <div>
+        {searchBar}
+        <p>Could not fetch results, are you offline?</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <Searchbar
-        defaultKeywords={keywords}
-        defaultType={type}
-        onSearchSubmit={onSearchSubmit}
-      />
+      {searchBar}
       {(searchResults.length !== 0 || isLoading) ? resultComponent : "No results"}
     </div>
   );
 }
 
 DishSelect.propTypes = {
+  error: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   keywords: PropTypes.string.isRequired,
   searchResults: PropTypes.array.isRequired,
