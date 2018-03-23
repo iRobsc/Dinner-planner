@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DinnerButtonLink from "./DinnerButtonLink";
+import DinnerButtonBack from "./DinnerButtonBack";
 import "../css/MyDinnerTitle.scss";
 
 function MyDinnerTitle({ numberOfGuests }) {
@@ -9,9 +9,7 @@ function MyDinnerTitle({ numberOfGuests }) {
       <h2 className="title">
         My Dinner for <span id="people">{numberOfGuests}</span> people
       </h2>
-      <DinnerButtonLink to="/search">
-        Go back and edit dinner
-      </DinnerButtonLink>
+      <DinnerButtonBack>Go back</DinnerButtonBack>
     </div>
   );
 }
