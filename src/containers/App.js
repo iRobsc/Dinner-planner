@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cache from "../utils/cache";
 import ScrollToTop from "../pages/ScrollToTop";
 import AppRoute from "../pages/AppRoute";
 import MainLayout from "../layouts/MainLayout";
@@ -16,6 +17,16 @@ class App extends Component {
     menu: [],
     numberOfGuests: 1,
   };
+
+  componentWillMount() {
+    const state = Cache.getState();
+    if (state === -1) return;
+    this.setState(state);
+  }
+
+  componentDidUpdate() {
+    Cache.setState(this.state);
+  }
 
   setNumberOfGuests = (numberOfGuests) => {
     this.setState({ numberOfGuests });

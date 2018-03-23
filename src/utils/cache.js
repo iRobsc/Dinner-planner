@@ -60,6 +60,15 @@ class Cache {
     console.log("set cache with value:");
     console.log(dish);
   }
+
+  static getState() {
+    const state = JSON.parse(localStorage.getItem("state"));
+    return state || -1;
+  }
+
+  static setState(state) {
+    localStorage.setItem("state", JSON.stringify(state));
+  }
 }
 
 export default Cache;
