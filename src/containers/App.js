@@ -21,13 +21,23 @@ class App extends Component {
     this.setState({ numberOfGuests });
   }
 
-  addDishToMenu = (dish) => {
-    this.setState({ menu: [...this.state.menu, dish] });
+  addDishToMenu = (newDish) => {
+    const { menu } = this.state;
+    if (menu.some(dish => dish.id === newDish.id)) {
+      // already added a dish with this id
+      return;
+    }
+    this.setState({ menu: [...menu, newDish] });
+  }
+
+  deleteDishFromMenu = (deleteId) => {
+    const newMenu = this.state.menu.filter(dish => dish.id !== deleteId);
+    this.setState({ menu: newMenu });
   }
 
   render() {
     const { numberOfGuests, menu } = this.state;
-    const { setNumberOfGuests, addDishToMenu } = this;
+    const { setNumberOfGuests, addDishToMenu, deleteDishFromMenu } = this;
     return (
       <Router>
         <ScrollToTop>
@@ -37,14 +47,14 @@ class App extends Component {
               path="/search"
               component={SearchPage}
               layout={MainLayout}
-              layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
+              layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
             />
             <AppRoute
               path="/dish/:id"
               component={DishDetailsPage}
               componentProps={{ numberOfGuests, addDishToMenu }}
               layout={MainLayout}
-              layoutProps={{ numberOfGuests, menu, setNumberOfGuests }}
+              layoutProps={{ numberOfGuests, menu, setNumberOfGuests, deleteDishFromMenu }}
             />
             <AppRoute
               path="/mydinner"
