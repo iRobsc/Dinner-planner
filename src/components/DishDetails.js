@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DinnerButtonLink from "./DinnerButtonLink";
+import DinnerButtonBack from "./DinnerButtonBack";
 import Ingredientlist from "./Ingredientlist";
 import "../css/DishContent.scss";
 
@@ -10,7 +10,7 @@ function DishDetails({ numberOfGuests, dish, addDishToMenu }) {
       <div id="dish-object">
         <div id="dish-title">{dish.title}</div>
         <img id="dish-img" src={`https://spoonacular.com/recipeImages/${dish.id}-480x360.jpg`} alt={dish.title} />
-        <DinnerButtonLink to="/search">Back to search</DinnerButtonLink>
+        <DinnerButtonBack>Back to search</DinnerButtonBack>
       </div>
       <Ingredientlist
         numberOfGuests={numberOfGuests}
