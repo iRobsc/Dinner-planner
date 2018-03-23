@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./../css/buttons.scss";
+import "./../css/Buttons.scss";
 
 function DinnerButton({ children, onClick }) {
   return (
