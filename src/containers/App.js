@@ -51,7 +51,13 @@ class App extends Component {
             layoutProps={{ numberOfGuests }}
             componentProps={{ menu, numberOfGuests }}
           />
-          <Route path="/recipes" component={RecipesPage} />
+          <AppRoute
+            path="/recipes"
+            component={RecipesPage}
+            layout={ResultLayout}
+            layoutProps={{ numberOfGuests }}
+            componentProps={{ menu }}
+          />
           <Route component={NoMatchPage} />
         </Switch>
       </Router>

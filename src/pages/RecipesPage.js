@@ -1,9 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
+import RecipeList from "../components/RecipeList";
 
-function RecipesPage() {
+function RecipesPage({ menu }) {
   return (
-    <div>Recipes</div>
+    <RecipeList menu={menu} />
   );
 }
+
+RecipesPage.propTypes = {
+  menu: PropTypes.array.isRequired,
+};
 
 export default RecipesPage;
