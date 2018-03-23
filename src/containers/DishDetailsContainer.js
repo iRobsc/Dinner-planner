@@ -11,19 +11,23 @@ class DishDetailsContainer extends Component {
     addDishToMenu: PropTypes.func.isRequired,
   }
 
-  state = { currentDish: null }
+  state = { currentDish: null, error: false }
 
   componentDidMount() {
     getDish(this.props.id)
       .then((currentDish) => {
-        this.setState({ currentDish });
+        this.setState({ currentDish, error: false });
       })
       .catch((error) => {
-        console.error(error);
+        this.setState({ error: true });
       });
   }
 
   render() {
+    if (this.state.error) {
+      return (<div> Could not find the dish, could it be your internet connection? </div>);
+    }
+
     if (this.state.currentDish === null) {
       return <SpinnerLoader />;
     }
